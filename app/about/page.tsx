@@ -33,7 +33,7 @@ const fadeInUp = {
 const teamMembers = [
   {
     name: 'Prasoon Kumar',
-    role: 'Project Lead & Presentation',
+    role: 'Project Lead',
     initials: 'PK',
     tone: 'bg-[#dcefe1] text-[#2f855a]',
   },

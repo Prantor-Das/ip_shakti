@@ -3,6 +3,7 @@ import { FAQSection } from '@/components/ui/faqsection';
 import { HistoricalHeritageSection } from '@/components/ui/historical-heritage';
 import Contact16 from '@/components/ui/contact-16';
 import { LANGUAGES } from '@/lib/i18n/languages';
+import Link from 'next/link';
 
 const ayushFaqsLeft = [
   {
@@ -92,6 +93,45 @@ export default function Home() {
 
       {/* Heritage Section: Those Who Shaped the Tradition */}
       <HistoricalHeritageSection />
+
+      <section className="bg-[#f7faf7] px-4 py-16 text-[#173b2b] sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <p className="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-primary">
+            More from IP-SAKTI
+          </p>
+          <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
+            Explore the knowledge layer
+          </h2>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+            {[
+              [
+                'ABS & TKDL',
+                '/abs-tkdl',
+                'Understand access, benefit sharing, and traditional knowledge checks.',
+              ],
+              ['Sources', '/sources', 'Browse the legal and regulatory corpus behind answers.'],
+              ['Samhita', '/samhita', 'Explore Ayurveda knowledge, herbs, and formulations.'],
+              ['Features', '/features', 'See what IP-SAKTI can do for research and protection.'],
+              [
+                'How It Works',
+                '/how-it-works',
+                'Follow the path from question to grounded guidance.',
+              ],
+            ].map(([title, href, description]) => (
+              <Link
+                key={href}
+                href={href}
+                className="rounded-2xl border border-[#173b2b]/10 bg-white p-5 transition hover:-translate-y-0.5 hover:border-primary/40"
+              >
+                <span className="font-semibold text-[#173b2b]">{title}</span>
+                <span className="mt-2 block text-sm leading-6 text-[#173b2b]/60">
+                  {description}
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* FAQ Section */}
       <FAQSection

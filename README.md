@@ -19,20 +19,144 @@ The staged roadmap and current gaps are documented in [LIMITATIONS.md](./LIMITAT
 ## Architecture
 
 ```mermaid
-flowchart LR
-  UI[Next.js UI] --> API[/api/chat]
-  API --> V[Validation + sanitisation + rate limit]
-  V --> TI[Translate in: Bhashini, then Gemini]
-  TI --> R[Retrieval: Supabase pgvector, jurisdiction-filtered]
-  R --> G[Gemini generation]
-  G --> CV[Citation validation + abstention]
-  CV --> TO[Translate out: Bhashini, then Gemini]
-  TO --> NDJSON[NDJSON stream]
+flowchart TB
+    user(("User"))
 
-  MAN[corpus/manifest.json + PDFs] --> ING[ingest pipeline]
-  ING --> R
-  EQ[tests/eval/questions.json] --> EVAL[eval pipeline]
-  EVAL --> R
+    subgraph client["Client Experience"]
+        direction LR
+
+        chat_ui["Chat UI<br/><small>app/chat/page.tsx</small>"]
+        samhita_ui["Samhita Explorer<br/><small>app/samhita/page.tsx</small>"]
+        abs_ui["ABS/TKDL UI<br/><small>app/abs-tkdl/page.tsx</small>"]
+        sources_ui["Sources Status<br/><small>app/sources/page.tsx</small>"]
+    end
+
+
+    subgraph api["API Safeguards"]
+        direction LR
+
+        chat_route["Chat Endpoint<br/><small>api/chat/route.ts</small>"]
+        abs_route["ABS Endpoint<br/><small>api/abs-tkdl/route.ts</small>"]
+        contact_route["Contact Endpoint<br/><small>api/contact/route.ts</small>"]
+
+        safeguards["Request Safeguards<br/><small>security/request.ts</small>"]
+        rate_limits["Rate Limits<br/><small>security/rate-limit.ts</small>"]
+        audit["Privacy Audit<br/><small>audit.ts</small>"]
+    end
+
+
+    subgraph intelligence["Answer Intelligence"]
+        direction LR
+
+        rag_answer["RAG Answering<br/><small>rag/answer.ts</small>"]
+        retrieval["Jurisdiction Retrieval<br/><small>rag/retrieval.ts</small>"]
+        ai_provider["AI Providers<br/><small>ai/provider.ts</small>"]
+        translation["Protected Translation<br/><small>translate/index.ts</small>"]
+    end
+
+
+    subgraph knowledge["Knowledge Features"]
+        direction TB
+
+        samhita_context["Samhita Context<br/><small>samhita-context.ts</small>"]
+    end
+
+
+    subgraph integrations["Data Integrations"]
+        direction LR
+
+        supabase[("Supabase Corpus<br/><small>supabase/server.ts</small>")]
+        gemini["Gemini"]
+        bhashini["Bhashini"]
+        contact_provider["Resend / SMTP"]
+    end
+
+
+    user -->|"asks question"| chat_ui
+    user -->|"submits facts"| abs_ui
+    user -->|"sends contact"| contact_route
+
+
+    chat_ui -->|"posts chat"| chat_route
+    abs_ui -->|"posts scenario"| abs_route
+    chat_ui -->|"selects topic"| samhita_context
+    samhita_ui -->|"opens chat"| chat_ui
+
+
+    chat_route -->|"validates input"| safeguards
+    chat_route -->|"checks budget"| rate_limits
+    chat_route -->|"translates input"| translation
+    chat_route -->|"requests answer"| rag_answer
+    chat_route -->|"translates output"| translation
+    chat_route -->|"records metadata"| audit
+
+
+    abs_route -->|"validates input"| safeguards
+    abs_route -->|"checks budget"| rate_limits
+    abs_route -->|"requests answer"| rag_answer
+    abs_route -->|"records metadata"| audit
+
+
+    contact_route -->|"validates input"| safeguards
+    contact_route -->|"checks budget"| rate_limits
+    contact_route -.->|"delivers message"| contact_provider
+
+
+    rag_answer -->|"retrieves sources"| retrieval
+    rag_answer -->|"generates answer"| ai_provider
+
+    retrieval -->|"creates embeddings"| ai_provider
+    retrieval -->|"queries corpus"| supabase
+
+    ai_provider -->|"calls model"| gemini
+
+    translation -.->|"tries translation"| bhashini
+    translation -.->|"falls back"| gemini
+
+
+    sources_ui -->|"reads status"| supabase
+
+
+    click chat_ui "https://github.com/prantor-das/ip_shakti/blob/main/app/chat/page.tsx"
+    click samhita_ui "https://github.com/prantor-das/ip_shakti/blob/main/app/samhita/page.tsx"
+    click abs_ui "https://github.com/prantor-das/ip_shakti/blob/main/app/abs-tkdl/page.tsx"
+    click sources_ui "https://github.com/prantor-das/ip_shakti/blob/main/app/sources/page.tsx"
+
+    click chat_route "https://github.com/prantor-das/ip_shakti/blob/main/app/api/chat/route.ts"
+    click abs_route "https://github.com/prantor-das/ip_shakti/blob/main/app/api/abs-tkdl/route.ts"
+    click contact_route "https://github.com/prantor-das/ip_shakti/blob/main/app/api/contact/route.ts"
+
+    click safeguards "https://github.com/prantor-das/ip_shakti/blob/main/lib/security/request.ts"
+    click rate_limits "https://github.com/prantor-das/ip_shakti/blob/main/lib/security/rate-limit.ts"
+    click audit "https://github.com/prantor-das/ip_shakti/blob/main/lib/audit.ts"
+
+    click rag_answer "https://github.com/prantor-das/ip_shakti/blob/main/lib/rag/answer.ts"
+    click retrieval "https://github.com/prantor-das/ip_shakti/blob/main/lib/rag/retrieval.ts"
+    click ai_provider "https://github.com/prantor-das/ip_shakti/blob/main/lib/ai/provider.ts"
+    click translation "https://github.com/prantor-das/ip_shakti/blob/main/lib/translate/index.ts"
+
+    click samhita_context "https://github.com/prantor-das/ip_shakti/blob/main/lib/samhita-context.ts"
+    click supabase "https://github.com/prantor-das/ip_shakti/blob/main/lib/supabase/server.ts"
+
+
+    classDef userStyle fill:#dbeafe,stroke:#2563eb,stroke-width:2px,color:#172554
+    classDef clientStyle fill:#dbeafe,stroke:#2563eb,stroke-width:1.5px,color:#172554
+    classDef apiStyle fill:#fef3c7,stroke:#d97706,stroke-width:1.5px,color:#78350f
+    classDef intelligenceStyle fill:#dcfce7,stroke:#16a34a,stroke-width:1.5px,color:#14532d
+    classDef knowledgeStyle fill:#ffe4e6,stroke:#e11d48,stroke-width:1.5px,color:#881337
+    classDef integrationStyle fill:#e0e7ff,stroke:#4f46e5,stroke-width:1.5px,color:#312e81
+
+    class user userStyle
+
+    class chat_ui,samhita_ui,abs_ui,sources_ui clientStyle
+
+    class chat_route,abs_route,contact_route,safeguards,rate_limits,audit apiStyle
+
+    class rag_answer,retrieval,ai_provider,translation intelligenceStyle
+
+    class samhita_context knowledgeStyle
+
+    class supabase,gemini,bhashini,contact_provider integrationStyle
 ```
 
 ## Tech stack

@@ -74,17 +74,6 @@ export default function SamhitaPage() {
       {/* HERO SECTION */}
       <section className="relative overflow-hidden bg-linear-to-b from-[#F3F7F3] via-[#F8F9FA] to-[#FFFFFF] py-16 md:py-24 border-b border-[#DADCE0]">
         <div className="samhita-container relative z-10 text-center max-w-4xl mx-auto">
-          {/* Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E8F0E9] text-[#2D5A3F] text-xs font-semibold tracking-wider uppercase mb-6 border border-[#477A5B]/20"
-          >
-            <Sparkles className="w-3.5 h-3.5 text-[#477A5B]" />
-            Ayurveda Knowledge meets Intellectual Property
-          </motion.div>
-
           <motion.h1
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}

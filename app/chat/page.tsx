@@ -181,9 +181,11 @@ function Escalation({
 function MessageBubble({
   message,
   formulationType,
+  isLoading = false,
 }: {
   message: Message;
   formulationType?: FormulationType;
+  isLoading?: boolean;
 }) {
   const { t } = useI18n();
   const [showEnglish, setShowEnglish] = React.useState(false);
@@ -214,13 +216,24 @@ function MessageBubble({
               {message.jurisdiction}
             </div>
           )}
-          <div>
-            {content.split('\n').map((line, index) => (
-              <p key={`${message.id}-${index}`} className={index ? 'mt-2' : undefined}>
-                {renderText(line || '\u00a0', message.citations, message.id)}
-              </p>
-            ))}
-          </div>
+          {isLoading || !content ? (
+            <div className="flex items-center gap-2 text-sm text-emerald-950/55" role="status">
+              <span className="flex gap-1" aria-hidden="true">
+                <span className="size-1.5 animate-bounce rounded-full bg-primary [animation-delay:-0.2s]" />
+                <span className="size-1.5 animate-bounce rounded-full bg-primary [animation-delay:-0.1s]" />
+                <span className="size-1.5 animate-bounce rounded-full bg-primary" />
+              </span>
+              {t('chat.reading')}
+            </div>
+          ) : (
+            <div>
+              {content.split('\n').map((line, index) => (
+                <p key={`${message.id}-${index}`} className={index ? 'mt-2' : undefined}>
+                  {renderText(line || '\u00a0', message.citations, message.id)}
+                </p>
+              ))}
+            </div>
+          )}
           {assistant && !message.synthetic && message.confidence && (
             <div className="mt-4 flex items-center gap-2 border-t border-emerald-900/10 pt-3 text-xs text-emerald-950/55">
               <CheckIcon className="size-3.5 text-primary" />
@@ -241,7 +254,7 @@ function MessageBubble({
           {assistant && !message.synthetic && message.translationFailed && (
             <p className="mt-3 text-xs font-semibold text-amber-800">{t('chat.shownInEnglish')}</p>
           )}
-          {assistant && !message.synthetic && (
+          {assistant && !message.synthetic && content && (
             <p className="mt-3 border-t border-emerald-900/10 pt-3 text-xs text-emerald-950/55">
               {t('chat.disclaimer')}
             </p>
@@ -275,14 +288,18 @@ function ChatContent() {
   }));
   const [input, setInput] = React.useState('');
   const [loading, setLoading] = React.useState(false);
-  const [translationStatus, setTranslationStatus] = React.useState(false);
   const [bannerVisible, setBannerVisible] = React.useState(true);
   const abortRef = React.useRef<AbortController | null>(null);
   const endRef = React.useRef<HTMLDivElement | null>(null);
+  const mountedRef = React.useRef(false);
   const activeMessages = threads[jurisdiction];
 
   React.useEffect(() => () => abortRef.current?.abort(), []);
   React.useEffect(() => {
+    if (!mountedRef.current) {
+      mountedRef.current = true;
+      return;
+    }
     endRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [activeMessages.length]);
 
@@ -365,7 +382,6 @@ function ChatContent() {
                   : message
               ),
             }));
-          if (event.type === 'status') setTranslationStatus(true);
           if (event.type === 'done')
             updateAssistant(assistantId, {
               confidence: event.confidence,
@@ -394,7 +410,6 @@ function ChatContent() {
     } finally {
       abortRef.current = null;
       setLoading(false);
-      setTranslationStatus(false);
     }
   }
 
@@ -413,11 +428,11 @@ function ChatContent() {
   return (
     <div
       className={cn(
-        'min-h-dvh px-4 pb-8 pt-24 text-emerald-950 transition-colors sm:px-6 lg:px-8',
+        'h-dvh overflow-y-auto px-4 text-emerald-950 transition-colors sm:px-6 lg:px-8',
         jurisdiction === 'india' ? 'bg-[#f7faf7]' : 'bg-[#f7f9fc]'
       )}
     >
-      <div className="mx-auto max-w-3xl">
+      <div className="mx-auto min-h-full max-w-3xl pb-8 pt-24">
         {bannerVisible && (
           <div className="mb-4 flex items-center justify-between rounded-xl border border-amber-900/10 bg-amber-50 px-4 py-3 text-xs text-amber-950">
             <span>{t('chat.disclaimer')}</span>
@@ -479,16 +494,13 @@ function ChatContent() {
         )}
         <div aria-live="polite" className="space-y-5">
           {activeMessages.map((message) => (
-            <MessageBubble key={message.id} message={message} formulationType={formulationType} />
+            <MessageBubble
+              key={message.id}
+              message={message}
+              formulationType={formulationType}
+              isLoading={loading && message.id === activeMessages[activeMessages.length - 1]?.id}
+            />
           ))}
-          {loading && (
-            <div role="status" className="flex items-center gap-3 text-sm text-emerald-950/55">
-              <span className="flex size-9 items-center justify-center rounded-xl bg-primary text-white">
-                <LeafIcon className="size-4" />
-              </span>
-              {translationStatus ? t('chat.translating') : t('chat.reading')}
-            </div>
-          )}
           <div ref={endRef} />
         </div>
         {!activeMessages.some((message) => message.role === 'user') && (

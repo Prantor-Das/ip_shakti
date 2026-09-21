@@ -1,236 +1,133 @@
 'use client';
 
 import Link from 'next/link';
-import { Globe, Mail, MapPin, Link as LinkIcon } from 'lucide-react';
+import { usePathname } from 'next/navigation';
+import { Globe, Link as LinkIcon, Mail, MapPin } from 'lucide-react';
+
+const linkClass = 'text-sm text-[#173b2b]/65 transition-colors hover:text-[#2f855a]';
+const headingClass = 'mb-3 block text-sm font-bold tracking-tight text-[#173b2b]';
 
 export const Footer = ({ contactEmail }: { contactEmail?: string }) => {
-  const currentYear = new Date().getFullYear();
+  if (usePathname() === '/chat') return null;
 
   return (
-    <footer className="footer-logo-section">
-      {/* Top Banner & Socials (New Footer Style) */}
-      <div className="footer-content">
-        <div
-          className="sih-logo"
-          style={{ fontSize: '4rem', marginBottom: '1.5rem', textTransform: 'uppercase' }}
-        >
-          IP - SAKTI
-        </div>
-        <p>
-          <i>Where Ancient Wisdom Meets Intelligent Technology.</i>
-        </p>
-        <div className="footer-links">
-          {/* TODO: confirm the official project Facebook account before adding it. */}
-          <a
-            href="https://github.com/YASH-HCKT/SIH"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub"
-          >
-            <i className="fab fa-github"></i>
-          </a>
-          {/* TODO: confirm the official project Instagram account before adding it. */}
-          <a
-            href="https://www.linkedin.com/company/smart-india-hackathon/home/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn"
-          >
-            <i className="fab fa-linkedin-in"></i>
-          </a>
-        </div>
-      </div>
-
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '2.5rem',
-          alignItems: 'center',
-          justifyContent: 'center',
-          marginTop: '2rem',
-          marginBottom: '4rem',
-        }}
-      >
-        <div className="sih-logo-wrap">
-          <div className="built-for">built for</div>
-          <a
-            href="https://sih.gov.in/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="sih-logo"
-          >
-            SMART INDIA HACKATHON
-          </a>
+    <footer className="mt-16 border-t border-[#173b2b]/10 bg-[#f7faf7] px-6 py-12 text-[#173b2b]">
+      <div className="mx-auto grid max-w-[1200px] gap-10 md:grid-cols-4">
+        <div>
+          <div className="mb-3 font-bebas-neue text-[4rem] uppercase leading-[0.9] tracking-[0.5px]">
+            IP - SAKTI
+          </div>
+          <p className="mb-5 max-w-80 text-sm text-[#173b2b]/65">
+            <i>Where Ancient Wisdom Meets Intelligent Technology.</i>
+          </p>
         </div>
 
-        <div className="sih-logo-wrap">
-          <div className="built-for">built by</div>
-          <Link href="/about" className="sih-logo" style={{ fontSize: '2.5rem' }}>
-            SENTINALS
-          </Link>
-        </div>
-      </div>
-
-      {/* Prominent Black Separation Line */}
-      <div
-        className="max-w-7xl mx-auto my-8"
-        style={{ borderTop: '1px solid rgba(0, 0, 0, 0.25)' }}
-      />
-
-      {/* Detailed Navigation & Info Footer */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-left">
-        {/* Main Columns */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-          {/* About */}
-          <div>
-            <div className="mb-4">
-              <span style={{ color: '#000000' }} className="font-bold tracking-tight text-lg">
-                IP-SAKTI
-              </span>
-            </div>
-            <p className="text-gray-700 text-sm leading-relaxed">
-              Bridging traditional Ayurvedic knowledge with modern intellectual property protection.
-            </p>
-          </div>
-
-          {/* Product Links */}
-          <div>
-            <h3 style={{ color: '#000000' }} className="font-semibold mb-4 text-base">
-              Product
-            </h3>
-            <ul className="space-y-2 text-sm text-gray-700">
-              <li>
-                <Link href="/chat" className="hover:text-emerald-700 transition-colors">
-                  AI Assistant
-                </Link>
-              </li>
-              <li>
-                <Link href="/features" className="hover:text-emerald-700 transition-colors">
-                  Features
-                </Link>
-              </li>
-              <li>
-                <Link href="/how-it-works" className="hover:text-emerald-700 transition-colors">
-                  How It Works
-                </Link>
-              </li>
-              <li>
-                <Link href="/about" className="hover:text-emerald-700 transition-colors">
-                  About
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Resources */}
-          <div>
-            <h3 style={{ color: '#000000' }} className="font-semibold mb-4 text-base">
-              Resources
-            </h3>
-            <ul className="space-y-2 text-sm text-gray-700">
-              <li>
-                <a href="#" className="hover:text-emerald-700 transition-colors">
-                  Documentation
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-emerald-700 transition-colors">
-                  Blog
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-emerald-700 transition-colors">
-                  API Reference
-                </a>
-              </li>
-              <li>
-                <Link href="/#faq" className="hover:text-emerald-700 transition-colors">
-                  FAQ
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Contact */}
-          <div>
-            <h3 style={{ color: '#000000' }} className="font-semibold mb-4 text-base">
-              Contact
-            </h3>
-            <div className="space-y-3 text-sm text-gray-700">
-              <a
-                href="https://www.google.com/maps/search/?api=1&query=Asansol,+West+Bengal,+India"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center space-x-2 hover:text-emerald-700 transition-colors"
-              >
-                <MapPin size={16} />
-                <span>Asansol, West Bengal, India</span>
-              </a>
-              <div className="flex items-center space-x-2">
-                <Mail size={16} />
-                {contactEmail && (
-                  <a
-                    href={`mailto:${contactEmail}`}
-                    className="hover:text-emerald-700 transition-colors"
-                  >
-                    {contactEmail}
-                  </a>
-                )}
-              </div>
-            </div>
-          </div>
+        <div>
+          <span className={headingClass}>Product</span>
+          <nav className="flex flex-col gap-2.5" aria-label="Product">
+            <Link href="/chat" className={linkClass}>
+              AI Assistant
+            </Link>
+            <Link href="/features" className={linkClass}>
+              Features
+            </Link>
+            <Link href="/how-it-works" className={linkClass}>
+              How It Works
+            </Link>
+            <Link href="/about" className={linkClass}>
+              About
+            </Link>
+          </nav>
         </div>
 
-        {/* Black Separation Line above Copyright */}
-        <div className="my-8" style={{ borderTop: '1px solid rgba(0, 0, 0, 0.25)' }} />
+        <div>
+          <span className={headingClass}>More</span>
+          <nav className="flex flex-col gap-2.5" aria-label="More">
+            <Link href="/abs-tkdl" className={linkClass}>
+              ABS &amp; TKDL
+            </Link>
+            <Link href="/sources" className={linkClass}>
+              Sources
+            </Link>
+            <Link href="/samhita" className={linkClass}>
+              Samhita
+            </Link>
+          </nav>
+        </div>
 
-        {/* Bottom Bar */}
-        <div className="flex flex-col md:flex-row justify-between items-center text-sm text-gray-700">
-          <div className="mb-4 md:mb-0">
-            © {currentYear} IP-SAKTI Sahayak. All rights reserved. | Smart India Hackathon 2026
-          </div>
-
-          {/* Social Icons */}
-          <div className="flex items-center space-x-6 my-2 md:my-0 text-gray-800">
+        <div>
+          <span className={headingClass}>Contact</span>
+          <div className="flex flex-col gap-2.5">
             <a
-              href="https://github.com/YASH-HCKT/SIH"
+              href="https://www.google.com/maps/search/?api=1&query=Asansol,+West+Bengal,+India"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Website"
-              className="hover:text-emerald-700 transition-colors"
+              className={`${linkClass} flex items-start gap-2`}
             >
-              <Globe size={18} />
-            </a>
-            <a
-              href="https://www.linkedin.com/company/smart-india-hackathon/home/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn"
-              className="hover:text-emerald-700 transition-colors"
-            >
-              <LinkIcon size={18} />
+              <MapPin size={16} />
+              <span>Asansol, West Bengal, India</span>
             </a>
             {contactEmail && (
-              <a
-                href={`mailto:${contactEmail}`}
-                aria-label="Email"
-                className="hover:text-emerald-700 transition-colors"
-              >
-                <Mail size={18} />
+              <a href={`mailto:${contactEmail}`} className={`${linkClass} flex items-start gap-2`}>
+                <Mail size={16} />
+                <span>{contactEmail}</span>
               </a>
             )}
           </div>
+        </div>
 
-          {/* Legal Links */}
-          <div className="flex items-center space-x-4 text-gray-700">
-            <Link href="/privacy" className="hover:text-emerald-700 transition-colors">
+        <div className="md:col-span-4">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+            <div className="flex min-h-24 flex-col justify-between border border-[#173b2b]/[0.12] bg-white/45 p-5">
+              <span className="text-[0.65rem] uppercase tracking-[0.16em] text-[#173b2b]/55">
+                built for
+              </span>
+              <a
+                href="https://sih.gov.in/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-bebas-neue text-[2rem] leading-[0.9] tracking-[0.5px] text-[#173b2b]"
+              >
+                SMART INDIA HACKATHON
+              </a>
+            </div>
+            <div className="flex min-h-24 flex-col justify-between border border-[#173b2b]/[0.12] bg-white/45 p-5">
+              <span className="text-[0.65rem] uppercase tracking-[0.16em] text-[#173b2b]/55">
+                built by
+              </span>
+              <Link
+                href="/about"
+                className="font-bebas-neue text-[2rem] leading-[0.9] tracking-[0.5px] text-[#173b2b]"
+              >
+                SENTINALS
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-4 border-t border-[#173b2b]/10 pt-4 text-xs text-[#173b2b]/55 sm:flex-row sm:items-center sm:justify-between md:col-span-4">
+          <span>
+            © {new Date().getFullYear()} IP-SAKTI Sahayak. All rights reserved. | Smart India
+            Hackathon 2026
+          </span>
+          <div className="flex flex-wrap items-center gap-4">
+            <a
+              href="https://github.com/Prantor-Das/ip_shakti"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Website"
+              className={linkClass}
+            >
+              <Globe size={17} />
+            </a>
+            {contactEmail && (
+              <a href={`mailto:${contactEmail}`} aria-label="Email" className={linkClass}>
+                <Mail size={17} />
+              </a>
+            )}
+            <Link href="/privacy" className={linkClass}>
               Privacy
             </Link>
-            <span>•</span>
-            <a href="#" className="hover:text-emerald-700 transition-colors">
-              Terms
-            </a>
           </div>
         </div>
       </div>

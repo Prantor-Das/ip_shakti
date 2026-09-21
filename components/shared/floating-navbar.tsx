@@ -12,10 +12,7 @@ export const FloatingNavbar = () => {
     { label: t('nav.home'), href: '/' },
     { label: t('nav.assistant'), href: '/chat' },
     { label: 'ABS & TKDL', href: '/abs-tkdl' },
-    { label: 'Sources', href: '/sources' },
     { label: t('nav.samhita'), href: '/samhita' },
-    { label: t('nav.features'), href: '/features' },
-    { label: t('nav.howItWorks'), href: '/how-it-works' },
     { label: t('nav.about'), href: '/about' },
   ];
   return (
