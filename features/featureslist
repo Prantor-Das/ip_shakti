@@ -1,0 +1,531 @@
+
+---------------------------------------------------------
+
+
+    CHANGE 2 -
+
+        - FEATURES PAGE CHANGES--
+
+i want to use this 21st dev component for powerful features -
+
+    link -
+    https://21st.dev/@shadcnblockscom/components/accordion-feature-section
+
+    prompt -
+
+        You are given a task to integrate an existing React component in the codebase
+
+The codebase should support:
+- shadcn project structure
+    - Tailwind CSS
+        - Typescript
+
+If it doesn't, provide instructions on how to setup project via shadcn CLI, install Tailwind or Typescript.
+
+Determine the default path for components and styles. 
+If default path for components is not / components / ui, provide instructions on why it's important to create this folder
+Copy - paste this component to / components / ui folder:
+```tsx
+accordion-feature-section.tsx
+"use client";
+
+import { useState } from "react";
+
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+
+interface FeatureItem {
+  id: number;
+  title: string;
+  image: string;
+  description: string;
+}
+
+interface Feature197Props {
+  features: FeatureItem[];
+}
+
+const defaultFeatures: FeatureItem[] = [
+  {
+    id: 1,
+    title: "Ready-to-Use UI Blocks",
+    image: "/images/block/placeholder-1.svg",
+    description:
+      "Browse through our extensive collection of pre-built UI blocks designed with shadcn/ui. Each block is carefully crafted to be responsive, accessible, and easily customizable. Simply copy and paste the code into your project.",
+  },
+  {
+    id: 2,
+    title: "Tailwind CSS & TypeScript",
+    image: "/images/block/placeholder-2.svg",
+    description:
+      "Built with Tailwind CSS for rapid styling and TypeScript for type safety. Our blocks leverage the full power of Tailwind's utility classes while maintaining clean, type-safe code that integrates seamlessly with your Next.js projects.",
+  },
+  {
+    id: 3,
+    title: "Dark Mode & Customization",
+    image: "/images/block/placeholder-3.svg",
+    description:
+      "Every block supports dark mode out of the box and can be customized to match your brand. Modify colors, spacing, and typography using Tailwind's configuration. The shadcn/ui theming system makes it easy to maintain consistency across your site.",
+  },
+  {
+    id: 4,
+    title: "Accessibility First",
+    image: "/images/block/placeholder-4.svg",
+    description:
+      "All blocks are built with accessibility in mind, following WCAG guidelines. They include proper ARIA labels, keyboard navigation support, and semantic HTML structure. Ensure your website is usable by everyone without extra effort.",
+  },
+  {
+    id: 5,
+    title: "Modern Development Stack",
+    image: "/images/block/placeholder-5.svg",
+    description:
+      "Built for modern web development with React 18, Next.js 14, and the latest shadcn/ui components. Take advantage of React Server Components, TypeScript strict mode, and other cutting-edge features while maintaining excellent performance.",
+  },
+];
+
+const Feature197 = ({ features = defaultFeatures }: Feature197Props) => {
+  const [activeTabId, setActiveTabId] = useState<number | null>(1);
+  const [activeImage, setActiveImage] = useState(features[0].image);
+
+  return (
+    <section className="py-32">
+      <div className="container mx-auto">
+        <div className="mb-12 flex w-full items-start justify-between gap-12">
+          <div className="w-full md:w-1/2">
+            <Accordion type="single" className="w-full" defaultValue="item-1">
+              {features.map((tab) => (
+                <AccordionItem key={tab.id} value={`item - ${ tab.id } `}>
+                  <AccordionTrigger
+                    onClick={() => {
+                      setActiveImage(tab.image);
+                      setActiveTabId(tab.id);
+                    }}
+                    className="cursor-pointer py-5 !no-underline transition"
+                  >
+                    <h6
+                      className={`text - xl font - semibold ${ tab.id === activeTabId ? "text-foreground" : "text-muted-foreground" } `}
+                    >
+                      {tab.title}
+                    </h6>
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <p className="mt-3 text-muted-foreground">
+                      {tab.description}
+                    </p>
+                    <div className="mt-4 md:hidden">
+                      <img
+                        src={tab.image}
+                        alt={tab.title}
+                        className="h-full max-h-80 w-full rounded-md object-cover"
+                      />
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
+          <div className="relative m-auto hidden w-1/2 overflow-hidden rounded-xl bg-muted md:block">
+            <img
+              src={activeImage}
+              alt="Feature preview"
+              className="aspect-[4/3] rounded-md object-cover pl-4"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export { Feature197 };
+
+
+demo.tsx
+import { Feature197 } from "@/components/blocks/accordion-feature-section"
+
+const demoData = {
+  features: [
+    {
+      id: 1,
+      title: "Ready-to-Use UI Blocks",
+      image: "https://cdn.21st.dev/assets/mirror/9f/9fb9487617e0903ab5bb8012f11530f61a39e4f1f19f169a87a367887fdaeecb.svg",
+      description:
+        "Browse through our extensive collection of pre-built UI blocks designed with shadcn/ui. Each block is carefully crafted to be responsive, accessible, and easily customizable. Simply copy and paste the code into your project.",
+    },
+    {
+      id: 2,
+      title: "Tailwind CSS & TypeScript",
+      image: "https://cdn.21st.dev/assets/mirror/f0/f0899c6c439a70c9602ca80add37c87c8398b7dc9566778a5894584a412749c4.svg",
+      description:
+        "Built with Tailwind CSS for rapid styling and TypeScript for type safety. Our blocks leverage the full power of Tailwind's utility classes while maintaining clean, type-safe code that integrates seamlessly with your Next.js projects.",
+    },
+    {
+      id: 3,
+      title: "Dark Mode & Customization",
+      image: "https://cdn.21st.dev/assets/mirror/39/398f380a0fecf974486fd34a731a8f683c0428d5f22de5ae639554da566c84dc.svg",
+      description:
+        "Every block supports dark mode out of the box and can be customized to match your brand. Modify colors, spacing, and typography using Tailwind's configuration. The shadcn/ui theming system makes it easy to maintain consistency across your site.",
+    },
+    {
+      id: 4,
+      title: "Accessibility First",
+      image: "https://cdn.21st.dev/assets/mirror/5c/5c07e8730eabe2cc7f3eed9d9e70f1dc3d86a3094d35357e2245d99955c1b3bf.svg",
+      description:
+        "All blocks are built with accessibility in mind, following WCAG guidelines. They include proper ARIA labels, keyboard navigation support, and semantic HTML structure. Ensure your website is usable by everyone without extra effort.",
+    },
+    {
+      id: 5,
+      title: "Modern Development Stack",
+      image: "https://cdn.21st.dev/assets/mirror/53/5388850c3823e119e6847f900fe0fa06d2510f9bca7ed7cd3be58cda0516c82d.svg",
+      description:
+        "Built for modern web development with React 18, Next.js 14, and the latest shadcn/ui components. Take advantage of React Server Components, TypeScript strict mode, and other cutting-edge features while maintaining excellent performance.",
+    },
+  ],
+};
+
+function Feature197Demo() {
+  return <Feature197 {...demoData} />;
+}
+
+export { Feature197Demo };
+
+```
+
+Copy - paste these files for dependencies:
+    ```tsx
+shadcn/accordion
+"use client"
+
+import * as React from "react"
+import * as AccordionPrimitive from "@radix-ui/react-accordion"
+import { ChevronDown } from "lucide-react"
+
+import { cn } from "@/lib/utils"
+
+const Accordion = AccordionPrimitive.Root
+
+const AccordionItem = React.forwardRef<
+  React.ElementRef<typeof AccordionPrimitive.Item>,
+  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Item>
+>(({ className, ...props }, ref) => (
+  <AccordionPrimitive.Item
+    ref={ref}
+    className={cn("border-b", className)}
+    {...props}
+  />
+))
+AccordionItem.displayName = "AccordionItem"
+
+const AccordionTrigger = React.forwardRef<
+  React.ElementRef<typeof AccordionPrimitive.Trigger>,
+  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger>
+>(({ className, children, ...props }, ref) => (
+  <AccordionPrimitive.Header className="flex">
+    <AccordionPrimitive.Trigger
+      ref={ref}
+      className={cn(
+        "flex flex-1 items-center justify-between py-4 font-medium transition-all hover:underline [&[data-state=open]>svg]:rotate-180",
+        className,
+      )}
+      {...props}
+    >
+      {children}
+      <ChevronDown className="h-4 w-4 shrink-0 transition-transform duration-200" />
+    </AccordionPrimitive.Trigger>
+  </AccordionPrimitive.Header>
+))
+AccordionTrigger.displayName = AccordionPrimitive.Trigger.displayName
+
+const AccordionContent = React.forwardRef<
+  React.ElementRef<typeof AccordionPrimitive.Content>,
+  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Content>
+>(({ className, children, ...props }, ref) => (
+  <AccordionPrimitive.Content
+    ref={ref}
+    className="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+    {...props}
+  >
+    <div className={cn("pb-4 pt-0", className)}>{children}</div>
+  </AccordionPrimitive.Content>
+))
+
+AccordionContent.displayName = AccordionPrimitive.Content.displayName
+
+export { Accordion, AccordionItem, AccordionTrigger, AccordionContent }
+
+```
+
+Install NPM dependencies:
+```bash
+lucide-react, @radix-ui/react-accordion
+```
+
+Implementation Guidelines
+1. Analyze the component structure and identify all required dependencies
+2. Review the component's argumens and state
+3. Identify any required context providers or hooks and install them
+4. Questions to Ask
+    - What data / props will be passed to this component ?
+        - Are there any specific state management requirements ?
+            - Are there any required assets(images, icons, etc.) ?
+                - What is the expected responsive behavior ?
+                    - What is the best place to use this component in the app ?
+
+                        Steps to integrate
+0. Copy paste all the code above in the correct directories
+1. Install external dependencies
+2. Fill image assets with Unsplash stock images you know exist
+3. Use lucide - react icons for svgs or logos if component requires them
+
+code files -
+
+    // --- Component ---
+    "use client";
+
+import { useState } from "react";
+
+import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+} from "@/components/ui/accordion";
+
+interface FeatureItem {
+    id: number;
+    title: string;
+    image: string;
+    description: string;
+}
+
+interface Feature197Props {
+    features: FeatureItem[];
+}
+
+const defaultFeatures: FeatureItem[] = [
+    {
+        id: 1,
+        title: "Ready-to-Use UI Blocks",
+        image: "/images/block/placeholder-1.svg",
+        description:
+            "Browse through our extensive collection of pre-built UI blocks designed with shadcn/ui. Each block is carefully crafted to be responsive, accessible, and easily customizable. Simply copy and paste the code into your project.",
+    },
+    {
+        id: 2,
+        title: "Tailwind CSS & TypeScript",
+        image: "/images/block/placeholder-2.svg",
+        description:
+            "Built with Tailwind CSS for rapid styling and TypeScript for type safety. Our blocks leverage the full power of Tailwind's utility classes while maintaining clean, type-safe code that integrates seamlessly with your Next.js projects.",
+    },
+    {
+        id: 3,
+        title: "Dark Mode & Customization",
+        image: "/images/block/placeholder-3.svg",
+        description:
+            "Every block supports dark mode out of the box and can be customized to match your brand. Modify colors, spacing, and typography using Tailwind's configuration. The shadcn/ui theming system makes it easy to maintain consistency across your site.",
+    },
+    {
+        id: 4,
+        title: "Accessibility First",
+        image: "/images/block/placeholder-4.svg",
+        description:
+            "All blocks are built with accessibility in mind, following WCAG guidelines. They include proper ARIA labels, keyboard navigation support, and semantic HTML structure. Ensure your website is usable by everyone without extra effort.",
+    },
+    {
+        id: 5,
+        title: "Modern Development Stack",
+        image: "/images/block/placeholder-5.svg",
+        description:
+            "Built for modern web development with React 18, Next.js 14, and the latest shadcn/ui components. Take advantage of React Server Components, TypeScript strict mode, and other cutting-edge features while maintaining excellent performance.",
+    },
+];
+
+const Feature197 = ({ features = defaultFeatures }: Feature197Props) => {
+    const [activeTabId, setActiveTabId] = useState < number | null > (1);
+    const [activeImage, setActiveImage] = useState(features[0].image);
+
+    return (
+        <section className="py-32">
+            <div className="container mx-auto">
+                <div className="mb-12 flex w-full items-start justify-between gap-12">
+                    <div className="w-full md:w-1/2">
+                        <Accordion type="single" className="w-full" defaultValue="item-1">
+                            {features.map((tab) => (
+                                <AccordionItem key={tab.id} value={`item-${tab.id}`}>
+                                    <AccordionTrigger
+                                        onClick={() => {
+                                            setActiveImage(tab.image);
+                                            setActiveTabId(tab.id);
+                                        }}
+                                        className="cursor-pointer py-5 !no-underline transition"
+                                    >
+                                        <h6
+                                            className={`text-xl font-semibold ${tab.id === activeTabId ? "text-foreground" : "text-muted-foreground"}`}
+                                        >
+                                            {tab.title}
+                                        </h6>
+                                    </AccordionTrigger>
+                                    <AccordionContent>
+                                        <p className="mt-3 text-muted-foreground">
+                                            {tab.description}
+                                        </p>
+                                        <div className="mt-4 md:hidden">
+                                            <img
+                                                src={tab.image}
+                                                alt={tab.title}
+                                                className="h-full max-h-80 w-full rounded-md object-cover"
+                                            />
+                                        </div>
+                                    </AccordionContent>
+                                </AccordionItem>
+                            ))}
+                        </Accordion>
+                    </div>
+                    <div className="relative m-auto hidden w-1/2 overflow-hidden rounded-xl bg-muted md:block">
+                        <img
+                            src={activeImage}
+                            alt="Feature preview"
+                            className="aspect-[4/3] rounded-md object-cover pl-4"
+                        />
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+};
+
+export { Feature197 };
+
+
+// --- Demo ---
+import { Feature197 } from "@/components/blocks/accordion-feature-section"
+
+const demoData = {
+    features: [
+        {
+            id: 1,
+            title: "Ready-to-Use UI Blocks",
+            image: "https://cdn.21st.dev/assets/mirror/9f/9fb9487617e0903ab5bb8012f11530f61a39e4f1f19f169a87a367887fdaeecb.svg",
+            description:
+                "Browse through our extensive collection of pre-built UI blocks designed with shadcn/ui. Each block is carefully crafted to be responsive, accessible, and easily customizable. Simply copy and paste the code into your project.",
+        },
+        {
+            id: 2,
+            title: "Tailwind CSS & TypeScript",
+            image: "https://cdn.21st.dev/assets/mirror/f0/f0899c6c439a70c9602ca80add37c87c8398b7dc9566778a5894584a412749c4.svg",
+            description:
+                "Built with Tailwind CSS for rapid styling and TypeScript for type safety. Our blocks leverage the full power of Tailwind's utility classes while maintaining clean, type-safe code that integrates seamlessly with your Next.js projects.",
+        },
+        {
+            id: 3,
+            title: "Dark Mode & Customization",
+            image: "https://cdn.21st.dev/assets/mirror/39/398f380a0fecf974486fd34a731a8f683c0428d5f22de5ae639554da566c84dc.svg",
+            description:
+                "Every block supports dark mode out of the box and can be customized to match your brand. Modify colors, spacing, and typography using Tailwind's configuration. The shadcn/ui theming system makes it easy to maintain consistency across your site.",
+        },
+        {
+            id: 4,
+            title: "Accessibility First",
+            image: "https://cdn.21st.dev/assets/mirror/5c/5c07e8730eabe2cc7f3eed9d9e70f1dc3d86a3094d35357e2245d99955c1b3bf.svg",
+            description:
+                "All blocks are built with accessibility in mind, following WCAG guidelines. They include proper ARIA labels, keyboard navigation support, and semantic HTML structure. Ensure your website is usable by everyone without extra effort.",
+        },
+        {
+            id: 5,
+            title: "Modern Development Stack",
+            image: "https://cdn.21st.dev/assets/mirror/53/5388850c3823e119e6847f900fe0fa06d2510f9bca7ed7cd3be58cda0516c82d.svg",
+            description:
+                "Built for modern web development with React 18, Next.js 14, and the latest shadcn/ui components. Take advantage of React Server Components, TypeScript strict mode, and other cutting-edge features while maintaining excellent performance.",
+        },
+    ],
+};
+
+function Feature197Demo() {
+    return <Feature197 {...demoData} />;
+}
+
+export { Feature197Demo };
+
+
+
+
+i want these features by replacing the old ones with given below 10 features - -
+                 |
+    1. 🤖 AI Assistant
+
+Role:
+The central conversational interface of IP - Sakti.Users can ask questions about Ayurvedic innovations, intellectual property, patents, regulations, traditional knowledge and related topics in natural language.
+
+
+
+2. 🧠 RAG Knowledge Retrieval
+
+Role:
+Retrieves relevant information from curated IP, regulatory, Ayurveda and traditional - knowledge sources before generating an answer, helping keep responses grounded in available evidence.
+
+3. 📄 Documentation Assist
+
+Role:
+Helps users understand documentation requirements, organize relevant information and identify missing documents for IP and regulatory processes.
+
+
+
+
+4. ⚖️ IP Protection
+
+Role:
+Provides guidance on relevant intellectual - property protection pathways for Ayurvedic innovations, including patents, trademarks, geographical indications, designs, copyright and other applicable forms of protection.
+
+
+
+5. 📋 Regulatory Intelligence
+
+Role:
+Helps users understand applicable Ayurvedic and regulatory requirements and surfaces relevant regulatory information and updates from authoritative sources.
+
+    I'd use “Regulatory Intelligence” rather than “Real-Time Regulatory Intelligence” unless your system genuinely receives and processes live updates.
+
+
+
+
+6. 🔎 Traditional Knowledge & Prior - Art
+
+Role:
+Helps users explore existing traditional Ayurvedic knowledge and prior - art information relevant to an innovation, supporting novelty and IP - related assessment.
+
+
+
+7. 📚 Source - Cited Intelligence
+
+Role:
+Provides answers supported by identifiable sources and references, allowing users to trace important information back to the underlying knowledge.
+
+This is a feature I'd make visually prominent because it helps differentiate your system from a generic chatbot.
+
+8. 📈 Market Intelligence
+
+Role:
+Provides insights into relevant IP and market landscapes surrounding Ayurvedic innovations, helping users understand existing technologies, trends and competitive areas.
+
+9. 🌿 Samhita
+
+Role:
+A dedicated Ayurveda knowledge repository where users can explore medicinal herbs, plants, formulations, classical knowledge, Ayurveda history, research and relevant IP information.
+
+This is your major additional feature, and I'd give it a prominent position on the website.
+
+
+10. 🌍 Multilingual & Jurisdiction Intelligence
+
+Role:
+Helps users access IP and regulatory guidance across supported languages while distinguishing between Indian and international jurisdictions, reducing the risk of mixing different legal frameworks.
+
+
+
+
+
+
