@@ -1,0 +1,298 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@theme {
+  --color-primary: #2f855a;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #ff6b35;
+  --font-serif: var(--font-instrument-serif), serif;
+  --font-poppins: var(--font-poppins), sans-serif;
+}
+
+@theme inline {
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+}
+
+@keyframes accordion-down {
+  from {
+    height: 0;
+  }
+
+  to {
+    height: var(--radix-accordion-content-height);
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+
+  to {
+    height: 0;
+  }
+}
+
+:root {
+  --background: #f7faf7;
+  --foreground: #173b2b;
+  --section-bg: #f7faf7;
+  --border-color: rgba(23, 59, 43, 0.12);
+  --text-main: #173b2b;
+  --text-muted: rgba(23, 59, 43, 0.66);
+  --primary-color: #2f855a;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+.footer-logo-section {
+  background: var(--section-bg);
+  padding: 4rem 1.5rem 3rem;
+  text-align: center;
+  margin-top: 4rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.footer-content {
+  margin-bottom: 3rem;
+}
+
+.footer-content h3 {
+  color: var(--text-main);
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.footer-content p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.footer-links a {
+  color: var(--text-muted);
+  font-size: 1.2rem;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover {
+  color: var(--primary-color);
+}
+
+.built-for {
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  color: var(--text-main);
+  margin-bottom: 0px;
+  font-weight: 400;
+  opacity: 0.9;
+}
+
+.sih-logo {
+  font-family: var(--font-bebas-neue), 'Bebas Neue', sans-serif;
+  font-size: 4rem;
+  color: var(--text-main);
+  line-height: 0.9;
+  text-decoration: none;
+  display: inline-block;
+  transition: transform 0.3s;
+  letter-spacing: 0.5px;
+}
+
+.sih-logo-wrap {
+  margin-top: 10px;
+}
+
+.sih-logo:hover {
+  transform: scale(1.03);
+}
+
+
+.noise-overlay {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Shared light theme bridge for legacy page utility classes. */
+.site-light .bg-black {
+  background-color: #f7faf7 !important;
+}
+
+.site-light .bg-black\/80 {
+  background-color: rgb(255 255 255 / 0.92) !important;
+}
+
+.site-light .bg-slate-950,
+.site-light .bg-slate-950\/95,
+.site-light .bg-slate-900,
+.site-light .bg-slate-900\/90,
+.site-light .bg-slate-900\/80,
+.site-light .bg-slate-800\/60,
+.site-light .bg-slate-800\/50,
+.site-light .bg-slate-800\/30,
+.site-light .bg-slate-700 {
+  background-color: #ffffff !important;
+}
+
+.site-light .bg-white\/5 {
+  background-color: #ffffff !important;
+}
+
+.site-light .bg-white\/10 {
+  background-color: #edf7f0 !important;
+}
+
+.site-light .text-white {
+  color: #173b2b !important;
+}
+
+.site-light .bg-primary.text-white,
+.site-light .bg-emerald-600.text-white,
+.site-light .bg-gradient-to-br.text-white,
+.site-light .bg-gradient-to-r.text-white,
+.site-light .bg-\[\#173b2b\],
+.site-light .bg-\[\#173b2b\] p,
+.site-light .text-white-force {
+  color: #ffffff !important;
+}
+
+.site-light .text-white-muted-force {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+/* Dark-green surfaces keep white text. The bridge above turns every .text-white dark,
+   which made headings on bg-[#173b2b] cards invisible (dark green on dark green). */
+.site-light .bg-\[\#173b2b\].text-white,
+.site-light .bg-\[\#173b2b\] .text-white {
+  color: #ffffff !important;
+}
+
+
+.site-light .text-gray-300,
+.site-light .text-gray-400,
+.site-light .text-gray-500,
+.site-light .text-gray-600,
+.site-light .text-slate-300,
+.site-light .text-slate-400,
+.site-light .text-slate-500,
+.site-light .text-slate-600 {
+  color: rgb(23 59 43 / 0.66) !important;
+}
+
+.site-light .border-white\/10,
+.site-light .border-white\/20,
+.site-light .border-slate-800,
+.site-light .border-slate-800\/50,
+.site-light .border-slate-700\/50 {
+  border-color: rgb(23 59 43 / 0.12) !important;
+}
+
+.site-light .from-black {
+  --tw-gradient-from: #f7faf7 !important;
+}
+
+.site-light .to-black {
+  --tw-gradient-to: #f7faf7 !important;
+}
+
+.site-light .from-slate-950 {
+  --tw-gradient-from: #ffffff !important;
+}
+
+.site-light .to-slate-950 {
+  --tw-gradient-to: #f7faf7 !important;
+}
+
+.site-light .from-white\/10 {
+  --tw-gradient-from: #edf7f0 !important;
+}
+
+.site-light .to-white\/5 {
+  --tw-gradient-to: #ffffff !important;
+}
+
+.site-light .bg-orange-500\/20,
+.site-light .bg-amber-500\/20 {
+  background-color: #e8f3eb !important;
+}
+
+.site-light .bg-orange-500,
+.site-light .bg-amber-600 {
+  background-color: #2f855a !important;
+}
+
+.site-light .from-orange-500,
+.site-light .to-amber-600,
+.site-light .hover\:from-orange-600,
+.site-light .hover\:to-amber-700 {
+  --tw-gradient-from: #2f855a !important;
+  --tw-gradient-to: #2f855a !important;
+}
+
+.site-light .text-orange-500,
+.site-light .text-orange-400,
+.site-light .text-orange-300 {
+  color: #2f855a !important;
+}
+
+.site-light .border-orange-500,
+.site-light .border-amber-500 {
+  border-color: rgb(47 133 90 / 0.45) !important;
+}
+
+.site-light .focus\:ring-orange-500:focus {
+  --tw-ring-color: rgb(47 133 90 / 0.35) !important;
+}
+
+.site-light .shadow-orange-500\/20 {
+  --tw-shadow-color: rgb(47 133 90 / 0.15) !important;
+}
+
+.site-light .text-red-400 {
+  color: #b34b4b !important;
+}
+
+/* SAMHITA DESIGN SYSTEM & LAYOUT STYLES */
+.samhita-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.samhita-card-shadow {
+  box-shadow: 0 1px 3px 0 rgba(60, 64, 67, 0.08), 0 4px 8px 3px rgba(60, 64, 67, 0.04);
+}
+
+.samhita-card-hover {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.samhita-card-hover:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px 0 rgba(60, 64, 67, 0.12), 0 8px 16px 4px rgba(60, 64, 67, 0.06);
+}
+
+.samhita-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
