@@ -25,79 +25,70 @@ export const defaultIPFeatures: FeatureItem[] = [
   {
     id: 1,
     title: '1. AI Assistant',
-    image: 'https://www.webopedia.com/wp-content/uploads/2024/11/ai-assistant-cover.webp',
+    image: '/ai-assistant.jpg',
     description:
       'The central conversational interface of IP-SAKTI. Users can ask questions about Ayurvedic innovations, intellectual property, patents, regulations, traditional knowledge, and related topics in natural language.',
   },
   {
     id: 2,
     title: '2. RAG Knowledge Retrieval',
-    image:
-      'https://images-cdn.reedsy.com/discovery/post/161/featured_image/large_63bb3b8666ac24fd07d058123841c1b1f1c65a9b.jpg',
+    image: '/ai-assistant.jpg',
     description:
       'Retrieves relevant information from curated IP, regulatory, Ayurveda, and traditional-knowledge sources before generating an answer, keeping responses grounded in available evidence.',
   },
   {
     id: 3,
     title: '3. Documentation Assist',
-    image:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGF8ZbWiUnJIspTg8Ha-cg5orNaYgWGSPtupcotkWqZw&s=10',
+    image: '/ai-assistant.jpg',
     description:
       'Helps users understand documentation requirements, organize relevant information, and identify missing documents for IP and regulatory filing processes.',
   },
   {
     id: 4,
     title: '4. IP Protection',
-    image:
-      'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=1000&auto=format&fit=crop',
+    image: '/ai-assistant.jpg',
     description:
       'Provides guidance on relevant intellectual-property protection pathways for Ayurvedic innovations, including patents, trademarks, geographical indications, designs, copyright, and trade secrets.',
   },
   {
     id: 5,
     title: '5. Regulatory Intelligence',
-    image:
-      'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1000&auto=format&fit=crop',
+    image: '/ai-assistant.jpg',
     description:
       'Helps users understand applicable Ayurvedic and regulatory requirements and surfaces relevant regulatory information and compliance standards from authoritative sources.',
   },
   {
     id: 6,
     title: '6. Traditional Knowledge & Prior-Art',
-    image:
-      'https://images.unsplash.com/photo-1491841651911-c44c30c34548?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGNsYXNzaWMlMjBib29rc3xlbnwwfHwwfHx8MA%3D%3D',
+    image: '/ai-assistant.jpg',
     description:
       'Helps users explore existing traditional Ayurvedic knowledge and prior-art information relevant to an innovation, supporting novelty and TKDL prior-art assessment.',
   },
   {
     id: 7,
     title: '7. Source-Cited Intelligence',
-    image:
-      'https://cdn.pixabay.com/photo/2019/08/06/22/48/artificial-intelligence-4389372_1280.jpg',
+    image: '/ai-assistant.jpg',
     description:
       'Provides answers supported by identifiable sources, citations, and official references, allowing users to trace important information back to underlying legal and classical knowledge.',
   },
   {
     id: 8,
     title: '8. Market Intelligence',
-    image:
-      'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000&auto=format&fit=crop',
+    image: '/ai-assistant.jpg',
     description:
       'Provides insights into relevant IP and market landscapes surrounding Ayurvedic innovations, helping users understand existing technologies, trends, and competitive areas.',
   },
   {
     id: 9,
     title: '9. Samhita Knowledge Repository',
-    image:
-      'https://images.unsplash.com/photo-1514733670139-4d87a1941d55?q=80&w=1000&auto=format&fit=crop',
+    image: '/ai-assistant.jpg',
     description:
       'A dedicated Ayurveda knowledge repository where users can explore medicinal herbs, plants, formulations, classical knowledge, Ayurveda history, research, and relevant IP information.',
   },
   {
     id: 10,
     title: '10. Multilingual & Jurisdiction Intelligence',
-    image:
-      'https://img.magnific.com/free-vector/world-map-with-global-technology-social-connection-network-with-nodes-links-vector-illustration_1284-1968.jpg?semt=ais_hybrid&w=740&q=80',
+    image: '/ai-assistant.jpg',
     description:
       'Helps users access IP and regulatory guidance across supported languages while distinguishing between Indian and international jurisdictions, reducing the risk of mixing legal frameworks.',
   },

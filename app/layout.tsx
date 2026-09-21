@@ -1,28 +1,13 @@
 import type { Metadata } from 'next';
-import { Inter, Instrument_Serif, Poppins, Bebas_Neue } from 'next/font/google';
 import './globals.css';
 import { Footer } from '@/components/shared/footer';
 import { FloatingNavbar } from '@/components/shared/floating-navbar';
 import { I18nProvider } from '@/components/i18n-provider';
-
-const inter = Inter({ subsets: ['latin'] });
-const instrumentSerif = Instrument_Serif({
-  weight: '400',
-  subsets: ['latin'],
-  variable: '--font-instrument-serif',
-});
-const poppins = Poppins({
-  weight: ['400', '500', '600', '700', '800', '900'],
-  subsets: ['latin'],
-  variable: '--font-poppins',
-});
-const bebasNeue = Bebas_Neue({
-  weight: '400',
-  subsets: ['latin'],
-  variable: '--font-bebas-neue',
-});
+import { env } from '@/lib/env';
+import { PrivacyNotice } from '@/components/privacy-notice';
 
 export const metadata: Metadata = {
+  metadataBase: new URL(env.NEXT_PUBLIC_SITE_URL),
   title: 'IP-SAKTI Sahayak | AI for Ayurveda IP & Regulatory Guidance',
   description:
     'Multilingual RAG-based AI assistant for Intellectual Property and regulatory guidance in Ayurveda. Bridging traditional knowledge with modern IP protection.',
@@ -37,11 +22,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'IP-SAKTI Sahayak',
     description: 'AI-powered platform for Ayurveda IP and regulatory guidance',
-    url: 'https://ip-sakti.com',
+    url: env.NEXT_PUBLIC_SITE_URL,
     siteName: 'IP-SAKTI',
     images: [
       {
-        url: 'https://ip-sakti.com/og-image.png',
+        url: '/og-image.png',
         width: 1200,
         height: 630,
       },
@@ -61,13 +46,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           referrerPolicy="no-referrer"
         />
       </head>
-      <body
-        className={`${inter.className} ${instrumentSerif.variable} ${poppins.variable} ${bebasNeue.variable} site-light antialiased`}
-      >
-        <I18nProvider>
+      <body className="site-light antialiased">
+        <I18nProvider contactEmail={env.NEXT_PUBLIC_CONTACT_EMAIL}>
           <FloatingNavbar />
           <main>{children}</main>
-          <Footer />
+          <Footer contactEmail={env.NEXT_PUBLIC_CONTACT_EMAIL} />
+          <PrivacyNotice />
         </I18nProvider>
       </body>
     </html>

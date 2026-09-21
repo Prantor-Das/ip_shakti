@@ -9,67 +9,34 @@ export default function Contact16() {
   const [name, setName] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [message, setMessage] = React.useState('');
+  const [website, setWebsite] = React.useState('');
+  const [formStartedAt, setFormStartedAt] = React.useState(() => Date.now());
+  const [error, setError] = React.useState<string | null>(null);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!name || !email || !message) return;
 
     setLoading(true);
+    setError(null);
 
     try {
-      // API call to route handling yashcrj06@gmail.com
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, message }),
+        body: JSON.stringify({ name, email, message, website, formStartedAt }),
       });
-
-      if (!res.ok) {
-        // Direct client fallback to formsubmit
-        await fetch('https://formsubmit.co/ajax/yashcrj06@gmail.com', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-          },
-          body: JSON.stringify({
-            name,
-            email,
-            message,
-            _subject: `[IP-SAKTI Direct Email] Message from ${name}`,
-          }),
-        });
-      }
+      if (!res.ok) throw new Error('Contact delivery failed');
 
       setSent(true);
       // Clear form inputs
       setName('');
       setEmail('');
       setMessage('');
-    } catch (err) {
-      console.error('Email send error:', err);
-      // Client fallback dispatch
-      try {
-        await fetch('https://formsubmit.co/ajax/yashcrj06@gmail.com', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-          },
-          body: JSON.stringify({
-            name,
-            email,
-            message,
-            _subject: `[IP-SAKTI Direct Email] Message from ${name}`,
-          }),
-        });
-      } catch (e) {
-        console.error('Fallback error:', e);
-      }
-      setSent(true);
-      setName('');
-      setEmail('');
-      setMessage('');
+      setWebsite('');
+      setFormStartedAt(Date.now());
+    } catch {
+      setError('We could not send your message. Please try again later.');
     } finally {
       setLoading(false);
     }
@@ -109,8 +76,7 @@ export default function Contact16() {
               </span>
               <h3 className="font-bold text-xl text-[#173b2b]">Email Sent Successfully!</h3>
               <p className="text-sm text-[#173b2b]/70 max-w-md">
-                Thank you for reaching out. Your message has been sent directly to{' '}
-                <strong className="text-[#2f855a]">yashcrj06@gmail.com</strong>.
+                Thank you for reaching out. Your message has been sent to the IP-SAKTI team.
               </p>
               <button
                 type="button"
@@ -126,6 +92,16 @@ export default function Contact16() {
               onSubmit={handleSubmit}
               className="max-w-xl sm:max-w-2xl mx-auto flex flex-col gap-4 text-left"
             >
+              <input
+                type="text"
+                name="website"
+                value={website}
+                onChange={(event) => setWebsite(event.target.value)}
+                tabIndex={-1}
+                autoComplete="off"
+                className="hidden"
+                aria-hidden="true"
+              />
               <div className="flex flex-col gap-1">
                 <label
                   htmlFor="full-name"
@@ -211,6 +187,11 @@ export default function Contact16() {
                   )}
                 </button>
               </div>
+              {error && (
+                <p role="alert" className="text-center text-xs text-red-700">
+                  {error}
+                </p>
+              )}
             </form>
           )}
         </div>

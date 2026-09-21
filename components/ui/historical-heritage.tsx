@@ -25,8 +25,7 @@ const figures: HeritageFigure[] = [
     associatedWork: 'Charaka Samhita',
     bio: 'Charaka is closely associated with the Charaka Samhita, one of the foundational classical treatises of Ayurveda, with a major focus on internal medicine and Ayurvedic principles.',
     label: 'CLASSICAL MEDICINE',
-    imageUrl:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUash6u9B2VSJa97Y1j6pCeR8_Ay9_ZZTJffdOusotQQ&s=10',
+    imageUrl: '/ai-assistant.jpg',
     knowledgePoints: [
       'Classical medical tradition',
       'Internal medicine & therapeutics',
@@ -41,8 +40,7 @@ const figures: HeritageFigure[] = [
     associatedWork: 'Sushruta Samhita',
     bio: 'Sushruta is associated with the Sushruta Samhita, a major classical Ayurvedic treatise with extensive discussion of surgery and surgical knowledge.',
     label: 'SURGICAL TRADITION',
-    imageUrl:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR88c3T-SU-IckBSuNWpykth5NWLM9Nh0aUflum2jWUhA&s=10',
+    imageUrl: '/ai-assistant.jpg',
     knowledgePoints: [
       'Surgical methodology & instruments',
       'Anatomical studies & procedure codification',
@@ -57,8 +55,7 @@ const figures: HeritageFigure[] = [
     associatedWork: 'Ashtanga Sangraha · Ashtanga Hridaya',
     bio: 'Vagbhata is associated with the Ashtanga Sangraha and Ashtanga Hridaya, works that bring together and organize major strands of earlier Ayurvedic knowledge.',
     label: 'INTEGRATION',
-    imageUrl:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjJXEM3UpZ29vl3BAsyC3vtr0kPsHRbbYlyrv9RmIwqg&s=10',
+    imageUrl: '/ai-assistant.jpg',
     knowledgePoints: [
       'Synthesis of classical knowledge',
       'Ashtanga Hridaya & Sangraha treatises',
@@ -73,7 +70,7 @@ const figures: HeritageFigure[] = [
     associatedWork: 'Madhava Nidana',
     bio: 'Madhava is associated with Madhava Nidana, a major classical work focused on the systematic description and diagnosis of diseases.',
     label: 'DIAGNOSTIC TRADITION',
-    imageUrl: 'https://i.ytimg.com/vi/Mh_02Sm1rRE/sddefault.jpg',
+    imageUrl: '/ai-assistant.jpg',
     knowledgePoints: [
       'Systematic disease etiology',
       'Diagnostic methodology & classification',
@@ -88,7 +85,7 @@ const figures: HeritageFigure[] = [
     associatedWork: 'Sharngadhara Samhita',
     bio: 'Sharngadhara is associated with the Sharngadhara Samhita, a later Ayurvedic text known for its discussion of medicinal formulations and dosage forms.',
     label: 'FORMULATIONS',
-    imageUrl: 'https://cdn.exoticindia.com/images/products/original/books-2016/haa824.webp',
+    imageUrl: '/ai-assistant.jpg',
     knowledgePoints: [
       'Pharmaceutical processing & compounding',
       'Dosage form classifications',
@@ -103,8 +100,7 @@ const figures: HeritageFigure[] = [
     associatedWork: 'Bhavaprakasha',
     bio: 'Bhavamishra is associated with Bhavaprakasha, an influential later Ayurvedic work containing extensive material on medicinal substances and their properties.',
     label: 'MATERIA MEDICA',
-    imageUrl:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_1UsSIOtsDXvzxlxG_oKAXEvL9mkt3-q2aC4H9tmsYg&s=1',
+    imageUrl: '/ai-assistant.jpg',
     knowledgePoints: [
       'Comprehensive Materia Medica',
       'Plant & substance property mapping',

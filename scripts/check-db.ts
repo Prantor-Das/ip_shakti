@@ -1,16 +1,8 @@
-import { config } from 'dotenv';
-import { resolve } from 'node:path';
 import { assertServiceRoleKey, createServiceClient } from '@/lib/supabase/client-core';
+import { env } from '@/lib/env-core';
 
-const root = resolve(process.cwd());
-config({ path: resolve(root, '.env.local') });
-config({ path: resolve(root, '.env') });
-
-const url = process.env.SUPABASE_URL;
-const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
-if (!url || !key) throw new Error('SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY are required');
-assertServiceRoleKey(key);
-const supabase = createServiceClient(url, key);
+assertServiceRoleKey(env.SUPABASE_SERVICE_ROLE_KEY);
+const supabase = createServiceClient(env.SUPABASE_URL, env.SUPABASE_SERVICE_ROLE_KEY);
 
 function describeError(error: {
   code?: string;

@@ -3,6 +3,7 @@ import 'server-only';
 import { embedTexts } from '@/lib/ai/provider';
 import { getSupabaseServiceClient } from '@/lib/supabase/server';
 import type { Jurisdiction } from '@/lib/chat/types';
+import { env } from '@/lib/env';
 
 export interface RetrievedChunk {
   id: string;
@@ -72,10 +73,11 @@ function explicitSection(query: string): string | null {
 
 export async function retrieve(
   query: string,
-  jurisdiction: Jurisdiction
+  jurisdiction: Jurisdiction,
+  signal?: AbortSignal
 ): Promise<RetrievalResult> {
-  const minSimilarity = Number.parseFloat(process.env.RETRIEVAL_MIN_SIMILARITY ?? '0.55');
-  const [embedding] = await embedTexts([query], 'RETRIEVAL_QUERY');
+  const minSimilarity = env.RETRIEVAL_MIN_SIMILARITY;
+  const [embedding] = await embedTexts([query], 'RETRIEVAL_QUERY', signal);
   if (!embedding || embedding.length !== EMBEDDING_DIM)
     throw new Error('Embedding dimension mismatch');
 

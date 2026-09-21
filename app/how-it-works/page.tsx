@@ -1,6 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Link from 'next/link';
+import { LANGUAGES } from '@/lib/i18n/languages';
 import {
   ArrowDown,
   ArrowRight,
@@ -71,11 +73,19 @@ const faqs = [
   },
   {
     q: 'Which languages are supported?',
-    a: 'IP-SAKTI supports English, Hindi, Sanskrit, Tamil, Telugu, Marathi, and Bengali, with more regional languages planned.',
+    a: 'IP-SAKTI supports the six languages listed in the language switcher: English, Hindi, Bengali, Tamil, Telugu, and Marathi.',
   },
   {
     q: 'Is my formulation data secure?',
-    a: 'Submissions are encrypted and handled securely. You can request deletion, and your information is not shared with third parties.',
+    a: (
+      <>
+        Questions may be processed by Google Gemini and Bhashini. Review the{' '}
+        <Link href="/privacy" className="underline">
+          privacy notice
+        </Link>{' '}
+        before using the service, and do not enter unpublished or confidential invention details.
+      </>
+    ),
   },
   {
     q: 'Can I export the guidance?',
@@ -254,7 +264,7 @@ export default function HowItWorks() {
         <div className="mx-auto grid max-w-7xl gap-8 sm:grid-cols-3 sm:gap-0">
           {[
             ['Corpus', 'jurisdiction-filtered source registry'],
-            ['6', 'languages supported'],
+            [String(LANGUAGES.length), 'languages supported'],
             ['1', 'clearer path forward'],
           ].map(([value, label], i) => (
             <div

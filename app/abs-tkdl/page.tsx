@@ -131,7 +131,7 @@ export default function AbsTkdlPage() {
   }
 
   return (
-    <main className="min-h-dvh bg-[#f7faf7] px-4 pb-16 pt-28 text-emerald-950 sm:px-6 lg:px-8">
+    <div className="min-h-dvh bg-[#f7faf7] px-4 pb-16 pt-28 text-emerald-950 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-5xl">
         <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
           <div>
@@ -286,6 +286,6 @@ export default function AbsTkdlPage() {
           <p className="mt-5 text-xs text-emerald-950/55">Information, not legal advice.</p>
         </section>
       </div>
-    </main>
+    </div>
   );
 }

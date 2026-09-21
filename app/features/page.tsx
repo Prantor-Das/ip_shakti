@@ -50,9 +50,9 @@ export default function FeaturesPage() {
             </span>
           </h2>
           <p className="text-gray-400 text-base sm:text-lg leading-relaxed">
-            Our Retrieval-Augmented Generation pipeline grounds every answer in verified IP
-            databases, TKDL references, and international AYUSH regulatory texts—ensuring precision
-            at every layer.
+            Our Retrieval-Augmented Generation pipeline grounds every answer in verified IP active
+            corpus sources and jurisdiction-specific regulatory texts—making the evidence visible at
+            every layer.
           </p>
         </motion.div>
 
@@ -151,9 +151,9 @@ export default function FeaturesPage() {
         <motion.div {...fadeInUp} className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20">
           {[
             { label: 'Corpus', value: 'Active sources' },
-            { label: '99.8%', value: 'Accuracy Rate' },
-            { label: '15+', value: 'Regulatory Regimes' },
-            { label: '24/7', value: 'Real-time Updates' },
+            { label: 'Cited', value: 'Source-backed answers' },
+            { label: 'India / International', value: 'Separate jurisdictions' },
+            { label: 'On demand', value: 'Corpus retrieval' },
           ].map((stat, i) => (
             <motion.div
               key={i}
@@ -201,7 +201,7 @@ export default function FeaturesPage() {
               color: 'border-blue-500/30 bg-blue-500/5',
               gradient: 'from-blue-500/20 to-blue-500/5',
               tasks: [
-                'Map regulatory compliance across 15+ international regimes',
+                'Map regulatory questions to the active corpus',
                 'Conduct patentability assessment on extract modifications',
                 'Manage Access & Benefit Sharing (ABS) compliance',
               ],
@@ -298,7 +298,7 @@ export default function FeaturesPage() {
                   },
                   {
                     icon: '✓',
-                    title: 'TKDL Integrated',
+                    title: 'TKDL context',
                     desc: 'Check against the active corpus sources',
                   },
                   {
@@ -309,7 +309,7 @@ export default function FeaturesPage() {
                   {
                     icon: '✓',
                     title: 'Regulatory Mapped',
-                    desc: '15+ international compliance frameworks',
+                    desc: 'Jurisdiction-specific corpus guidance',
                   },
                 ].map((item, i) => (
                   <motion.div

@@ -516,7 +516,7 @@ export default function SamhitaPage() {
             </div>
 
             <Link
-              href="/chat?context=Samhita%20Repository#chat-input"
+              href="/chat#chat-input"
               className="px-6 py-3.5 rounded-xl bg-[#477A5B] hover:bg-[#396248] text-white font-semibold text-sm shadow-md transition-all shrink-0 inline-flex items-center gap-2"
             >
               Ask IP-Sakti AI

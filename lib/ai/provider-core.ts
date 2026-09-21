@@ -1,4 +1,5 @@
 import { GoogleGenAI, ThinkingLevel, type Content } from '@google/genai';
+import { env } from '@/lib/env-core';
 
 interface StreamTextInput {
   system: string;
@@ -10,6 +11,7 @@ interface StreamTextInput {
 interface GenerateTextInput {
   system: string;
   message: string;
+  signal?: AbortSignal;
 }
 
 const EMBEDDING_DIM = 768;
@@ -47,7 +49,7 @@ export async function* generateTextStream(
     config: {
       systemInstruction: input.system,
       temperature: 0.2,
-      maxOutputTokens: 4096,
+      maxOutputTokens: env.MAX_OUTPUT_TOKENS,
       thinkingConfig:
         model === 'gemini-3.8-flash' ? { thinkingLevel: ThinkingLevel.LOW } : undefined,
     },
@@ -60,10 +62,14 @@ export async function generateText(
   model: string,
   input: GenerateTextInput
 ): Promise<string> {
-  const response = await client(apiKey).models.generateContent({
+  const response = await client(apiKey, input.signal).models.generateContent({
     model,
     contents: [{ role: 'user', parts: [{ text: input.message }] }],
-    config: { systemInstruction: input.system, temperature: 0.1, maxOutputTokens: 4096 },
+    config: {
+      systemInstruction: input.system,
+      temperature: 0.1,
+      maxOutputTokens: env.MAX_OUTPUT_TOKENS,
+    },
   });
   return response.text ?? '';
 }
@@ -80,15 +86,16 @@ function l2Normalize(values: number[]): number[] {
 export async function embedTextsWithApiKey(
   apiKey: string,
   texts: string[],
-  taskType: string
+  taskType: string,
+  signal?: AbortSignal
 ): Promise<number[][]> {
   if (texts.length === 0) return [];
-  const model = process.env.GEMINI_EMBEDDING_MODEL || 'gemini-embedding-001';
+  const model = env.GEMINI_EMBEDDING_MODEL;
 
   // Embed texts individually to stay safely within Free Tier token-per-request quotas (max 2,048 tokens per call)
   const results: number[][] = [];
   for (const text of texts) {
-    const response = await client(apiKey).models.embedContent({
+    const response = await client(apiKey, signal).models.embedContent({
       model,
       contents: [{ parts: [{ text }] }],
       config: { taskType, outputDimensionality: EMBEDDING_DIM },

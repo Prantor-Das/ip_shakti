@@ -22,6 +22,7 @@ export interface ChatRequest {
   lang: Language;
   jurisdiction: Jurisdiction;
   formulationType?: FormulationType;
+  contextTopic?: string;
   history: ChatHistoryItem[];
 }
 
@@ -51,4 +52,4 @@ export type ChatEvent =
       translationFailed: boolean;
       englishText: string;
     }
-  | { type: 'error'; code: string };
+  | { type: 'error'; code: string; requestId: string };

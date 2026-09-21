@@ -110,7 +110,7 @@ export default function SamhitaEntryPage() {
               {/* Action Buttons */}
               <div className="flex flex-wrap items-center gap-3 pt-2">
                 <Link
-                  href={`/chat?context=${encodeURIComponent(`${entry.commonName} (${entry.scientificName})`)}#chat-input`}
+                  href={`/chat?topic=${encodeURIComponent(entry.slug)}#chat-input`}
                   className="px-5 py-3 rounded-xl bg-[#477A5B] hover:bg-[#396248] text-white font-semibold text-xs transition-colors inline-flex items-center gap-2 shadow-sm"
                 >
                   <Sparkles className="w-4 h-4" />
@@ -511,7 +511,7 @@ export default function SamhitaEntryPage() {
                 </p>
 
                 <Link
-                  href={`/chat?context=${encodeURIComponent(`${entry.commonName} (${entry.scientificName})`)}#chat-input`}
+                  href={`/chat?topic=${encodeURIComponent(entry.slug)}#chat-input`}
                   className="w-full py-3 rounded-xl bg-[#477A5B] hover:bg-[#396248] text-white font-semibold text-xs transition-colors flex items-center justify-center gap-2 shadow-sm"
                 >
                   Start Contextual Chat

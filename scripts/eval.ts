@@ -235,7 +235,7 @@ async function writeReport(questions: EvalQuestion[], runs: QuestionRun[]): Prom
     ),
   ].join('\n');
   await writeFile(resolve(root, 'eval-reports', `${timestamp}.md`), `${markdown}\n`);
-  console.log(markdown);
+  console.info(markdown);
   if (report.unresolvedDocIds.length > 0)
     console.error(
       `TODO docIds remain in ${report.unresolvedDocIds.length} questions; fill them against corpus/manifest.json.`
@@ -254,7 +254,7 @@ async function calibrate(questions: EvalQuestion[], runs: QuestionRun[]): Promis
     .map((run) => run.topSimilarity);
   const answerMedian = median(answerable);
   const unanswerMedian = median(unanswerable);
-  console.log(
+  console.info(
     JSON.stringify(
       {
         answerable,
@@ -266,10 +266,10 @@ async function calibrate(questions: EvalQuestion[], runs: QuestionRun[]): Promis
       2
     )
   );
-  console.log(
+  console.info(
     `Suggested RETRIEVAL_MIN_SIMILARITY=${Math.max(0, Math.min(1, unanswerMedian + 0.02)).toFixed(2)}`
   );
-  console.log(
+  console.info(
     `Suggested RETRIEVAL_HIGH_SIMILARITY=${Math.max(0, Math.min(1, answerMedian)).toFixed(2)}`
   );
 }
@@ -315,7 +315,7 @@ async function main() {
   }
   const runs: QuestionRun[] = [];
   for (const question of questions) {
-    console.log(`Evaluating ${question.id}...`);
+    console.info(`Evaluating ${question.id}...`);
     runs.push(await runQuestion(question));
   }
   if (process.argv.includes('--calibrate')) await calibrate(questions, runs);

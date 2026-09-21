@@ -2,6 +2,7 @@ import { IPSaktiHero } from '@/components/ui/prisma-hero';
 import { FAQSection } from '@/components/ui/faqsection';
 import { HistoricalHeritageSection } from '@/components/ui/historical-heritage';
 import Contact16 from '@/components/ui/contact-16';
+import { LANGUAGES } from '@/lib/i18n/languages';
 
 const ayushFaqsLeft = [
   {
@@ -70,17 +71,19 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold text-primary mb-2">50+</div>
-              <p className="text-gray-400">Ayurveda Formulations Analyzed</p>
+              <div className="text-4xl md:text-5xl font-bold text-primary mb-2">Corpus</div>
+              <p className="text-gray-400">Ayurveda formulations analyzed</p>
             </div>
 
             <div className="text-center border-t md:border-t-0 md:border-l border-white/10 pt-8 md:pt-0 md:pl-8">
-              <div className="text-4xl md:text-5xl font-bold text-primary mb-2">15+</div>
-              <p className="text-gray-400">International Regulatory Regimes</p>
+              <div className="text-4xl md:text-5xl font-bold text-primary mb-2">Corpus</div>
+              <p className="text-gray-400">Jurisdiction-filtered sources</p>
             </div>
 
             <div className="text-center border-t md:border-t-0 md:border-l border-white/10 pt-8 md:pt-0 md:pl-8">
-              <div className="text-4xl md:text-5xl font-bold text-primary mb-2">6</div>
+              <div className="text-4xl md:text-5xl font-bold text-primary mb-2">
+                {LANGUAGES.length}
+              </div>
               <p className="text-gray-400">Languages Supported</p>
             </div>
           </div>

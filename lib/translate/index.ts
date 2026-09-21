@@ -13,7 +13,8 @@ export interface TranslationResult {
 export async function translateText(
   text: string,
   from: Language,
-  to: Language
+  to: Language,
+  signal?: AbortSignal
 ): Promise<TranslationResult> {
   if (from === to || !text) return { text, translationFailed: false };
   const protectedText = protect(text);
@@ -21,7 +22,7 @@ export async function translateText(
   for (const provider of providers) {
     const startedAt = Date.now();
     try {
-      const translated = await provider(protectedText.text, from, to);
+      const translated = await provider(protectedText.text, from, to, signal);
       const restored = restore(translated, protectedText.placeholders);
       if (restored !== null) return { text: restored, translationFailed: false };
     } catch {

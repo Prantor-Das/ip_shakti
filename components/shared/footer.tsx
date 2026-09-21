@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { Globe, Mail, MapPin, Link as LinkIcon } from 'lucide-react';
 
-export const Footer = () => {
+export const Footer = ({ contactEmail }: { contactEmail?: string }) => {
   const currentYear = new Date().getFullYear();
 
   return (
@@ -20,14 +20,7 @@ export const Footer = () => {
           <i>Where Ancient Wisdom Meets Intelligent Technology.</i>
         </p>
         <div className="footer-links">
-          <a
-            href="https://www.facebook.com/AEC1998"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Facebook"
-          >
-            <i className="fab fa-facebook-f"></i>
-          </a>
+          {/* TODO: confirm the official project Facebook account before adding it. */}
           <a
             href="https://github.com/YASH-HCKT/SIH"
             target="_blank"
@@ -36,14 +29,7 @@ export const Footer = () => {
           >
             <i className="fab fa-github"></i>
           </a>
-          <a
-            href="https://www.instagram.com/yashprabhakar____/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Instagram"
-          >
-            <i className="fab fa-instagram"></i>
-          </a>
+          {/* TODO: confirm the official project Instagram account before adding it. */}
           <a
             href="https://www.linkedin.com/company/smart-india-hackathon/home/"
             target="_blank"
@@ -183,12 +169,14 @@ export const Footer = () => {
               </a>
               <div className="flex items-center space-x-2">
                 <Mail size={16} />
-                <a
-                  href="mailto:team@ip-sakti.com"
-                  className="hover:text-emerald-700 transition-colors"
-                >
-                  team@ip-sakti.com
-                </a>
+                {contactEmail && (
+                  <a
+                    href={`mailto:${contactEmail}`}
+                    className="hover:text-emerald-700 transition-colors"
+                  >
+                    {contactEmail}
+                  </a>
+                )}
               </div>
             </div>
           </div>
@@ -223,20 +211,22 @@ export const Footer = () => {
             >
               <LinkIcon size={18} />
             </a>
-            <a
-              href="mailto:team@ip-sakti.com"
-              aria-label="Email"
-              className="hover:text-emerald-700 transition-colors"
-            >
-              <Mail size={18} />
-            </a>
+            {contactEmail && (
+              <a
+                href={`mailto:${contactEmail}`}
+                aria-label="Email"
+                className="hover:text-emerald-700 transition-colors"
+              >
+                <Mail size={18} />
+              </a>
+            )}
           </div>
 
           {/* Legal Links */}
           <div className="flex items-center space-x-4 text-gray-700">
-            <a href="#" className="hover:text-emerald-700 transition-colors">
+            <Link href="/privacy" className="hover:text-emerald-700 transition-colors">
               Privacy
-            </a>
+            </Link>
             <span>•</span>
             <a href="#" className="hover:text-emerald-700 transition-colors">
               Terms

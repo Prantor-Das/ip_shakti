@@ -36,6 +36,5 @@
   "chat.brandDetail": "Trademark basics for Ayurveda products",
   "chat.compliance": "Check compliance",
   "chat.complianceDetail": "AYUSH and export requirements",
-  "chat.greeting": "Namaste. I’m Sahayak, your guide for Ayurveda intellectual property and regulatory questions.",
-  "chat.greetingContext": "Namaste. I’m Sahayak. I see you are exploring {context} from the Samhita Knowledge Repository."
+  "chat.greeting": "Namaste. I’m Sahayak, your guide for Ayurveda intellectual property and regulatory questions."
 }

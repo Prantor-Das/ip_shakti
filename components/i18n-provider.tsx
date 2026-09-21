@@ -15,13 +15,20 @@ const STORAGE_KEY = 'ip-sakti-language';
 
 interface I18nContextValue {
   language: Language;
+  contactEmail?: string;
   setLanguage: (language: Language) => void;
   t: (key: string, replacements?: Record<string, string>) => string;
 }
 
 const I18nContext = React.createContext<I18nContextValue | null>(null);
 
-export function I18nProvider({ children }: { children: React.ReactNode }) {
+export function I18nProvider({
+  children,
+  contactEmail,
+}: {
+  children: React.ReactNode;
+  contactEmail?: string;
+}) {
   const [language, setLanguageState] = React.useState<Language>('en');
 
   React.useEffect(() => {
@@ -54,6 +61,7 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
   const value = React.useMemo<I18nContextValue>(
     () => ({
       language,
+      contactEmail,
       setLanguage,
       t: (key, replacements) => {
         let value = messages[language][key] ?? messages.en[key] ?? key;
@@ -62,7 +70,7 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
         return value;
       },
     }),
-    [language, setLanguage]
+    [contactEmail, language, setLanguage]
   );
 
   return <I18nContext.Provider value={value}>{children}</I18nContext.Provider>;

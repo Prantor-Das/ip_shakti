@@ -26,6 +26,7 @@ import type {
   MessageRole,
 } from '@/lib/chat/types';
 import { useI18n } from '@/components/i18n-provider';
+import { getSamhitaContextTopic } from '@/lib/samhita-context';
 
 interface Message {
   id: string;
@@ -64,7 +65,7 @@ const starters = [
   },
 ];
 
-function syntheticGreeting(jurisdiction: Jurisdiction, context: string | null): Message[] {
+function syntheticGreeting(jurisdiction: Jurisdiction): Message[] {
   return [
     {
       id: `${jurisdiction}-greeting`,
@@ -72,9 +73,8 @@ function syntheticGreeting(jurisdiction: Jurisdiction, context: string | null): 
       jurisdiction,
       synthetic: true,
       citations: [],
-      content: context
-        ? `Namaste. I’m Sahayak. I see you are exploring ${context} from the Samhita Knowledge Repository.`
-        : 'Namaste. I’m Sahayak, your guide for Ayurveda intellectual property and regulatory questions.',
+      content:
+        'Namaste. I’m Sahayak, your guide for Ayurveda intellectual property and regulatory questions.',
     },
   ];
 }
@@ -148,9 +148,9 @@ function Escalation({
   message: Message;
   formulationType?: FormulationType;
 }) {
-  const { t } = useI18n();
+  const { contactEmail, t } = useI18n();
   if (!message.abstained && message.confidence !== 'low') return null;
-  const email = process.env.NEXT_PUBLIC_FACILITATOR_EMAIL;
+  const email = contactEmail;
   if (!email) return null;
   const subject = encodeURIComponent(`IP-SAKTI facilitator request — ${message.jurisdiction}`);
   const body = encodeURIComponent(
@@ -266,12 +266,12 @@ function MessageBubble({
 function ChatContent() {
   const { language, t } = useI18n();
   const searchParams = useSearchParams();
-  const context = searchParams.get('context');
+  const contextTopic = getSamhitaContextTopic(searchParams.get('topic') ?? undefined);
   const [jurisdiction, setJurisdiction] = React.useState<Jurisdiction>('india');
   const [formulationType, setFormulationType] = React.useState<FormulationType | undefined>();
   const [threads, setThreads] = React.useState<Threads>(() => ({
-    india: syntheticGreeting('india', context),
-    international: syntheticGreeting('international', context),
+    india: syntheticGreeting('india'),
+    international: syntheticGreeting('international'),
   }));
   const [input, setInput] = React.useState('');
   const [loading, setLoading] = React.useState(false);
@@ -340,6 +340,7 @@ function ChatContent() {
           lang: language,
           jurisdiction,
           formulationType,
+          contextTopic: contextTopic?.slug,
           history,
         }),
       });
@@ -410,7 +411,7 @@ function ChatContent() {
   }
 
   return (
-    <main
+    <div
       className={cn(
         'min-h-dvh px-4 pb-8 pt-24 text-emerald-950 transition-colors sm:px-6 lg:px-8',
         jurisdiction === 'india' ? 'bg-[#f7faf7]' : 'bg-[#f7f9fc]'
@@ -471,12 +472,17 @@ function ChatContent() {
             )}
           </div>
         </header>
-        <div className="space-y-5">
+        {contextTopic && (
+          <div className="mb-4 inline-flex rounded-full border border-primary/20 bg-emerald-50 px-3 py-1.5 text-xs font-semibold text-primary">
+            Discussing: {contextTopic.commonName}
+          </div>
+        )}
+        <div aria-live="polite" className="space-y-5">
           {activeMessages.map((message) => (
             <MessageBubble key={message.id} message={message} formulationType={formulationType} />
           ))}
           {loading && (
-            <div className="flex items-center gap-3 text-sm text-emerald-950/55">
+            <div role="status" className="flex items-center gap-3 text-sm text-emerald-950/55">
               <span className="flex size-9 items-center justify-center rounded-xl bg-primary text-white">
                 <LeafIcon className="size-4" />
               </span>
@@ -540,7 +546,7 @@ function ChatContent() {
         </div>
         <p className="mt-3 text-center text-[11px] text-emerald-950/45">{t('chat.privacy')}</p>
       </div>
-    </main>
+    </div>
   );
 }
 

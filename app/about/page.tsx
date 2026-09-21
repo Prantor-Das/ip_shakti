@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { LANGUAGES } from '@/lib/i18n/languages';
 import Link from 'next/link';
 import {
   ArrowRight,
@@ -261,7 +262,7 @@ export default function About() {
                   <p className="mt-1 text-xs text-[#173b2b]/65">active source registry</p>
                 </div>
                 <div className="rounded-2xl bg-white/80 p-4">
-                  <p className="text-2xl font-semibold text-[#2f855a]">6</p>
+                  <p className="text-2xl font-semibold text-[#2f855a]">{LANGUAGES.length}</p>
                   <p className="mt-1 text-xs text-[#173b2b]/65">languages supported</p>
                 </div>
               </div>

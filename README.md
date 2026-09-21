@@ -35,7 +35,9 @@ This application requires a Google Gemini API key to process AI chat queries.
 For corpus-backed retrieval, also set `SUPABASE_URL` and the server-only
 `SUPABASE_SERVICE_ROLE_KEY`. Optional settings are `GEMINI_EMBEDDING_MODEL`,
 `RETRIEVAL_MIN_SIMILARITY`, `RETRIEVAL_HIGH_SIMILARITY`, and
-`NEXT_PUBLIC_FACILITATOR_EMAIL`.
+`NEXT_PUBLIC_SITE_URL` and `NEXT_PUBLIC_CONTACT_EMAIL` are the only public configuration values. Provider keys, database service keys and rate-limit salts remain server-only.
+
+Run the security checks with `pnpm secret-scan` (requires the gitleaks CLI) and `pnpm audit`. Prune server audit records with `pnpm audit:prune --days 90`.
 
 Apply `supabase/migrations/202609210001_corpus.sql` to the project, then ingest
 the manifest-driven official PDFs with:

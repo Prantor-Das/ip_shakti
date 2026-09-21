@@ -76,7 +76,7 @@ const defaultFeatures: FeatureItem[] = [
     title: "Accessibility First",
     image: "/images/block/placeholder-4.svg",
     description:
-      "All blocks are built with accessibility in mind, following WCAG guidelines. They include proper ARIA labels, keyboard navigation support, and semantic HTML structure. Ensure your website is usable by everyone without extra effort.",
+      "All blocks are built with accessibility in mind, following accessibility best practices. They include proper ARIA labels, keyboard navigation support, and semantic HTML structure. Ensure your website is usable by everyone without extra effort.",
   },
   {
     id: 5,
@@ -175,7 +175,7 @@ const demoData = {
       title: "Accessibility First",
       image: "https://cdn.21st.dev/assets/mirror/5c/5c07e8730eabe2cc7f3eed9d9e70f1dc3d86a3094d35357e2245d99955c1b3bf.svg",
       description:
-        "All blocks are built with accessibility in mind, following WCAG guidelines. They include proper ARIA labels, keyboard navigation support, and semantic HTML structure. Ensure your website is usable by everyone without extra effort.",
+        "All blocks are built with accessibility in mind, following accessibility best practices. They include proper ARIA labels, keyboard navigation support, and semantic HTML structure. Ensure your website is usable by everyone without extra effort.",
     },
     {
       id: 5,
@@ -333,7 +333,7 @@ const defaultFeatures: FeatureItem[] = [
         title: "Accessibility First",
         image: "/images/block/placeholder-4.svg",
         description:
-            "All blocks are built with accessibility in mind, following WCAG guidelines. They include proper ARIA labels, keyboard navigation support, and semantic HTML structure. Ensure your website is usable by everyone without extra effort.",
+            "All blocks are built with accessibility in mind, following accessibility best practices. They include proper ARIA labels, keyboard navigation support, and semantic HTML structure. Ensure your website is usable by everyone without extra effort.",
     },
     {
         id: 5,
@@ -432,7 +432,7 @@ const demoData = {
             title: "Accessibility First",
             image: "https://cdn.21st.dev/assets/mirror/5c/5c07e8730eabe2cc7f3eed9d9e70f1dc3d86a3094d35357e2245d99955c1b3bf.svg",
             description:
-                "All blocks are built with accessibility in mind, following WCAG guidelines. They include proper ARIA labels, keyboard navigation support, and semantic HTML structure. Ensure your website is usable by everyone without extra effort.",
+                "All blocks are built with accessibility in mind, following accessibility best practices. They include proper ARIA labels, keyboard navigation support, and semantic HTML structure. Ensure your website is usable by everyone without extra effort.",
         },
         {
             id: 5,

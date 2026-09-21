@@ -67,7 +67,7 @@ export default async function SourcesPage() {
     documents: documents.filter((document) => document.jurisdiction === jurisdiction),
   }));
   return (
-    <main className="min-h-dvh bg-[#f7faf7] px-4 pb-16 pt-28 text-emerald-950 sm:px-6 lg:px-8">
+    <div className="min-h-dvh bg-[#f7faf7] px-4 pb-16 pt-28 text-emerald-950 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-6xl">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
@@ -159,6 +159,6 @@ export default async function SourcesPage() {
           Counts are read from the active corpus records and may change after ingestion.
         </p>
       </div>
-    </main>
+    </div>
   );
 }

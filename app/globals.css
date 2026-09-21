@@ -5,8 +5,9 @@
   --color-primary: #2f855a;
   --color-primary-foreground: #ffffff;
   --color-secondary: #ff6b35;
-  --font-serif: var(--font-instrument-serif), serif;
-  --font-poppins: var(--font-poppins), sans-serif;
+  --font-serif: Georgia, 'Times New Roman', serif;
+  --font-poppins: Arial, Helvetica, sans-serif;
+  --font-bebas-neue: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 @theme inline {

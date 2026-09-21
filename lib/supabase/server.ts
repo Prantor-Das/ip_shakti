@@ -1,11 +1,9 @@
 import 'server-only';
 
 import { assertServiceRoleKey, createServiceClient } from '@/lib/supabase/client-core';
+import { env } from '@/lib/env';
 
 export function getSupabaseServiceClient() {
-  const url = process.env.SUPABASE_URL;
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
-  if (!url || !key) throw new Error('Supabase server configuration is missing');
-  assertServiceRoleKey(key);
-  return createServiceClient(url, key);
+  assertServiceRoleKey(env.SUPABASE_SERVICE_ROLE_KEY);
+  return createServiceClient(env.SUPABASE_URL, env.SUPABASE_SERVICE_ROLE_KEY);
 }

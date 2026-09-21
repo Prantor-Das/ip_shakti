@@ -2,9 +2,9 @@ import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { PDFParse } from 'pdf-parse';
-import { config } from 'dotenv';
 import { embedTextsWithApiKey } from '@/lib/ai/provider-core';
 import { assertServiceRoleKey, createServiceClient } from '@/lib/supabase/client-core';
+import { env } from '@/lib/env-core';
 
 interface ManifestEntry {
   id: string;
@@ -37,16 +37,9 @@ interface ChunkDraft {
 const root = resolve(process.cwd());
 const embeddingBatchSize = 16;
 
-config({ path: resolve(root, '.env.local') });
-config({ path: resolve(root, '.env') });
-
 function getIngestionSupabaseClient() {
-  const url = process.env.SUPABASE_URL;
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
-  if (!url || !key)
-    throw new Error('SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY are required for ingestion');
-  assertServiceRoleKey(key);
-  return createServiceClient(url, key);
+  assertServiceRoleKey(env.SUPABASE_SERVICE_ROLE_KEY);
+  return createServiceClient(env.SUPABASE_URL, env.SUPABASE_SERVICE_ROLE_KEY);
 }
 
 function normalise(text: string): string {
@@ -104,8 +97,7 @@ async function extractPdf(filePath: string): Promise<string> {
 }
 
 async function withEmbeddingRetry(texts: string[], taskType: string): Promise<number[][]> {
-  const apiKey = process.env.GEMINI_API_KEY;
-  if (!apiKey) throw new Error('GEMINI_API_KEY is required for ingestion');
+  const apiKey = env.GEMINI_API_KEY;
   let delay = 2000;
   for (let attempt = 0; attempt < 6; attempt += 1) {
     try {
@@ -173,7 +165,7 @@ async function ingest(
       if (supersedeError) throw supersedeError;
     }
   }
-  console.log(`Ingesting ${entry.id} (${drafts.length} chunks)...`);
+  console.info(`Ingesting ${entry.id} (${drafts.length} chunks)...`);
   for (let start = 0; start < drafts.length; start += embeddingBatchSize) {
     const batch = drafts.slice(start, start + embeddingBatchSize);
     const embeddings = await withEmbeddingRetry(
@@ -194,7 +186,7 @@ async function ingest(
     const { error: chunkError } = await supabase.from('corpus_chunks').insert(rows);
     if (chunkError) throw chunkError;
     if ((start + 1) % 10 === 0 || start + 1 === drafts.length) {
-      console.log(`  Processed ${start + 1}/${drafts.length} chunks...`);
+      console.info(`  Processed ${start + 1}/${drafts.length} chunks...`);
     }
     await new Promise((resolvePromise) => setTimeout(resolvePromise, 250));
   }

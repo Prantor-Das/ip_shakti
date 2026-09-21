@@ -1,6 +1,7 @@
 import 'server-only';
 
 import type { Language } from '@/lib/i18n/languages';
+import { env } from '@/lib/env';
 
 interface BhashiniConfig {
   callbackUrl: string;
@@ -25,13 +26,20 @@ const CONFIG_TTL_MS = 15 * 60 * 1000;
 const TIMEOUT_MS = 12_000;
 const configCache = new Map<string, { expiresAt: number; config: BhashiniConfig }>();
 
-async function fetchJson<T>(url: string, init: RequestInit): Promise<T> {
+async function fetchJson<T>(
+  url: string,
+  init: RequestInit,
+  parentSignal?: AbortSignal
+): Promise<T> {
   let lastError: unknown;
   for (let attempt = 0; attempt < 2; attempt += 1) {
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), TIMEOUT_MS);
     try {
-      const response = await fetch(url, { ...init, signal: controller.signal });
+      const signal = parentSignal
+        ? AbortSignal.any([controller.signal, parentSignal])
+        : controller.signal;
+      const response = await fetch(url, { ...init, signal });
       if (!response.ok) throw new Error(`Bhashini request failed: ${response.status}`);
       return (await response.json()) as T;
     } catch (error: unknown) {
@@ -44,13 +52,17 @@ async function fetchJson<T>(url: string, init: RequestInit): Promise<T> {
   throw lastError instanceof Error ? lastError : new Error('Bhashini request failed');
 }
 
-async function pipelineConfig(from: Language, to: Language): Promise<BhashiniConfig> {
+async function pipelineConfig(
+  from: Language,
+  to: Language,
+  signal?: AbortSignal
+): Promise<BhashiniConfig> {
   const key = `${from}:${to}`;
   const cached = configCache.get(key);
   if (cached && cached.expiresAt > Date.now()) return cached.config;
-  const userId = process.env.BHASHINI_USER_ID;
-  const apiKey = process.env.BHASHINI_ULCA_API_KEY;
-  const pipelineId = process.env.BHASHINI_PIPELINE_ID;
+  const userId = env.BHASHINI_USER_ID;
+  const apiKey = env.BHASHINI_ULCA_API_KEY;
+  const pipelineId = env.BHASHINI_PIPELINE_ID;
   if (!userId || !apiKey || !pipelineId) throw new Error('Bhashini is not configured');
   const response = await fetchJson<ConfigResponse>(
     'https://meity-auth.ulcacontrib.org/ulca/apis/v0/model/getModelsPipeline',
@@ -66,7 +78,8 @@ async function pipelineConfig(from: Language, to: Language): Promise<BhashiniCon
         ],
         pipelineRequestConfig: { pipelineId },
       }),
-    }
+    },
+    signal
   );
   const task = response.pipelineResponseConfig?.find((item) => item.taskType === 'translation');
   const serviceId = task?.config?.[0]?.serviceId;
@@ -88,25 +101,34 @@ async function pipelineConfig(from: Language, to: Language): Promise<BhashiniCon
   return config;
 }
 
-export async function translate(text: string, from: Language, to: Language): Promise<string> {
+export async function translate(
+  text: string,
+  from: Language,
+  to: Language,
+  signal?: AbortSignal
+): Promise<string> {
   if (from === to || !text) return text;
-  const config = await pipelineConfig(from, to);
-  const response = await fetchJson<TranslationResponse>(config.callbackUrl, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', [config.authName]: config.authValue },
-    body: JSON.stringify({
-      pipelineTasks: [
-        {
-          taskType: 'translation',
-          config: {
-            language: { sourceLanguage: from, targetLanguage: to },
-            serviceId: config.serviceId,
+  const config = await pipelineConfig(from, to, signal);
+  const response = await fetchJson<TranslationResponse>(
+    config.callbackUrl,
+    {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', [config.authName]: config.authValue },
+      body: JSON.stringify({
+        pipelineTasks: [
+          {
+            taskType: 'translation',
+            config: {
+              language: { sourceLanguage: from, targetLanguage: to },
+              serviceId: config.serviceId,
+            },
           },
-        },
-      ],
-      inputData: { input: [{ source: text }] },
-    }),
-  });
+        ],
+        inputData: { input: [{ source: text }] },
+      }),
+    },
+    signal
+  );
   const translated = response.pipelineResponse?.[0]?.output?.[0]?.target;
   if (!translated) throw new Error('Bhashini returned no translation');
   return translated;
