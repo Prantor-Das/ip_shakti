@@ -190,8 +190,9 @@ export const FullScreenSignup = () => {
                 type="text"
                 id="fullName"
                 placeholder="Dr. Rajesh Sharma"
-                className={`text-sm w-full py-2 px-3 border rounded-lg focus:outline-none focus:ring-2 bg-slate-950 text-white focus:ring-orange-500 ${errors.fullName ? 'border-red-500' : 'border-slate-700'
-                  }`}
+                className={`text-sm w-full py-2 px-3 border rounded-lg focus:outline-none focus:ring-2 bg-slate-950 text-white focus:ring-orange-500 ${
+                  errors.fullName ? 'border-red-500' : 'border-slate-700'
+                }`}
                 value={formData.fullName}
                 onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
               />
@@ -208,8 +209,9 @@ export const FullScreenSignup = () => {
                   type="email"
                   id="email"
                   placeholder="rajesh@ayurveda.in"
-                  className={`text-sm w-full py-2 px-3 border rounded-lg focus:outline-none focus:ring-2 bg-slate-950 text-white focus:ring-orange-500 ${errors.email ? 'border-red-500' : 'border-slate-700'
-                    }`}
+                  className={`text-sm w-full py-2 px-3 border rounded-lg focus:outline-none focus:ring-2 bg-slate-950 text-white focus:ring-orange-500 ${
+                    errors.email ? 'border-red-500' : 'border-slate-700'
+                  }`}
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 />
@@ -224,8 +226,9 @@ export const FullScreenSignup = () => {
                   type="tel"
                   id="mobile"
                   placeholder="9876543210"
-                  className={`text-sm w-full py-2 px-3 border rounded-lg focus:outline-none focus:ring-2 bg-slate-950 text-white focus:ring-orange-500 ${errors.mobile ? 'border-red-500' : 'border-slate-700'
-                    }`}
+                  className={`text-sm w-full py-2 px-3 border rounded-lg focus:outline-none focus:ring-2 bg-slate-950 text-white focus:ring-orange-500 ${
+                    errors.mobile ? 'border-red-500' : 'border-slate-700'
+                  }`}
                   value={formData.mobile}
                   onChange={(e) => setFormData({ ...formData, mobile: e.target.value })}
                 />
@@ -243,8 +246,9 @@ export const FullScreenSignup = () => {
                   type="password"
                   id="password"
                   placeholder="••••••••"
-                  className={`text-sm w-full py-2 px-3 border rounded-lg focus:outline-none focus:ring-2 bg-slate-950 text-white focus:ring-orange-500 ${errors.password ? 'border-red-500' : 'border-slate-700'
-                    }`}
+                  className={`text-sm w-full py-2 px-3 border rounded-lg focus:outline-none focus:ring-2 bg-slate-950 text-white focus:ring-orange-500 ${
+                    errors.password ? 'border-red-500' : 'border-slate-700'
+                  }`}
                   value={formData.password}
                   onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                 />
@@ -262,8 +266,9 @@ export const FullScreenSignup = () => {
                   type="password"
                   id="confirmPassword"
                   placeholder="••••••••"
-                  className={`text-sm w-full py-2 px-3 border rounded-lg focus:outline-none focus:ring-2 bg-slate-950 text-white focus:ring-orange-500 ${errors.confirmPassword ? 'border-red-500' : 'border-slate-700'
-                    }`}
+                  className={`text-sm w-full py-2 px-3 border rounded-lg focus:outline-none focus:ring-2 bg-slate-950 text-white focus:ring-orange-500 ${
+                    errors.confirmPassword ? 'border-red-500' : 'border-slate-700'
+                  }`}
                   value={formData.confirmPassword}
                   onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
                 />
@@ -282,8 +287,9 @@ export const FullScreenSignup = () => {
                 <div className="relative">
                   <select
                     id="state"
-                    className={`text-sm w-full py-2 px-3 border rounded-lg focus:outline-none focus:ring-2 bg-slate-950 text-white focus:ring-orange-500 appearance-none pr-8 ${errors.state ? 'border-red-500' : 'border-slate-700'
-                      }`}
+                    className={`text-sm w-full py-2 px-3 border rounded-lg focus:outline-none focus:ring-2 bg-slate-950 text-white focus:ring-orange-500 appearance-none pr-8 ${
+                      errors.state ? 'border-red-500' : 'border-slate-700'
+                    }`}
                     value={formData.state}
                     onChange={(e) => setFormData({ ...formData, state: e.target.value })}
                   >
@@ -306,8 +312,9 @@ export const FullScreenSignup = () => {
                 <div className="relative">
                   <select
                     id="userType"
-                    className={`text-sm w-full py-2 px-3 border rounded-lg focus:outline-none focus:ring-2 bg-slate-950 text-white focus:ring-orange-500 appearance-none pr-8 ${errors.userType ? 'border-red-500' : 'border-slate-700'
-                      }`}
+                    className={`text-sm w-full py-2 px-3 border rounded-lg focus:outline-none focus:ring-2 bg-slate-950 text-white focus:ring-orange-500 appearance-none pr-8 ${
+                      errors.userType ? 'border-red-500' : 'border-slate-700'
+                    }`}
                     value={formData.userType}
                     onChange={(e) => setFormData({ ...formData, userType: e.target.value })}
                   >
@@ -379,10 +386,11 @@ export const FullScreenSignup = () => {
                       key={area}
                       type="button"
                       onClick={() => handleInterestToggle(area)}
-                      className={`text-xs p-2 rounded-lg border text-left transition-all flex items-center justify-between ${isSelected
+                      className={`text-xs p-2 rounded-lg border text-left transition-all flex items-center justify-between ${
+                        isSelected
                           ? 'bg-orange-500/20 border-orange-500 text-orange-300 font-medium'
                           : 'bg-slate-950 border-slate-800 text-slate-400 hover:border-slate-700'
-                        }`}
+                      }`}
                     >
                       <span className="line-clamp-1">{area}</span>
                       {isSelected && (

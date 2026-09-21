@@ -18,18 +18,18 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## 🔑 Environment Variables & Setup
 
-This application requires an Anthropic API key to process AI chat queries via Claude (`claude-sonnet-4-6`).
+This application requires a Google Gemini API key to process AI chat queries.
 
 1. **Copy the example environment file:**
    ```bash
    cp .env.example .env.local
    ```
-2. **Obtain an Anthropic API Key:**
-   - Sign up or log into the [Anthropic Console](https://console.anthropic.com/).
+2. **Obtain a Google Gemini API Key:**
+   - Create a key in [Google AI Studio](https://aistudio.google.com/app/apikey).
    - Navigate to the **API Keys** section.
    - Click **Create Key**, copy the API key, and paste it into `.env.local`:
      ```env
-     ANTHROPIC_API_KEY=your_actual_anthropic_api_key_here
+     GEMINI_API_KEY=your_actual_gemini_api_key_here
      ```
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.

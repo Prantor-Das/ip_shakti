@@ -47,9 +47,7 @@ export default function SamhitaEntryPage() {
   }
 
   // Related knowledge items
-  const relatedItems = SAMHITA_ENTRIES.filter((e) =>
-    entry.relatedKnowledgeSlugs.includes(e.slug)
-  );
+  const relatedItems = SAMHITA_ENTRIES.filter((e) => entry.relatedKnowledgeSlugs.includes(e.slug));
 
   return (
     <div className="min-h-screen bg-[#FFFFFF] text-[#202124] pt-24 pb-16 font-sans">
@@ -105,7 +103,8 @@ export default function SamhitaEntryPage() {
                     key={lang}
                     className="px-2.5 py-0.5 rounded-md bg-[#F8F9FA] border border-[#DADCE0] text-xs text-[#202124]"
                   >
-                    <strong className="capitalize text-[#477A5B] font-semibold">{lang}:</strong> {name}
+                    <strong className="capitalize text-[#477A5B] font-semibold">{lang}:</strong>{' '}
+                    {name}
                   </span>
                 ))}
               </div>
@@ -148,8 +147,15 @@ export default function SamhitaEntryPage() {
                     <ImageIcon className="w-3.5 h-3.5 text-[#477A5B]" />
                     Image Attribution Metadata
                   </div>
-                  <div>Source: <span className="text-[#3C4043]">{entry.imageMetadata.source}</span></div>
-                  <div>License: <span className="text-[#2D5A3F] font-medium">{entry.imageMetadata.license}</span></div>
+                  <div>
+                    Source: <span className="text-[#3C4043]">{entry.imageMetadata.source}</span>
+                  </div>
+                  <div>
+                    License:{' '}
+                    <span className="text-[#2D5A3F] font-medium">
+                      {entry.imageMetadata.license}
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -163,7 +169,6 @@ export default function SamhitaEntryPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
             {/* Main Content Column */}
             <div className="lg:col-span-8 space-y-10">
-
               {/* 1. BOTANICAL INFORMATION */}
               <div className="p-8 rounded-2xl bg-[#FFFFFF] border border-[#DADCE0] shadow-sm">
                 <div className="flex items-center gap-3 mb-6">
@@ -172,14 +177,20 @@ export default function SamhitaEntryPage() {
                   </div>
                   <div>
                     <h2 className="text-xl font-bold text-[#202124]">Botanical Information</h2>
-                    <p className="text-xs text-[#5F6368]">Taxonomic classification & physical characteristics (POWO Kew & e-Charak)</p>
+                    <p className="text-xs text-[#5F6368]">
+                      Taxonomic classification & physical characteristics (POWO Kew & e-Charak)
+                    </p>
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
                   <div className="p-4 bg-[#F8F9FA] rounded-xl border border-[#DADCE0]">
-                    <span className="block text-xs font-semibold text-[#5F6368]">Accepted Scientific Name</span>
-                    <span className="text-sm font-bold text-[#202124] italic">{entry.scientificName}</span>
+                    <span className="block text-xs font-semibold text-[#5F6368]">
+                      Accepted Scientific Name
+                    </span>
+                    <span className="text-sm font-bold text-[#202124] italic">
+                      {entry.scientificName}
+                    </span>
                   </div>
                   <div className="p-4 bg-[#F8F9FA] rounded-xl border border-[#DADCE0]">
                     <span className="block text-xs font-semibold text-[#5F6368]">Plant Family</span>
@@ -195,7 +206,10 @@ export default function SamhitaEntryPage() {
                     </span>
                     <div className="flex flex-wrap gap-2">
                       {entry.synonyms.map((syn, idx) => (
-                        <span key={idx} className="px-3 py-1 bg-[#F8F9FA] border border-[#DADCE0] rounded-lg text-xs italic text-[#3C4043]">
+                        <span
+                          key={idx}
+                          className="px-3 py-1 bg-[#F8F9FA] border border-[#DADCE0] rounded-lg text-xs italic text-[#3C4043]"
+                        >
                           {syn}
                         </span>
                       ))}
@@ -210,7 +224,10 @@ export default function SamhitaEntryPage() {
                   </span>
                   <div className="flex flex-wrap gap-2">
                     {entry.partsUsed.map((part, idx) => (
-                      <span key={idx} className="px-3 py-1 bg-[#E8F0E9] border border-[#477A5B]/30 rounded-full text-xs font-semibold text-[#2D5A3F]">
+                      <span
+                        key={idx}
+                        className="px-3 py-1 bg-[#E8F0E9] border border-[#477A5B]/30 rounded-full text-xs font-semibold text-[#2D5A3F]"
+                      >
                         {part}
                       </span>
                     ))}
@@ -235,8 +252,12 @@ export default function SamhitaEntryPage() {
                     <BookOpen className="w-5 h-5" />
                   </div>
                   <div>
-                    <h2 className="text-xl font-bold text-[#202124]">Traditional & Ayurvedic Context</h2>
-                    <p className="text-xs text-[#5F6368]">Classical Ayurvedic properties & Samhita text citations</p>
+                    <h2 className="text-xl font-bold text-[#202124]">
+                      Traditional & Ayurvedic Context
+                    </h2>
+                    <p className="text-xs text-[#5F6368]">
+                      Classical Ayurvedic properties & Samhita text citations
+                    </p>
                   </div>
                 </div>
 
@@ -244,19 +265,27 @@ export default function SamhitaEntryPage() {
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6 p-4 bg-[#FFFFFF] rounded-xl border border-[#DADCE0]">
                   <div>
                     <span className="block text-[11px] text-[#5F6368]">Rasa (Taste)</span>
-                    <span className="text-xs font-semibold text-[#202124]">{entry.ayurvedicContext.rasa || 'N/A'}</span>
+                    <span className="text-xs font-semibold text-[#202124]">
+                      {entry.ayurvedicContext.rasa || 'N/A'}
+                    </span>
                   </div>
                   <div>
                     <span className="block text-[11px] text-[#5F6368]">Virya (Potency)</span>
-                    <span className="text-xs font-semibold text-[#202124]">{entry.ayurvedicContext.virya || 'N/A'}</span>
+                    <span className="text-xs font-semibold text-[#202124]">
+                      {entry.ayurvedicContext.virya || 'N/A'}
+                    </span>
                   </div>
                   <div>
                     <span className="block text-[11px] text-[#5F6368]">Vipaka</span>
-                    <span className="text-xs font-semibold text-[#202124]">{entry.ayurvedicContext.vipaka || 'N/A'}</span>
+                    <span className="text-xs font-semibold text-[#202124]">
+                      {entry.ayurvedicContext.vipaka || 'N/A'}
+                    </span>
                   </div>
                   <div>
                     <span className="block text-[11px] text-[#5F6368]">Dosha Action</span>
-                    <span className="text-xs font-semibold text-[#2D5A3F]">{entry.ayurvedicContext.doshaEffect || 'N/A'}</span>
+                    <span className="text-xs font-semibold text-[#2D5A3F]">
+                      {entry.ayurvedicContext.doshaEffect || 'N/A'}
+                    </span>
                   </div>
                 </div>
 
@@ -294,7 +323,10 @@ export default function SamhitaEntryPage() {
                     </span>
                     <div className="flex flex-wrap gap-2">
                       {entry.relatedFormulations.map((form, idx) => (
-                        <span key={idx} className="px-3 py-1 rounded-lg bg-[#FFFFFF] border border-[#DADCE0] text-xs font-medium text-[#202124]">
+                        <span
+                          key={idx}
+                          className="px-3 py-1 rounded-lg bg-[#FFFFFF] border border-[#DADCE0] text-xs font-medium text-[#202124]"
+                        >
                           {form}
                         </span>
                       ))}
@@ -311,7 +343,9 @@ export default function SamhitaEntryPage() {
                   </div>
                   <div>
                     <h2 className="text-xl font-bold text-[#202124]">Research & References</h2>
-                    <p className="text-xs text-[#5F6368]">Peer-reviewed pharmacological studies & NCBI records</p>
+                    <p className="text-xs text-[#5F6368]">
+                      Peer-reviewed pharmacological studies & NCBI records
+                    </p>
                   </div>
                 </div>
 
@@ -322,10 +356,15 @@ export default function SamhitaEntryPage() {
                 ) : (
                   <div className="space-y-4">
                     {entry.researchReferences.map((paper, idx) => (
-                      <div key={idx} className="p-4 rounded-xl bg-[#F8F9FA] border border-[#DADCE0] text-xs">
+                      <div
+                        key={idx}
+                        className="p-4 rounded-xl bg-[#F8F9FA] border border-[#DADCE0] text-xs"
+                      >
                         <h3 className="font-bold text-[#202124] text-sm mb-1">{paper.title}</h3>
                         <p className="text-[#5F6368] mb-2">
-                          {paper.authors ? `${paper.authors} • ` : ''}{paper.journal ? `${paper.journal} ` : ''}{paper.year ? `(${paper.year})` : ''}
+                          {paper.authors ? `${paper.authors} • ` : ''}
+                          {paper.journal ? `${paper.journal} ` : ''}
+                          {paper.year ? `(${paper.year})` : ''}
                         </p>
                         <p className="text-[#3C4043] leading-relaxed mb-3">{paper.summary}</p>
                         <a
@@ -349,19 +388,31 @@ export default function SamhitaEntryPage() {
                     <ShieldCheck className="w-5 h-5" />
                   </div>
                   <div>
-                    <h2 className="text-xl font-bold text-[#202124]">Intellectual Property Landscape</h2>
-                    <p className="text-xs text-[#2D5A3F]">TKDL catalog status, prior art highlights, and Section 3(p) evaluation</p>
+                    <h2 className="text-xl font-bold text-[#202124]">
+                      Intellectual Property Landscape
+                    </h2>
+                    <p className="text-xs text-[#2D5A3F]">
+                      TKDL catalog status, prior art highlights, and Section 3(p) evaluation
+                    </p>
                   </div>
                 </div>
 
                 <div className="bg-[#FFFFFF] p-4 rounded-xl border border-[#DADCE0] mb-4">
-                  <span className="block text-xs font-bold text-[#202124] mb-1">Global Patent Status</span>
-                  <p className="text-xs text-[#3C4043] leading-relaxed">{entry.ipInformation.patentStatus}</p>
+                  <span className="block text-xs font-bold text-[#202124] mb-1">
+                    Global Patent Status
+                  </span>
+                  <p className="text-xs text-[#3C4043] leading-relaxed">
+                    {entry.ipInformation.patentStatus}
+                  </p>
                 </div>
 
                 <div className="bg-[#FFFFFF] p-4 rounded-xl border border-[#DADCE0] mb-4">
-                  <span className="block text-xs font-bold text-[#202124] mb-1">TKDL Catalog Status</span>
-                  <p className="text-xs text-[#2D5A3F] font-medium">{entry.ipInformation.tkdlStatus}</p>
+                  <span className="block text-xs font-bold text-[#202124] mb-1">
+                    TKDL Catalog Status
+                  </span>
+                  <p className="text-xs text-[#2D5A3F] font-medium">
+                    {entry.ipInformation.tkdlStatus}
+                  </p>
                 </div>
 
                 {entry.ipInformation.priorArtHighlights.length > 0 && (
@@ -381,7 +432,9 @@ export default function SamhitaEntryPage() {
                 )}
 
                 <div className="p-4 rounded-xl bg-[#FFFFFF] border border-[#DADCE0] text-xs text-[#5F6368]">
-                  <span className="font-bold text-[#202124] block mb-1">Section 3(p) Indian Patent Act Guidance</span>
+                  <span className="font-bold text-[#202124] block mb-1">
+                    Section 3(p) Indian Patent Act Guidance
+                  </span>
                   <p className="leading-relaxed">{entry.ipInformation.patentabilityNotes}</p>
                 </div>
               </div>
@@ -403,7 +456,9 @@ export default function SamhitaEntryPage() {
                           <span className="font-bold text-[#202124] group-hover:text-[#477A5B] transition-colors block">
                             {src.name}
                           </span>
-                          <span className="text-[11px] text-[#5F6368] uppercase font-semibold">{src.type} source</span>
+                          <span className="text-[11px] text-[#5F6368] uppercase font-semibold">
+                            {src.type} source
+                          </span>
                         </div>
                         <ExternalLink className="w-3.5 h-3.5 text-[#5F6368] group-hover:text-[#477A5B]" />
                       </a>
@@ -414,17 +469,28 @@ export default function SamhitaEntryPage() {
                 {/* Detailed Image Licensing Metadata */}
                 <div className="pt-4 border-t border-[#DADCE0] text-xs">
                   <h3 className="font-bold text-[#202124] mb-2 flex items-center gap-1.5">
-                    <ImageIcon className="w-4 h-4 text-[#477A5B]" /> Image Attribution & License Metadata
+                    <ImageIcon className="w-4 h-4 text-[#477A5B]" /> Image Attribution & License
+                    Metadata
                   </h3>
                   <div className="bg-[#F8F9FA] p-4 rounded-xl border border-[#DADCE0] space-y-1 text-[#5F6368]">
-                    <div><strong>Image Source:</strong> {entry.imageMetadata.source}</div>
-                    <div><strong>Creator / Collection:</strong> {entry.imageMetadata.creator}</div>
-                    <div><strong>License:</strong> <span className="text-[#2D5A3F] font-semibold">{entry.imageMetadata.license}</span></div>
-                    <div><strong>Attribution Note:</strong> {entry.imageMetadata.attribution}</div>
+                    <div>
+                      <strong>Image Source:</strong> {entry.imageMetadata.source}
+                    </div>
+                    <div>
+                      <strong>Creator / Collection:</strong> {entry.imageMetadata.creator}
+                    </div>
+                    <div>
+                      <strong>License:</strong>{' '}
+                      <span className="text-[#2D5A3F] font-semibold">
+                        {entry.imageMetadata.license}
+                      </span>
+                    </div>
+                    <div>
+                      <strong>Attribution Note:</strong> {entry.imageMetadata.attribution}
+                    </div>
                   </div>
                 </div>
               </div>
-
             </div>
 
             {/* Right Sidebar */}
@@ -439,7 +505,8 @@ export default function SamhitaEntryPage() {
                   Evaluate {entry.commonName} IP
                 </h3>
                 <p className="text-xs text-[#5F6368] leading-relaxed mb-6">
-                  Ask our AI regarding prior art risk, Section 3(p) compliance, or formulation patentability for {entry.commonName}.
+                  Ask our AI regarding prior art risk, Section 3(p) compliance, or formulation
+                  patentability for {entry.commonName}.
                 </p>
 
                 <Link
@@ -454,7 +521,9 @@ export default function SamhitaEntryPage() {
               {/* Related Entries */}
               {relatedItems.length > 0 && (
                 <div className="p-6 rounded-2xl bg-[#FFFFFF] border border-[#DADCE0]">
-                  <h3 className="font-bold text-[#202124] text-sm mb-4">Related Knowledge Entries</h3>
+                  <h3 className="font-bold text-[#202124] text-sm mb-4">
+                    Related Knowledge Entries
+                  </h3>
                   <div className="space-y-3">
                     {relatedItems.map((item) => (
                       <Link
@@ -489,7 +558,9 @@ export default function SamhitaEntryPage() {
       <footer className="py-8 bg-[#FFFFFF] border-t border-[#DADCE0]">
         <div className="samhita-container text-center text-xs text-[#5F6368]">
           <p className="max-w-3xl mx-auto">
-            <strong>Educational & IP Knowledge Disclaimer:</strong> Content provided for educational, research, and prior-art reference purposes. Consult qualified legal and healthcare professionals for binding advice.
+            <strong>Educational & IP Knowledge Disclaimer:</strong> Content provided for
+            educational, research, and prior-art reference purposes. Consult qualified legal and
+            healthcare professionals for binding advice.
           </p>
         </div>
       </footer>

@@ -24,7 +24,8 @@ const figures: HeritageFigure[] = [
     associatedWork: 'Charaka Samhita',
     bio: 'Charaka is closely associated with the Charaka Samhita, one of the foundational classical treatises of Ayurveda, with a major focus on internal medicine and Ayurvedic principles.',
     label: 'CLASSICAL MEDICINE',
-    imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUash6u9B2VSJa97Y1j6pCeR8_Ay9_ZZTJffdOusotQQ&s=10',
+    imageUrl:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUash6u9B2VSJa97Y1j6pCeR8_Ay9_ZZTJffdOusotQQ&s=10',
     knowledgePoints: [
       'Classical medical tradition',
       'Internal medicine & therapeutics',
@@ -39,7 +40,8 @@ const figures: HeritageFigure[] = [
     associatedWork: 'Sushruta Samhita',
     bio: 'Sushruta is associated with the Sushruta Samhita, a major classical Ayurvedic treatise with extensive discussion of surgery and surgical knowledge.',
     label: 'SURGICAL TRADITION',
-    imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR88c3T-SU-IckBSuNWpykth5NWLM9Nh0aUflum2jWUhA&s=10',
+    imageUrl:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR88c3T-SU-IckBSuNWpykth5NWLM9Nh0aUflum2jWUhA&s=10',
     knowledgePoints: [
       'Surgical methodology & instruments',
       'Anatomical studies & procedure codification',
@@ -54,7 +56,8 @@ const figures: HeritageFigure[] = [
     associatedWork: 'Ashtanga Sangraha · Ashtanga Hridaya',
     bio: 'Vagbhata is associated with the Ashtanga Sangraha and Ashtanga Hridaya, works that bring together and organize major strands of earlier Ayurvedic knowledge.',
     label: 'INTEGRATION',
-    imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjJXEM3UpZ29vl3BAsyC3vtr0kPsHRbbYlyrv9RmIwqg&s=10',
+    imageUrl:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjJXEM3UpZ29vl3BAsyC3vtr0kPsHRbbYlyrv9RmIwqg&s=10',
     knowledgePoints: [
       'Synthesis of classical knowledge',
       'Ashtanga Hridaya & Sangraha treatises',
@@ -99,7 +102,8 @@ const figures: HeritageFigure[] = [
     associatedWork: 'Bhavaprakasha',
     bio: 'Bhavamishra is associated with Bhavaprakasha, an influential later Ayurvedic work containing extensive material on medicinal substances and their properties.',
     label: 'MATERIA MEDICA',
-    imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_1UsSIOtsDXvzxlxG_oKAXEvL9mkt3-q2aC4H9tmsYg&s=1',
+    imageUrl:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_1UsSIOtsDXvzxlxG_oKAXEvL9mkt3-q2aC4H9tmsYg&s=1',
     knowledgePoints: [
       'Comprehensive Materia Medica',
       'Plant & substance property mapping',
@@ -182,11 +186,7 @@ export function HistoricalHeritageSection() {
               <React.Fragment key={figure.id}>
                 <div className="group grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
                   {/* Image Column */}
-                  <div
-                    className={`lg:col-span-5 ${
-                      isEven ? 'lg:order-1' : 'lg:order-2'
-                    }`}
-                  >
+                  <div className={`lg:col-span-5 ${isEven ? 'lg:order-1' : 'lg:order-2'}`}>
                     <ArchiveIllustration
                       name={figure.name}
                       imageUrl={figure.imageUrl}
@@ -213,9 +213,7 @@ export function HistoricalHeritageSection() {
                     </h3>
 
                     {/* Short Role */}
-                    <p className="text-sm font-semibold text-[#5F6368] mb-2">
-                      {figure.role}
-                    </p>
+                    <p className="text-sm font-semibold text-[#5F6368] mb-2">{figure.role}</p>
 
                     {/* Associated Work */}
                     <div className="flex items-center gap-2 text-base font-bold text-[#202124] mb-4">

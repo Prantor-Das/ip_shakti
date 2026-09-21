@@ -41,7 +41,10 @@ export function FAQSection({
   const maxRows = Math.max(faqsLeft.length, faqsRight.length);
 
   return (
-    <section id="faq" className={cn('w-full max-w-5xl mx-auto py-16 px-4 text-white scroll-mt-20', className)}>
+    <section
+      id="faq"
+      className={cn('w-full max-w-5xl mx-auto py-16 px-4 text-white scroll-mt-20', className)}
+    >
       {/* Header */}
       <div className="text-center mb-10">
         <p className="text-sm text-primary font-medium tracking-wide mb-2">{subtitle}</p>

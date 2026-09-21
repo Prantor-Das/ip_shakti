@@ -39,7 +39,15 @@ export interface SamhitaEntry {
   scientificName: string; // accepted botanical name
   synonyms: string[];
   regionalNames: Record<string, string>; // e.g. { hindi: 'अश्वगन्धा', tamil: 'அமுக்கரா', sanskrit: 'अश्वगन्धा' }
-  category: 'HERBS' | 'MEDICINAL PLANTS' | 'FORMULATIONS' | 'CLASSICAL KNOWLEDGE' | 'TRADITIONAL KNOWLEDGE' | 'AYURVEDA HISTORY' | 'RESEARCH' | 'IP & PATENTS';
+  category:
+    | 'HERBS'
+    | 'MEDICINAL PLANTS'
+    | 'FORMULATIONS'
+    | 'CLASSICAL KNOWLEDGE'
+    | 'TRADITIONAL KNOWLEDGE'
+    | 'AYURVEDA HISTORY'
+    | 'RESEARCH'
+    | 'IP & PATENTS';
   family: string;
   partsUsed: string[];
   botanicalDescription: string;
@@ -72,56 +80,64 @@ export const SAMHITA_CATEGORIES: SamhitaCategory[] = [
   {
     id: 'HERBS',
     name: 'Herbs',
-    description: 'Structured profile of traditional therapeutic herbs, active phytochemicals, and botanical characteristics.',
+    description:
+      'Structured profile of traditional therapeutic herbs, active phytochemicals, and botanical characteristics.',
     iconName: 'Leaf',
     count: 24,
   },
   {
     id: 'MEDICINAL PLANTS',
     name: 'Medicinal Plants',
-    description: 'Indigenous trees, shrubs, and climbers cataloged in e-Charak, NMPB, and POWO Kew taxonomies.',
+    description:
+      'Indigenous trees, shrubs, and climbers cataloged in e-Charak, NMPB, and POWO Kew taxonomies.',
     iconName: 'TreePine',
     count: 16,
   },
   {
     id: 'FORMULATIONS',
     name: 'Formulations',
-    description: 'Polyherbal compounds, churnas, kwaths, ghritas, and asavas recorded in Ayurvedic Samhitas.',
+    description:
+      'Polyherbal compounds, churnas, kwaths, ghritas, and asavas recorded in Ayurvedic Samhitas.',
     iconName: 'Scroll',
     count: 86,
   },
   {
     id: 'CLASSICAL KNOWLEDGE',
     name: 'Classical Knowledge',
-    description: 'Direct references and verse citations from Charaka Samhita, Sushruta Samhita, and Nighantus.',
+    description:
+      'Direct references and verse citations from Charaka Samhita, Sushruta Samhita, and Nighantus.',
     iconName: 'BookOpen',
     count: 150,
   },
   {
     id: 'TRADITIONAL KNOWLEDGE',
     name: 'Traditional Knowledge (TKDL)',
-    description: 'Public domain traditional practices indexed to defend bio-resources against bio-piracy.',
+    description:
+      'Public domain traditional practices indexed to defend bio-resources against bio-piracy.',
     iconName: 'ShieldAlert',
     count: 310,
   },
   {
     id: 'AYURVEDA HISTORY',
     name: 'Ayurveda History',
-    description: 'Historical evolution of Indian traditional medicine systems and legal landmark defense cases.',
+    description:
+      'Historical evolution of Indian traditional medicine systems and legal landmark defense cases.',
     iconName: 'Landmark',
     count: 42,
   },
   {
     id: 'RESEARCH',
     name: 'Research & Phytochemistry',
-    description: 'Peer-reviewed pharmacological studies, bioactive compound isolations, and clinical trials.',
+    description:
+      'Peer-reviewed pharmacological studies, bioactive compound isolations, and clinical trials.',
     iconName: 'FlaskConical',
     count: 220,
   },
   {
     id: 'IP & PATENTS',
     name: 'IP & Patents',
-    description: 'Prior-art references, WIPO/USPTO/EPO patent status mapping, and Section 3(p) evaluation guidelines.',
+    description:
+      'Prior-art references, WIPO/USPTO/EPO patent status mapping, and Section 3(p) evaluation guidelines.',
     iconName: 'FileCheck',
     count: 95,
   },
@@ -135,26 +151,44 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
     commonName: 'Ashwagandha',
     scientificName: 'Withania somnifera',
     synonyms: ['Physalis somnifera', 'Withania ashwagandha', 'Indian Ginseng'],
-    regionalNames: { sanskrit: 'अश्वगन्धा', hindi: 'अश्वगंधा', tamil: 'அமுக்கரா', telugu: 'పెన్నేరు' },
+    regionalNames: {
+      sanskrit: 'अश्वगन्धा',
+      hindi: 'अश्वगंधा',
+      tamil: 'அமுக்கரா',
+      telugu: 'పెన్నేరు',
+    },
     category: 'HERBS',
     family: 'Solanaceae',
     partsUsed: ['Root', 'Leaves'],
-    botanicalDescription: 'An erect, evergreen shrub growing up to 1.5 meters tall with greenish-yellow flowers and orange-red berries, native to dry regions of India.',
-    overview: 'Ashwagandha (Withania somnifera) is one of the most prominent Rasayana (rejuvenative) herbs in traditional Indian medicine, widely researched for adaptogenic and neuro-protective properties.',
-    traditionalContext: 'Traditionally referenced in Ayurveda as Balya (strength promoter), Brmhana (nourishing), and Rasayana. Recorded across major Sanskrit classical texts for over 3,000 years for vitality and nervous system support.',
+    botanicalDescription:
+      'An erect, evergreen shrub growing up to 1.5 meters tall with greenish-yellow flowers and orange-red berries, native to dry regions of India.',
+    overview:
+      'Ashwagandha (Withania somnifera) is one of the most prominent Rasayana (rejuvenative) herbs in traditional Indian medicine, widely researched for adaptogenic and neuro-protective properties.',
+    traditionalContext:
+      'Traditionally referenced in Ayurveda as Balya (strength promoter), Brmhana (nourishing), and Rasayana. Recorded across major Sanskrit classical texts for over 3,000 years for vitality and nervous system support.',
     ayurvedicContext: {
       rasa: 'Tikta (Bitter), Kashaya (Astringent), Madhura (Sweet)',
       virya: 'Ushna (Warm)',
       vipaka: 'Madhura (Sweet)',
       doshaEffect: 'Pacifies Vata and Kapha',
-      uses: ['Traditional vitality support', 'Adaptogenic balance', 'Cognitive resilience', 'Nervous system stability'],
+      uses: [
+        'Traditional vitality support',
+        'Adaptogenic balance',
+        'Cognitive resilience',
+        'Nervous system stability',
+      ],
     },
     classicalReferences: [
       'Charaka Samhita - Sutra Sthana Chapter 4 (Brmhaniya Mahakashaya)',
       'Sushruta Samhita - Sutra Sthana Chapter 38',
       'Bhavaprakasha Nighantu - Guduchyadi Varga',
     ],
-    relatedFormulations: ['Ashwagandharishta', 'Ashwagandha Churna', 'Chyawanprash', 'Kalyanaka Ghrita'],
+    relatedFormulations: [
+      'Ashwagandharishta',
+      'Ashwagandha Churna',
+      'Chyawanprash',
+      'Kalyanaka Ghrita',
+    ],
     researchReferences: [
       {
         title: 'An overview on Ashwagandha: A Rasayana of Ayurveda',
@@ -162,20 +196,24 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
         year: 2012,
         journal: 'Indian Journal of Psychological Medicine',
         url: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3252722/',
-        summary: 'Clinical trial evaluating stress-relieving properties and cortisol modulation in adults.',
+        summary:
+          'Clinical trial evaluating stress-relieving properties and cortisol modulation in adults.',
       },
     ],
     ipInformation: {
-      patentStatus: 'Multiple process patents filed globally on specific extracted withanolide fractions. Crude usage remains unpatentable prior art.',
+      patentStatus:
+        'Multiple process patents filed globally on specific extracted withanolide fractions. Crude usage remains unpatentable prior art.',
       priorArtHighlights: [
         'TKDL Entry Ref: AK/1249 - Ashwagandha Yoga for Jararoga',
         'US Patent 6,153,198 (Withanolide extract composition)',
       ],
       tkdlStatus: 'Cataloged in TKDL under classical formulation records.',
-      patentabilityNotes: 'Crude powder and direct classical uses are protected prior art under Section 3(p) of the Indian Patents Act. Synergistic extracts or modified fractions require demonstrated inventive step.',
+      patentabilityNotes:
+        'Crude powder and direct classical uses are protected prior art under Section 3(p) of the Indian Patents Act. Synergistic extracts or modified fractions require demonstrated inventive step.',
     },
     jurisdictions: ['India', 'USPTO', 'EPO', 'WIPO'],
-    image: 'https://t3.ftcdn.net/jpg/02/22/99/40/240_F_222994036_g3oHelAYmJPFR6s8oiSWH0xyadb89MIg.jpg',
+    image:
+      'https://t3.ftcdn.net/jpg/02/22/99/40/240_F_222994036_g3oHelAYmJPFR6s8oiSWH0xyadb89MIg.jpg',
     imageMetadata: {
       url: 'https://t3.ftcdn.net/jpg/02/22/99/40/240_F_222994036_g3oHelAYmJPFR6s8oiSWH0xyadb89MIg.jpg',
       source: 'Stock Photo / Educational License',
@@ -184,9 +222,21 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       attribution: 'Image courtesy of Educational Botanical Repository',
     },
     informationSources: [
-      { name: 'e-Charak / NMPB, Ministry of Ayush', type: 'government', url: 'https://echarak.ayush.gov.in/' },
-      { name: 'Plants of the World Online (POWO), Kew', type: 'botanical', url: 'https://powo.science.kew.org/' },
-      { name: 'Traditional Knowledge Digital Library (TKDL)', type: 'official', url: 'http://www.tkdl.res.in/' },
+      {
+        name: 'e-Charak / NMPB, Ministry of Ayush',
+        type: 'government',
+        url: 'https://echarak.ayush.gov.in/',
+      },
+      {
+        name: 'Plants of the World Online (POWO), Kew',
+        type: 'botanical',
+        url: 'https://powo.science.kew.org/',
+      },
+      {
+        name: 'Traditional Knowledge Digital Library (TKDL)',
+        type: 'official',
+        url: 'http://www.tkdl.res.in/',
+      },
     ],
     relatedKnowledgeSlugs: ['tulsi', 'turmeric', 'brahmi', 'shatavari'],
   },
@@ -202,9 +252,12 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
     category: 'HERBS',
     family: 'Lamiaceae',
     partsUsed: ['Leaves', 'Seeds', 'Whole Plant'],
-    botanicalDescription: 'An aromatic branched subshrub 30–60 cm tall with purple to green aromatic leaves and small lavender flowers in terminal spikes.',
-    overview: 'Tulsi (Ocimum tenuiflorum) is revered in India for respiratory wellness and adaptogenic qualities, combining cultural heritage with extensive modern pharmacological study.',
-    traditionalContext: 'Traditionally referenced in Ayurvedic text traditions as Shvasahara (respiratory comfort) and Kapha-Vata shamaka. Prescribed as fresh leaf juice or decoction.',
+    botanicalDescription:
+      'An aromatic branched subshrub 30–60 cm tall with purple to green aromatic leaves and small lavender flowers in terminal spikes.',
+    overview:
+      'Tulsi (Ocimum tenuiflorum) is revered in India for respiratory wellness and adaptogenic qualities, combining cultural heritage with extensive modern pharmacological study.',
+    traditionalContext:
+      'Traditionally referenced in Ayurvedic text traditions as Shvasahara (respiratory comfort) and Kapha-Vata shamaka. Prescribed as fresh leaf juice or decoction.',
     ayurvedicContext: {
       rasa: 'Katu (Pungent), Tikta (Bitter)',
       virya: 'Ushna (Warm)',
@@ -224,17 +277,20 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
         year: 2014,
         journal: 'Journal of Ayurveda and Integrative Medicine',
         url: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4296439/',
-        summary: 'Comprehensive review of metabolic, adaptogenic, and antimicrobial pharmacological effects.',
+        summary:
+          'Comprehensive review of metabolic, adaptogenic, and antimicrobial pharmacological effects.',
       },
     ],
     ipInformation: {
-      patentStatus: 'Process patents exist for enriched eugenol and ursolic acid extraction techniques. Traditional usage as tea or respiratory syrup is prior art.',
+      patentStatus:
+        'Process patents exist for enriched eugenol and ursolic acid extraction techniques. Traditional usage as tea or respiratory syrup is prior art.',
       priorArtHighlights: ['TKDL Ref: AB/889 - Tulsi Swarasa for Kasa and Shvasa'],
       tkdlStatus: 'Cataloged extensively in TKDL across multiple traditional usage protocols.',
       patentabilityNotes: 'Crude leaves and classic teas fall under Section 3(p) exemptions.',
     },
     jurisdictions: ['India', 'EPO', 'USPTO'],
-    image: 'https://t4.ftcdn.net/jpg/03/31/01/69/240_F_331016915_eB9WLPO41xxHDIIPH6pyW2vWeFMpx1RR.jpg',
+    image:
+      'https://t4.ftcdn.net/jpg/03/31/01/69/240_F_331016915_eB9WLPO41xxHDIIPH6pyW2vWeFMpx1RR.jpg',
     imageMetadata: {
       url: 'https://t4.ftcdn.net/jpg/03/31/01/69/240_F_331016915_eB9WLPO41xxHDIIPH6pyW2vWeFMpx1RR.jpg',
       source: 'Educational Media Repository',
@@ -260,9 +316,12 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
     category: 'MEDICINAL PLANTS',
     family: 'Meliaceae',
     partsUsed: ['Leaves', 'Bark', 'Seeds', 'Oil'],
-    botanicalDescription: 'A fast-growing evergreen tree reaching up to 20 meters tall with pinnate leaves and small white fragrant flowers.',
-    overview: 'Neem (Azadirachta indica) is a cornerstone of Indian medicinal botany and global IP history, famous for the successful revocation of US/EPO patents on traditional antifungal uses.',
-    traditionalContext: 'Revered in Sanskrit classical texts as Kandughna (soothing itching) and Kushtaghna (skin health support).',
+    botanicalDescription:
+      'A fast-growing evergreen tree reaching up to 20 meters tall with pinnate leaves and small white fragrant flowers.',
+    overview:
+      'Neem (Azadirachta indica) is a cornerstone of Indian medicinal botany and global IP history, famous for the successful revocation of US/EPO patents on traditional antifungal uses.',
+    traditionalContext:
+      'Revered in Sanskrit classical texts as Kandughna (soothing itching) and Kushtaghna (skin health support).',
     ayurvedicContext: {
       rasa: 'Tikta (Bitter), Kashaya (Astringent)',
       virya: 'Sheeta (Cooling)',
@@ -286,13 +345,19 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       },
     ],
     ipInformation: {
-      patentStatus: 'Landmark Revocation: European Patent EP 0436257 (Antifungal neem oil) revoked following CSIR legal challenge.',
-      priorArtHighlights: ['EPO Patent EP 0436257 - REVOKED on prior art grounds', 'TKDL Ref: NM/1090'],
+      patentStatus:
+        'Landmark Revocation: European Patent EP 0436257 (Antifungal neem oil) revoked following CSIR legal challenge.',
+      priorArtHighlights: [
+        'EPO Patent EP 0436257 - REVOKED on prior art grounds',
+        'TKDL Ref: NM/1090',
+      ],
       tkdlStatus: 'Over 350 classical entries cataloged in TKDL.',
-      patentabilityNotes: 'General antifungal and biopesticidal crude uses are protected prior art under Section 3(p).',
+      patentabilityNotes:
+        'General antifungal and biopesticidal crude uses are protected prior art under Section 3(p).',
     },
     jurisdictions: ['India', 'EPO', 'WIPO'],
-    image: 'https://images.unsplash.com/photo-1687945906634-25c66199d941?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bmVlbSUyMGxlYXZlc3xlbnwwfHwwfHx8MA%3D%3D',
+    image:
+      'https://images.unsplash.com/photo-1687945906634-25c66199d941?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bmVlbSUyMGxlYXZlc3xlbnwwfHwwfHx8MA%3D%3D',
     imageMetadata: {
       url: 'https://images.unsplash.com/photo-1687945906634-25c66199d941',
       source: 'Unsplash Botanical Collection',
@@ -301,7 +366,11 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       attribution: 'Photo via Unsplash',
     },
     informationSources: [
-      { name: 'CSIR / WIPO Patent Revocation Case Study', type: 'official', url: 'https://www.wipo.int/' },
+      {
+        name: 'CSIR / WIPO Patent Revocation Case Study',
+        type: 'official',
+        url: 'https://www.wipo.int/',
+      },
       { name: 'POWO Kew', type: 'botanical', url: 'https://powo.science.kew.org/' },
     ],
     relatedKnowledgeSlugs: ['turmeric', 'amla', 'ashwagandha'],
@@ -318,15 +387,23 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
     category: 'HERBS',
     family: 'Zingiberaceae',
     partsUsed: ['Rhizome'],
-    botanicalDescription: 'A perennial herbaceous plant with large oblong leaves and thick orange-yellow underground rhizomes.',
-    overview: 'Turmeric (Curcuma longa) is an internationally celebrated herb. In 1997, India’s CSIR successfully revoked US Patent 5,401,504 granted for turmeric wound-healing claims.',
-    traditionalContext: 'Recorded extensively as Haridra across all major Ayurvedic classics for skin health, metabolic support, and wound care.',
+    botanicalDescription:
+      'A perennial herbaceous plant with large oblong leaves and thick orange-yellow underground rhizomes.',
+    overview:
+      'Turmeric (Curcuma longa) is an internationally celebrated herb. In 1997, India’s CSIR successfully revoked US Patent 5,401,504 granted for turmeric wound-healing claims.',
+    traditionalContext:
+      'Recorded extensively as Haridra across all major Ayurvedic classics for skin health, metabolic support, and wound care.',
     ayurvedicContext: {
       rasa: 'Tikta (Bitter), Katu (Pungent)',
       virya: 'Ushna (Warm)',
       vipaka: 'Katu (Pungent)',
       doshaEffect: 'Tridoshara (Balances Vata, Pitta, and Kapha)',
-      uses: ['Wound healing support', 'Metabolic balance', 'Skin health', 'Anti-inflammatory balance'],
+      uses: [
+        'Wound healing support',
+        'Metabolic balance',
+        'Skin health',
+        'Anti-inflammatory balance',
+      ],
     },
     classicalReferences: [
       'Charaka Samhita - Sutra Sthana Chapter 4 (Kushtaghna Varga)',
@@ -344,13 +421,16 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       },
     ],
     ipInformation: {
-      patentStatus: 'Historic Revocation: US Patent 5,401,504 revoked. Bioavailability enhancer combinations (e.g. piperine) are heavily patented.',
+      patentStatus:
+        'Historic Revocation: US Patent 5,401,504 revoked. Bioavailability enhancer combinations (e.g. piperine) are heavily patented.',
       priorArtHighlights: ['US Patent 5,401,504 - REVOKED', 'TKDL Ref: RS/4321'],
       tkdlStatus: 'Extensively cataloged in TKDL (500+ formulations).',
-      patentabilityNotes: 'General wound healing and anti-inflammatory claims on crude powder are barred under Section 3(p).',
+      patentabilityNotes:
+        'General wound healing and anti-inflammatory claims on crude powder are barred under Section 3(p).',
     },
     jurisdictions: ['India', 'USPTO', 'WIPO'],
-    image: 'https://images.unsplash.com/photo-1606951444141-e5533feb55be?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dHVybWVyaWN8ZW58MHx8MHx8fDA%3D',
+    image:
+      'https://images.unsplash.com/photo-1606951444141-e5533feb55be?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dHVybWVyaWN8ZW58MHx8MHx8fDA%3D',
     imageMetadata: {
       url: 'https://images.unsplash.com/photo-1606951444141-e5533feb55be',
       source: 'Unsplash Open Imagery',
@@ -376,15 +456,23 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
     category: 'MEDICINAL PLANTS',
     family: 'Phyllanthaceae',
     partsUsed: ['Fruit', 'Leaves', 'Seeds'],
-    botanicalDescription: 'A small to medium-sized deciduous tree with feathery leaves and spherical light greenish-yellow fleshy fruits.',
-    overview: 'Amla (Phyllanthus emblica) is considered a divine herb (Vayasthapana) in Ayurveda, possessing five of six tastes and rich polyphenol density.',
-    traditionalContext: 'Primary ingredient of Chyawanprash and Triphala. Prescribed in Samhitas as Rasayana for cellular rejuvenation.',
+    botanicalDescription:
+      'A small to medium-sized deciduous tree with feathery leaves and spherical light greenish-yellow fleshy fruits.',
+    overview:
+      'Amla (Phyllanthus emblica) is considered a divine herb (Vayasthapana) in Ayurveda, possessing five of six tastes and rich polyphenol density.',
+    traditionalContext:
+      'Primary ingredient of Chyawanprash and Triphala. Prescribed in Samhitas as Rasayana for cellular rejuvenation.',
     ayurvedicContext: {
       rasa: 'Amla (Sour), Tikta (Bitter), Kashaya (Astringent), Madhura (Sweet), Katu (Pungent)',
       virya: 'Sheeta (Cooling)',
       vipaka: 'Madhura (Sweet)',
       doshaEffect: 'Tridoshara (Balances all three doshas)',
-      uses: ['Immunity support', 'Digestive health', 'Antioxidant protection', 'Hair and skin vitality'],
+      uses: [
+        'Immunity support',
+        'Digestive health',
+        'Antioxidant protection',
+        'Hair and skin vitality',
+      ],
     },
     classicalReferences: [
       'Charaka Samhita - Chikitsa Sthana Chapter 1/1',
@@ -405,10 +493,12 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       patentStatus: 'Process patents exist for standardized emblicanin extract stabilization.',
       priorArtHighlights: ['TKDL Ref: AM/302 - Dhatri Rasayana'],
       tkdlStatus: 'Cataloged with 400+ entries in TKDL.',
-      patentabilityNotes: 'Crude fruit tonics protected under Section 3(p). Synergistic fractionations patentable.',
+      patentabilityNotes:
+        'Crude fruit tonics protected under Section 3(p). Synergistic fractionations patentable.',
     },
     jurisdictions: ['India', 'USPTO'],
-    image: 'https://images.unsplash.com/photo-1676043966983-f5bd22435e64?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YW1sYXxlbnwwfHwwfHx8MA%3D%3D',
+    image:
+      'https://images.unsplash.com/photo-1676043966983-f5bd22435e64?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YW1sYXxlbnwwfHwwfHx8MA%3D%3D',
     imageMetadata: {
       url: 'https://images.unsplash.com/photo-1676043966983-f5bd22435e64',
       source: 'Unsplash Botanical Archives',
@@ -430,13 +520,21 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
     commonName: 'Brahmi',
     scientificName: 'Bacopa monnieri',
     synonyms: ['Herpestis monniera', 'Lysimachia monnieri'],
-    regionalNames: { sanskrit: 'ब्राह्मी', hindi: 'ब्राह्मी', tamil: 'நீர்ப் பிரமி', telugu: 'సాంబ్రాణి ఆకు' },
+    regionalNames: {
+      sanskrit: 'ब्राह्मी',
+      hindi: 'ब्राह्मी',
+      tamil: 'நீர்ப் பிரமி',
+      telugu: 'సాంబ్రాణి ఆకు',
+    },
     category: 'HERBS',
     family: 'Plantaginaceae',
     partsUsed: ['Whole Plant', 'Leaves'],
-    botanicalDescription: 'A creeping perennial succulent herb growing in wet marshy places with small fleshy leaves and light purple/white flowers.',
-    overview: 'Brahmi (Bacopa monnieri) is celebrated as a Medhya Rasayana (cognitive tonic) in classical text traditions, validated by modern clinical trials for bacoside neuro-pharmacology.',
-    traditionalContext: 'Charaka classifies Brahmi under Medhya Rasayana to support intellect (Dhi), memory (Dhriti), and recall (Smriti).',
+    botanicalDescription:
+      'A creeping perennial succulent herb growing in wet marshy places with small fleshy leaves and light purple/white flowers.',
+    overview:
+      'Brahmi (Bacopa monnieri) is celebrated as a Medhya Rasayana (cognitive tonic) in classical text traditions, validated by modern clinical trials for bacoside neuro-pharmacology.',
+    traditionalContext:
+      'Charaka classifies Brahmi under Medhya Rasayana to support intellect (Dhi), memory (Dhriti), and recall (Smriti).',
     ayurvedicContext: {
       rasa: 'Tikta (Bitter), Kashaya (Astringent)',
       virya: 'Sheeta (Cooling)',
@@ -466,7 +564,8 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       patentabilityNotes: 'Classical Brahmi ghrita is protected prior art under Section 3(p).',
     },
     jurisdictions: ['India', 'USPTO', 'EPO'],
-    image: 'https://t3.ftcdn.net/jpg/04/20/94/44/240_F_420944448_yfPScimrV7KtBPTlKUDbQwPcfC8DuM4i.jpg',
+    image:
+      'https://t3.ftcdn.net/jpg/04/20/94/44/240_F_420944448_yfPScimrV7KtBPTlKUDbQwPcfC8DuM4i.jpg',
     imageMetadata: {
       url: 'https://t3.ftcdn.net/jpg/04/20/94/44/240_F_420944448_yfPScimrV7KtBPTlKUDbQwPcfC8DuM4i.jpg',
       source: 'Stock Media Collection',
@@ -488,13 +587,21 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
     commonName: 'Shatavari',
     scientificName: 'Asparagus racemosus',
     synonyms: ['Protasparagus racemosus'],
-    regionalNames: { sanskrit: 'शतावरी', hindi: 'शतावरी', tamil: 'தண்ணீர்விட்டான்', telugu: 'పిల్లపీచర' },
+    regionalNames: {
+      sanskrit: 'शतावरी',
+      hindi: 'शतावरी',
+      tamil: 'தண்ணீர்விட்டான்',
+      telugu: 'పిల్లపీచర',
+    },
     category: 'HERBS',
     family: 'Asparagaceae',
     partsUsed: ['Tuberous Roots'],
-    botanicalDescription: 'A climbing woody shrub with needle-like pine-green branchlets and tuberous succulent roots.',
-    overview: 'Shatavari (Asparagus racemosus) is a major rejuvenative herb for women\'s health and systemic nourishment in Ayurveda.',
-    traditionalContext: 'Classified in Charaka Samhita as Balya (strength promoter) and Stanyajanana (nourishing).',
+    botanicalDescription:
+      'A climbing woody shrub with needle-like pine-green branchlets and tuberous succulent roots.',
+    overview:
+      "Shatavari (Asparagus racemosus) is a major rejuvenative herb for women's health and systemic nourishment in Ayurveda.",
+    traditionalContext:
+      'Classified in Charaka Samhita as Balya (strength promoter) and Stanyajanana (nourishing).',
     ayurvedicContext: {
       rasa: 'Madhura (Sweet), Tikta (Bitter)',
       virya: 'Sheeta (Cooling)',
@@ -502,7 +609,10 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       doshaEffect: 'Pacifies Vata and Pitta',
       uses: ['Nourishment support', 'Systemic vitality', 'Pitta cooling'],
     },
-    classicalReferences: ['Charaka Samhita - Sutra Sthana Chapter 4', 'Bhavaprakasha Nighantu - Guduchyadi Varga'],
+    classicalReferences: [
+      'Charaka Samhita - Sutra Sthana Chapter 4',
+      'Bhavaprakasha Nighantu - Guduchyadi Varga',
+    ],
     relatedFormulations: ['Shatavari Ghrita', 'Shatavari Kalpa', 'Narayan Taila'],
     researchReferences: [
       {
@@ -521,7 +631,8 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       patentabilityNotes: 'Crude root powder is protected prior art under Section 3(p).',
     },
     jurisdictions: ['India', 'USPTO'],
-    image: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?q=80&w=1000&auto=format&fit=crop',
+    image:
+      'https://images.unsplash.com/photo-1540420773420-3366772f4999?q=80&w=1000&auto=format&fit=crop',
     imageMetadata: {
       url: 'https://images.unsplash.com/photo-1540420773420-3366772f4999',
       source: 'Unsplash Botanical Collection',
@@ -547,9 +658,12 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
     category: 'HERBS',
     family: 'Menispermaceae',
     partsUsed: ['Stem'],
-    botanicalDescription: 'A large deciduous climbing shrub with heart-shaped leaves and succulent grooved stems containing light ropy aerial roots.',
-    overview: 'Guduchi (Tinospora cordifolia), also known as Amrita (immortal), is one of the most versatile immune-modulatory herbs in Ayurveda.',
-    traditionalContext: 'Described as Rasayana and Vayasthapana across all classical texts for immune harmony and metabolic detoxification.',
+    botanicalDescription:
+      'A large deciduous climbing shrub with heart-shaped leaves and succulent grooved stems containing light ropy aerial roots.',
+    overview:
+      'Guduchi (Tinospora cordifolia), also known as Amrita (immortal), is one of the most versatile immune-modulatory herbs in Ayurveda.',
+    traditionalContext:
+      'Described as Rasayana and Vayasthapana across all classical texts for immune harmony and metabolic detoxification.',
     ayurvedicContext: {
       rasa: 'Tikta (Bitter), Kashaya (Astringent)',
       virya: 'Ushna (Warm)',
@@ -557,7 +671,10 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       doshaEffect: 'Tridoshara (Balances all three doshas)',
       uses: ['Immune harmony', 'Detoxification support', 'Metabolic resilience'],
     },
-    classicalReferences: ['Charaka Samhita - Chikitsa Sthana Chapter 1/4', 'Bhavaprakasha Nighantu - Guduchyadi Varga'],
+    classicalReferences: [
+      'Charaka Samhita - Chikitsa Sthana Chapter 1/4',
+      'Bhavaprakasha Nighantu - Guduchyadi Varga',
+    ],
     relatedFormulations: ['Guduchi Satva', 'Sudarshan Churna', 'Amritarishta'],
     researchReferences: [
       {
@@ -576,7 +693,8 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       patentabilityNotes: 'Guduchi Satva extraction method is documented classical prior art.',
     },
     jurisdictions: ['India', 'WIPO'],
-    image: 'https://t3.ftcdn.net/jpg/20/00/54/00/240_F_2000540050_eGDbnCcijyHxcgO0ztUpg4nlDNL3PlDM.jpg',
+    image:
+      'https://t3.ftcdn.net/jpg/20/00/54/00/240_F_2000540050_eGDbnCcijyHxcgO0ztUpg4nlDNL3PlDM.jpg',
     imageMetadata: {
       url: 'https://t3.ftcdn.net/jpg/20/00/54/00/240_F_2000540050_eGDbnCcijyHxcgO0ztUpg4nlDNL3PlDM.jpg',
       source: 'Stock Botanical Photo',
@@ -602,9 +720,12 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
     category: 'MEDICINAL PLANTS',
     family: 'Combretaceae',
     partsUsed: ['Stem Bark'],
-    botanicalDescription: 'A large evergreen tree up to 25 meters tall with buttressed trunk, smooth pinkish-grey bark, and 5-winged fruits.',
-    overview: 'Arjuna (Terminalia arjuna) is the premier Hridaya (cardiovascular tonic) bark herb in Ayurvedic medicine.',
-    traditionalContext: 'Recorded by Vagbhata and Sushruta as Hridaya (heart-supporting) and Vrana-ropana (tissue healing).',
+    botanicalDescription:
+      'A large evergreen tree up to 25 meters tall with buttressed trunk, smooth pinkish-grey bark, and 5-winged fruits.',
+    overview:
+      'Arjuna (Terminalia arjuna) is the premier Hridaya (cardiovascular tonic) bark herb in Ayurvedic medicine.',
+    traditionalContext:
+      'Recorded by Vagbhata and Sushruta as Hridaya (heart-supporting) and Vrana-ropana (tissue healing).',
     ayurvedicContext: {
       rasa: 'Kashaya (Astringent)',
       virya: 'Sheeta (Cooling)',
@@ -612,7 +733,10 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       doshaEffect: 'Pacifies Pitta and Kapha',
       uses: ['Cardiovascular tonic support', 'Endothelial health', 'Tissue resilience'],
     },
-    classicalReferences: ['Sushruta Samhita - Sutra Sthana Chapter 38', 'Ashtanga Hridaya - Chikitsa Sthana Chapter 6'],
+    classicalReferences: [
+      'Sushruta Samhita - Sutra Sthana Chapter 38',
+      'Ashtanga Hridaya - Chikitsa Sthana Chapter 6',
+    ],
     relatedFormulations: ['Arjunarishta', 'Arjuna Ksheerapaka', 'Parthadyarishta'],
     researchReferences: [
       {
@@ -621,7 +745,8 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
         year: 2012,
         journal: 'Journal of Ethnopharmacology',
         url: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3612505/',
-        summary: 'Clinical studies on arjunolic acid and coenzyme Q10 synergistic cardioprotective mechanisms.',
+        summary:
+          'Clinical studies on arjunolic acid and coenzyme Q10 synergistic cardioprotective mechanisms.',
       },
     ],
     ipInformation: {
@@ -631,7 +756,8 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       patentabilityNotes: 'Crude bark decoctions fall under Section 3(p) prior art.',
     },
     jurisdictions: ['India', 'USPTO'],
-    image: 'https://t3.ftcdn.net/jpg/00/66/67/40/240_F_66674006_aEK346cOorVw9hv9hC4eGO8Tu2BYN66n.jpg',
+    image:
+      'https://t3.ftcdn.net/jpg/00/66/67/40/240_F_66674006_aEK346cOorVw9hv9hC4eGO8Tu2BYN66n.jpg',
     imageMetadata: {
       url: 'https://t3.ftcdn.net/jpg/00/66/67/40/240_F_66674006_aEK346cOorVw9hv9hC4eGO8Tu2BYN66n.jpg',
       source: 'Stock Botanical Photo',
@@ -657,9 +783,12 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
     category: 'MEDICINAL PLANTS',
     family: 'Combretaceae',
     partsUsed: ['Fruit Pericarp'],
-    botanicalDescription: 'A deciduous tree up to 30 meters tall with yellowish-green ribbed oval drupe fruits.',
-    overview: 'Haritaki (Terminalia chebula) is hailed as the "King of Medicines" in Ayurveda and is the first component of Triphala.',
-    traditionalContext: 'Revered in Charaka Samhita as Pathya (beneficial for all channels) and Anulomana (gentle digestive movement).',
+    botanicalDescription:
+      'A deciduous tree up to 30 meters tall with yellowish-green ribbed oval drupe fruits.',
+    overview:
+      'Haritaki (Terminalia chebula) is hailed as the "King of Medicines" in Ayurveda and is the first component of Triphala.',
+    traditionalContext:
+      'Revered in Charaka Samhita as Pathya (beneficial for all channels) and Anulomana (gentle digestive movement).',
     ayurvedicContext: {
       rasa: 'Kashaya (Astringent), Tikta, Katu, Madhura, Amla (Lacks only Salty)',
       virya: 'Ushna (Warm)',
@@ -667,7 +796,10 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       doshaEffect: 'Tridoshara (Balances all doshas, especially Vata)',
       uses: ['Digestive regularizing', 'Cellular detoxification', 'Rejuvenation'],
     },
-    classicalReferences: ['Charaka Samhita - Chikitsa Sthana Chapter 1/1', 'Bhavaprakasha Nighantu - Haritakyadi Varga'],
+    classicalReferences: [
+      'Charaka Samhita - Chikitsa Sthana Chapter 1/1',
+      'Bhavaprakasha Nighantu - Haritakyadi Varga',
+    ],
     relatedFormulations: ['Triphala Churna', 'Abhayarishta', 'Agastya Haritaki'],
     researchReferences: [
       {
@@ -686,7 +818,8 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       patentabilityNotes: 'Triphala component crude formulations are protected prior art.',
     },
     jurisdictions: ['India', 'WIPO'],
-    image: 'https://t4.ftcdn.net/jpg/02/59/75/71/240_F_259757197_PkDQrpuTJvHKiyhKEABKWfHnBK0WLcXa.jpg',
+    image:
+      'https://t4.ftcdn.net/jpg/02/59/75/71/240_F_259757197_PkDQrpuTJvHKiyhKEABKWfHnBK0WLcXa.jpg',
     imageMetadata: {
       url: 'https://t4.ftcdn.net/jpg/02/59/75/71/240_F_259757197_PkDQrpuTJvHKiyhKEABKWfHnBK0WLcXa.jpg',
       source: 'Stock Botanical Photo',
@@ -712,9 +845,12 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
     category: 'MEDICINAL PLANTS',
     family: 'Combretaceae',
     partsUsed: ['Fruit'],
-    botanicalDescription: 'A large deciduous tree with tall straight trunk and globular light-velvety drupe fruits.',
-    overview: 'Bibhitaki (Terminalia bellirica) is the third component of the classical Triphala formulation, renowned for Kapha balancing.',
-    traditionalContext: 'Classified in classical Nighantus for Kapha balance and throat/respiratory support.',
+    botanicalDescription:
+      'A large deciduous tree with tall straight trunk and globular light-velvety drupe fruits.',
+    overview:
+      'Bibhitaki (Terminalia bellirica) is the third component of the classical Triphala formulation, renowned for Kapha balancing.',
+    traditionalContext:
+      'Classified in classical Nighantus for Kapha balance and throat/respiratory support.',
     ayurvedicContext: {
       rasa: 'Kashaya (Astringent)',
       virya: 'Ushna (Warm)',
@@ -722,7 +858,10 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       doshaEffect: 'Pacifies Kapha and Pitta',
       uses: ['Respiratory clarity', 'Digestive support', 'Kapha regulation'],
     },
-    classicalReferences: ['Charaka Samhita - Chikitsa Sthana Chapter 1/1', 'Bhavaprakasha Nighantu'],
+    classicalReferences: [
+      'Charaka Samhita - Chikitsa Sthana Chapter 1/1',
+      'Bhavaprakasha Nighantu',
+    ],
     relatedFormulations: ['Triphala Churna', 'Phalatrikadi Kwath', 'Talisadi Churna'],
     researchReferences: [
       {
@@ -741,7 +880,8 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       patentabilityNotes: 'Protected prior art under Section 3(p).',
     },
     jurisdictions: ['India'],
-    image: 'https://t3.ftcdn.net/jpg/02/50/80/08/240_F_250800850_dgkYeEpUWYmRNmIHNGrM24yebwuou6VO.jpg',
+    image:
+      'https://t3.ftcdn.net/jpg/02/50/80/08/240_F_250800850_dgkYeEpUWYmRNmIHNGrM24yebwuou6VO.jpg',
     imageMetadata: {
       url: 'https://t3.ftcdn.net/jpg/02/50/80/08/240_F_250800850_dgkYeEpUWYmRNmIHNGrM24yebwuou6VO.jpg',
       source: 'Stock Botanical Photo',
@@ -749,7 +889,9 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       license: 'Educational License',
       attribution: 'Photo via Botanical Archives',
     },
-    informationSources: [{ name: 'POWO Kew', type: 'botanical', url: 'https://powo.science.kew.org/' }],
+    informationSources: [
+      { name: 'POWO Kew', type: 'botanical', url: 'https://powo.science.kew.org/' },
+    ],
     relatedKnowledgeSlugs: ['haritaki', 'amla'],
   },
 
@@ -760,13 +902,21 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
     commonName: 'Mulethi (Licorice)',
     scientificName: 'Glycyrrhiza glabra',
     synonyms: ['Liquiritia officinalis'],
-    regionalNames: { sanskrit: 'यष्टिमधु', hindi: 'मुलेठी', tamil: 'அதிமதுரம்', telugu: 'అతిమధురం' },
+    regionalNames: {
+      sanskrit: 'यष्टिमधु',
+      hindi: 'मुलेठी',
+      tamil: 'அதிமதுரம்',
+      telugu: 'అతిమధురం',
+    },
     category: 'HERBS',
     family: 'Fabaceae',
     partsUsed: ['Stolon and Roots'],
-    botanicalDescription: 'A herbaceous perennial legume with sweet fibrous roots containing glycyrrhizin.',
-    overview: 'Mulethi (Yashtimadhu) is a celebrated soothing Medhya Rasayana and throat demographic in Ayurveda.',
-    traditionalContext: 'Recorded as Yashtimadhu under Medhya Rasayana and Chakshushya (vision supporting) herbs.',
+    botanicalDescription:
+      'A herbaceous perennial legume with sweet fibrous roots containing glycyrrhizin.',
+    overview:
+      'Mulethi (Yashtimadhu) is a celebrated soothing Medhya Rasayana and throat demographic in Ayurveda.',
+    traditionalContext:
+      'Recorded as Yashtimadhu under Medhya Rasayana and Chakshushya (vision supporting) herbs.',
     ayurvedicContext: {
       rasa: 'Madhura (Sweet)',
       virya: 'Sheeta (Cooling)',
@@ -793,7 +943,8 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       patentabilityNotes: 'Crude sweet root powder is protected prior art under Section 3(p).',
     },
     jurisdictions: ['India', 'USPTO', 'EPO'],
-    image: 'https://t3.ftcdn.net/jpg/16/24/14/52/240_F_1624145291_JomYKv5NGjhAJINAlUXNNFWYUCwKYZ2k.jpg',
+    image:
+      'https://t3.ftcdn.net/jpg/16/24/14/52/240_F_1624145291_JomYKv5NGjhAJINAlUXNNFWYUCwKYZ2k.jpg',
     imageMetadata: {
       url: 'https://t3.ftcdn.net/jpg/16/24/14/52/240_F_1624145291_JomYKv5NGjhAJINAlUXNNFWYUCwKYZ2k.jpg',
       source: 'Stock Botanical Photo',
@@ -801,7 +952,9 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       license: 'Educational License',
       attribution: 'Photo via Botanical Archives',
     },
-    informationSources: [{ name: 'POWO Kew', type: 'botanical', url: 'https://powo.science.kew.org/' }],
+    informationSources: [
+      { name: 'POWO Kew', type: 'botanical', url: 'https://powo.science.kew.org/' },
+    ],
     relatedKnowledgeSlugs: ['brahmi', 'tulsi', 'ginger'],
   },
 
@@ -812,13 +965,21 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
     commonName: 'Ginger (Shunthi / Adrak)',
     scientificName: 'Zingiber officinale',
     synonyms: ['Amomum zingiber'],
-    regionalNames: { sanskrit: 'शुण्ठी / आर्द्रक', hindi: 'अदरक / सोंठ', tamil: 'இஞ்சி / சுக்கு', telugu: 'అల్లం / శొంటి' },
+    regionalNames: {
+      sanskrit: 'शुण्ठी / आर्द्रक',
+      hindi: 'अदरक / सोंठ',
+      tamil: 'இஞ்சி / சுக்கு',
+      telugu: 'అల్లం / శొంటి',
+    },
     category: 'HERBS',
     family: 'Zingibaraceae',
     partsUsed: ['Rhizome'],
-    botanicalDescription: 'A herbaceous perennial growing annual pseudostems with aromatic knotty pale-yellow rhizomes.',
-    overview: 'Ginger (Zingiber officinale) is revered in Ayurveda as Vishwabheshaja (the universal medicine).',
-    traditionalContext: 'Described as Deepana (digestive stimulant) and Pachana (digestative balance).',
+    botanicalDescription:
+      'A herbaceous perennial growing annual pseudostems with aromatic knotty pale-yellow rhizomes.',
+    overview:
+      'Ginger (Zingiber officinale) is revered in Ayurveda as Vishwabheshaja (the universal medicine).',
+    traditionalContext:
+      'Described as Deepana (digestive stimulant) and Pachana (digestative balance).',
     ayurvedicContext: {
       rasa: 'Katu (Pungent)',
       virya: 'Ushna (Warm)',
@@ -839,13 +1000,15 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       },
     ],
     ipInformation: {
-      patentStatus: 'Process patents exist for gingerol concentration supercritical fluid extraction.',
+      patentStatus:
+        'Process patents exist for gingerol concentration supercritical fluid extraction.',
       priorArtHighlights: ['TKDL Ref: ZO/102 - Trikatu Yoga'],
       tkdlStatus: 'Cataloged extensively in TKDL.',
       patentabilityNotes: 'General culinary and digestive crude usage barred under Section 3(p).',
     },
     jurisdictions: ['India', 'WIPO'],
-    image: 'https://t4.ftcdn.net/jpg/04/40/15/11/240_F_440151143_Ldww2WZZZv68OItB21WDxN3MO3au5poH.jpg',
+    image:
+      'https://t4.ftcdn.net/jpg/04/40/15/11/240_F_440151143_Ldww2WZZZv68OItB21WDxN3MO3au5poH.jpg',
     imageMetadata: {
       url: 'https://t4.ftcdn.net/jpg/04/40/15/11/240_F_440151143_Ldww2WZZZv68OItB21WDxN3MO3au5poH.jpg',
       source: 'Stock Botanical Photo',
@@ -853,7 +1016,9 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       license: 'Educational License',
       attribution: 'Photo via Botanical Archives',
     },
-    informationSources: [{ name: 'e-Charak NMPB', type: 'government', url: 'https://echarak.ayush.gov.in/' }],
+    informationSources: [
+      { name: 'e-Charak NMPB', type: 'government', url: 'https://echarak.ayush.gov.in/' },
+    ],
     relatedKnowledgeSlugs: ['black-pepper', 'pippali', 'licorice'],
   },
 
@@ -868,9 +1033,12 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
     category: 'HERBS',
     family: 'Piperaceae',
     partsUsed: ['Dried Berries (Peppercorns)'],
-    botanicalDescription: 'A flowering woody vine bearing small drupe fruits harvested green and dried to produce black peppercorns.',
-    overview: 'Black Pepper (Maricha) is a fundamental bio-availability enhancer (Yogavahi) in traditional formulation science.',
-    traditionalContext: 'Forms part of the classic Trikatu triad (Shunthi, Maricha, Pippali) to enhance assimilation.',
+    botanicalDescription:
+      'A flowering woody vine bearing small drupe fruits harvested green and dried to produce black peppercorns.',
+    overview:
+      'Black Pepper (Maricha) is a fundamental bio-availability enhancer (Yogavahi) in traditional formulation science.',
+    traditionalContext:
+      'Forms part of the classic Trikatu triad (Shunthi, Maricha, Pippali) to enhance assimilation.',
     ayurvedicContext: {
       rasa: 'Katu (Pungent)',
       virya: 'Ushna (Warm)',
@@ -891,13 +1059,16 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       },
     ],
     ipInformation: {
-      patentStatus: 'Multiple US/WIPO composition patents exist for Piperine + Curcumin combination formulations.',
+      patentStatus:
+        'Multiple US/WIPO composition patents exist for Piperine + Curcumin combination formulations.',
       priorArtHighlights: ['TKDL Ref: PN/440 - Trikatu Preparation'],
       tkdlStatus: 'Cataloged in TKDL.',
-      patentabilityNotes: 'Crude peppercorns protected under Section 3(p). Synergistic extraction protocols patentable.',
+      patentabilityNotes:
+        'Crude peppercorns protected under Section 3(p). Synergistic extraction protocols patentable.',
     },
     jurisdictions: ['India', 'USPTO'],
-    image: 'https://t4.ftcdn.net/jpg/04/01/95/93/240_F_401959393_fohsQ2D4vYxcWjgvhmzkYSa68ShUQwDw.jpg',
+    image:
+      'https://t4.ftcdn.net/jpg/04/01/95/93/240_F_401959393_fohsQ2D4vYxcWjgvhmzkYSa68ShUQwDw.jpg',
     imageMetadata: {
       url: 'https://t4.ftcdn.net/jpg/04/01/95/93/240_F_401959393_fohsQ2D4vYxcWjgvhmzkYSa68ShUQwDw.jpg',
       source: 'Stock Botanical Photo',
@@ -905,7 +1076,9 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       license: 'Educational License',
       attribution: 'Photo via Botanical Archives',
     },
-    informationSources: [{ name: 'POWO Kew', type: 'botanical', url: 'https://powo.science.kew.org/' }],
+    informationSources: [
+      { name: 'POWO Kew', type: 'botanical', url: 'https://powo.science.kew.org/' },
+    ],
     relatedKnowledgeSlugs: ['ginger', 'pippali', 'turmeric'],
   },
 
@@ -920,9 +1093,12 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
     category: 'HERBS',
     family: 'Piperaceae',
     partsUsed: ['Fruiting Spikes', 'Root (Pippalimula)'],
-    botanicalDescription: 'A slender aromatic climber with heart-shaped leaves and cylindrical erect fruiting spikes.',
-    overview: 'Pippali (Piper longum) is a renowned Rasayana herb specifically designated for respiratory rejuvenation.',
-    traditionalContext: 'Charaka prescribes Vardhamana Pippali Rasayana for deep respiratory rejuvenation and metabolic kindle.',
+    botanicalDescription:
+      'A slender aromatic climber with heart-shaped leaves and cylindrical erect fruiting spikes.',
+    overview:
+      'Pippali (Piper longum) is a renowned Rasayana herb specifically designated for respiratory rejuvenation.',
+    traditionalContext:
+      'Charaka prescribes Vardhamana Pippali Rasayana for deep respiratory rejuvenation and metabolic kindle.',
     ayurvedicContext: {
       rasa: 'Katu (Pungent)',
       virya: 'Anushnasheeta (Mildly Warm)',
@@ -930,7 +1106,10 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       doshaEffect: 'Pacifies Vata and Kapha',
       uses: ['Respiratory rejuvenation', 'Bio-enhancing transport', 'Digestive kindle'],
     },
-    classicalReferences: ['Charaka Samhita - Chikitsa Sthana Chapter 1/3', 'Bhavaprakasha Nighantu'],
+    classicalReferences: [
+      'Charaka Samhita - Chikitsa Sthana Chapter 1/3',
+      'Bhavaprakasha Nighantu',
+    ],
     relatedFormulations: ['Pippalyasava', 'Vardhamana Pippali Rasayana', 'Sitopaladi Churna'],
     researchReferences: [
       {
@@ -946,10 +1125,12 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       patentStatus: 'Process patents for piperlongumine bioactive extraction.',
       priorArtHighlights: ['TKDL Ref: PL/119 - Vardhamana Pippali Rasayana'],
       tkdlStatus: 'Cataloged in TKDL.',
-      patentabilityNotes: 'Classical Rasayana preparation rules are protected prior art under Section 3(p).',
+      patentabilityNotes:
+        'Classical Rasayana preparation rules are protected prior art under Section 3(p).',
     },
     jurisdictions: ['India', 'USPTO'],
-    image: 'https://t3.ftcdn.net/jpg/20/42/26/56/240_F_2042265607_3823EI3P5yU8nN6pbMqCkTtApogdGOSe.jpg',
+    image:
+      'https://t3.ftcdn.net/jpg/20/42/26/56/240_F_2042265607_3823EI3P5yU8nN6pbMqCkTtApogdGOSe.jpg',
     imageMetadata: {
       url: 'https://t3.ftcdn.net/jpg/20/42/26/56/240_F_2042265607_3823EI3P5yU8nN6pbMqCkTtApogdGOSe.jpg',
       source: 'Stock Botanical Photo',
@@ -957,7 +1138,9 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       license: 'Educational License',
       attribution: 'Photo via Botanical Archives',
     },
-    informationSources: [{ name: 'POWO Kew', type: 'botanical', url: 'https://powo.science.kew.org/' }],
+    informationSources: [
+      { name: 'POWO Kew', type: 'botanical', url: 'https://powo.science.kew.org/' },
+    ],
     relatedKnowledgeSlugs: ['ginger', 'black-pepper', 'tulsi'],
   },
 
@@ -968,13 +1151,21 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
     commonName: 'Cinnamon (Twak)',
     scientificName: 'Cinnamomum verum',
     synonyms: ['Cinnamomum zeylanicum'],
-    regionalNames: { sanskrit: 'त्वक्', hindi: 'दालचीनी', tamil: 'இலவங்கப்பட்டை', telugu: 'దాల్చిన చెక్క' },
+    regionalNames: {
+      sanskrit: 'त्वक्',
+      hindi: 'दालचीनी',
+      tamil: 'இலவங்கப்பட்டை',
+      telugu: 'దాల్చిన చెక్క',
+    },
     category: 'HERBS',
     family: 'Lauraceae',
     partsUsed: ['Inner Stem Bark'],
-    botanicalDescription: 'A small evergreen tree with aromatic leathery leaves and fragrant inner bark that rolls into quills upon drying.',
-    overview: 'Twak (Cinnamon) is an aromatic spice and therapeutic bark used in Ayurveda for metabolic warming and circulatory support.',
-    traditionalContext: 'Recorded under Trijata and Chaturjata aromatic classical text combinations.',
+    botanicalDescription:
+      'A small evergreen tree with aromatic leathery leaves and fragrant inner bark that rolls into quills upon drying.',
+    overview:
+      'Twak (Cinnamon) is an aromatic spice and therapeutic bark used in Ayurveda for metabolic warming and circulatory support.',
+    traditionalContext:
+      'Recorded under Trijata and Chaturjata aromatic classical text combinations.',
     ayurvedicContext: {
       rasa: 'Katu (Pungent), Tikta (Bitter), Madhura (Sweet)',
       virya: 'Ushna (Warm)',
@@ -1001,7 +1192,8 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       patentabilityNotes: 'Crude culinary spices fall under Section 3(p) prior art.',
     },
     jurisdictions: ['India', 'EPO'],
-    image: 'https://t3.ftcdn.net/jpg/03/80/70/10/240_F_380701084_342yCahYDvbiNGDbnPurqqoknB5MTt6N.jpg',
+    image:
+      'https://t3.ftcdn.net/jpg/03/80/70/10/240_F_380701084_342yCahYDvbiNGDbnPurqqoknB5MTt6N.jpg',
     imageMetadata: {
       url: 'https://t3.ftcdn.net/jpg/03/80/70/10/240_F_380701084_342yCahYDvbiNGDbnPurqqoknB5MTt6N.jpg',
       source: 'Stock Botanical Photo',
@@ -1009,7 +1201,9 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       license: 'Educational License',
       attribution: 'Photo via Botanical Archives',
     },
-    informationSources: [{ name: 'POWO Kew', type: 'botanical', url: 'https://powo.science.kew.org/' }],
+    informationSources: [
+      { name: 'POWO Kew', type: 'botanical', url: 'https://powo.science.kew.org/' },
+    ],
     relatedKnowledgeSlugs: ['cardamom', 'clove', 'ginger'],
   },
 
@@ -1024,9 +1218,12 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
     category: 'HERBS',
     family: 'Zingiberaceae',
     partsUsed: ['Seeds', 'Pods'],
-    botanicalDescription: 'A large perennial reed-like herb with aromatic green seed pods containing dark brown pungent seeds.',
-    overview: 'Ela (Cardamom) is renowned as a fragrant cooling digestant in Ayurvedic polyherbal preparations.',
-    traditionalContext: 'Described as Anulomana (cooling digestant) and Tridosha balancing in small quantities.',
+    botanicalDescription:
+      'A large perennial reed-like herb with aromatic green seed pods containing dark brown pungent seeds.',
+    overview:
+      'Ela (Cardamom) is renowned as a fragrant cooling digestant in Ayurvedic polyherbal preparations.',
+    traditionalContext:
+      'Described as Anulomana (cooling digestant) and Tridosha balancing in small quantities.',
     ayurvedicContext: {
       rasa: 'Katu (Pungent), Madhura (Sweet)',
       virya: 'Sheeta (Cooling)',
@@ -1053,7 +1250,8 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       patentabilityNotes: 'Protected prior art under Section 3(p).',
     },
     jurisdictions: ['India'],
-    image: 'https://t4.ftcdn.net/jpg/04/26/81/47/240_F_426814728_UQIKGWfmzy0o9oeCY16GzSc4TgwqzT9J.jpg',
+    image:
+      'https://t4.ftcdn.net/jpg/04/26/81/47/240_F_426814728_UQIKGWfmzy0o9oeCY16GzSc4TgwqzT9J.jpg',
     imageMetadata: {
       url: 'https://t4.ftcdn.net/jpg/04/26/81/47/240_F_426814728_UQIKGWfmzy0o9oeCY16GzSc4TgwqzT9J.jpg',
       source: 'Stock Botanical Photo',
@@ -1061,7 +1259,9 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       license: 'Educational License',
       attribution: 'Photo via Botanical Archives',
     },
-    informationSources: [{ name: 'POWO Kew', type: 'botanical', url: 'https://powo.science.kew.org/' }],
+    informationSources: [
+      { name: 'POWO Kew', type: 'botanical', url: 'https://powo.science.kew.org/' },
+    ],
     relatedKnowledgeSlugs: ['cinnamon', 'clove', 'licorice'],
   },
 
@@ -1076,9 +1276,12 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
     category: 'MEDICINAL PLANTS',
     family: 'Myrtaceae',
     partsUsed: ['Dried Flower Buds'],
-    botanicalDescription: 'An evergreen tree up to 12 meters tall with aromatic crimson flower buds harvested before opening.',
-    overview: 'Lavanga (Clove) is rich in eugenol, widely utilized in Ayurveda for oral hygiene, respiratory relief, and digestive warmth.',
-    traditionalContext: 'Described in Nighantus as Kaphapittahara and Mukhashodhana (oral cleanser).',
+    botanicalDescription:
+      'An evergreen tree up to 12 meters tall with aromatic crimson flower buds harvested before opening.',
+    overview:
+      'Lavanga (Clove) is rich in eugenol, widely utilized in Ayurveda for oral hygiene, respiratory relief, and digestive warmth.',
+    traditionalContext:
+      'Described in Nighantus as Kaphapittahara and Mukhashodhana (oral cleanser).',
     ayurvedicContext: {
       rasa: 'Tikta (Bitter), Katu (Pungent)',
       virya: 'Sheeta (Cooling initial / Warm oil)',
@@ -1105,7 +1308,8 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       patentabilityNotes: 'Classical flower bud usage protected under Section 3(p).',
     },
     jurisdictions: ['India', 'USPTO'],
-    image: 'https://t3.ftcdn.net/jpg/03/87/63/22/240_F_387632273_hem7kFTpVCoR5HqulMBYHd05IRdivYLT.jpg',
+    image:
+      'https://t3.ftcdn.net/jpg/03/87/63/22/240_F_387632273_hem7kFTpVCoR5HqulMBYHd05IRdivYLT.jpg',
     imageMetadata: {
       url: 'https://t3.ftcdn.net/jpg/03/87/63/22/240_F_387632273_hem7kFTpVCoR5HqulMBYHd05IRdivYLT.jpg',
       source: 'Stock Botanical Photo',
@@ -1113,7 +1317,9 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       license: 'Educational License',
       attribution: 'Photo via Botanical Archives',
     },
-    informationSources: [{ name: 'POWO Kew', type: 'botanical', url: 'https://powo.science.kew.org/' }],
+    informationSources: [
+      { name: 'POWO Kew', type: 'botanical', url: 'https://powo.science.kew.org/' },
+    ],
     relatedKnowledgeSlugs: ['cinnamon', 'cardamom', 'ginger'],
   },
 
@@ -1128,8 +1334,10 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
     category: 'HERBS',
     family: 'Fabaceae',
     partsUsed: ['Seeds', 'Leaves'],
-    botanicalDescription: 'An annual herb with trifoliate leaves and small yellowish pods containing rhomboidal yellow-brown seeds.',
-    overview: 'Methi (Fenugreek) is used in Ayurveda for metabolic balance, digestive comfort, and joint nourishment.',
+    botanicalDescription:
+      'An annual herb with trifoliate leaves and small yellowish pods containing rhomboidal yellow-brown seeds.',
+    overview:
+      'Methi (Fenugreek) is used in Ayurveda for metabolic balance, digestive comfort, and joint nourishment.',
     traditionalContext: 'Described as Vata-hara and Deepana in classical Nighantus.',
     ayurvedicContext: {
       rasa: 'Tikta (Bitter)',
@@ -1157,7 +1365,8 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       patentabilityNotes: 'Crude seed powder protected under Section 3(p).',
     },
     jurisdictions: ['India'],
-    image: 'https://t3.ftcdn.net/jpg/21/21/63/38/240_F_2121633871_AQk9fb4GrXARFksK23YtIRvfRi6U6eyP.jpg',
+    image:
+      'https://t3.ftcdn.net/jpg/21/21/63/38/240_F_2121633871_AQk9fb4GrXARFksK23YtIRvfRi6U6eyP.jpg',
     imageMetadata: {
       url: 'https://t3.ftcdn.net/jpg/21/21/63/38/240_F_2121633871_AQk9fb4GrXARFksK23YtIRvfRi6U6eyP.jpg',
       source: 'Stock Botanical Photo',
@@ -1165,7 +1374,9 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       license: 'Educational License',
       attribution: 'Photo via Botanical Archives',
     },
-    informationSources: [{ name: 'POWO Kew', type: 'botanical', url: 'https://powo.science.kew.org/' }],
+    informationSources: [
+      { name: 'POWO Kew', type: 'botanical', url: 'https://powo.science.kew.org/' },
+    ],
     relatedKnowledgeSlugs: ['turmeric', 'ginger', 'cumic'],
   },
 
@@ -1180,9 +1391,12 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
     category: 'HERBS',
     family: 'Apiaceae',
     partsUsed: ['Seeds (Fruits)'],
-    botanicalDescription: 'A small annual herbaceous plant with thread-like leaf branches and small pale pink or white flowers producing aromatic seeds.',
-    overview: 'Jeeraka (Cumin) is a premier digestive spice used in Ayurveda to promote assimilation (Pachana).',
-    traditionalContext: 'Classified into Gaura (white) and Krishna (black) Jeeraka in Sanskrit classics for digestive kindle.',
+    botanicalDescription:
+      'A small annual herbaceous plant with thread-like leaf branches and small pale pink or white flowers producing aromatic seeds.',
+    overview:
+      'Jeeraka (Cumin) is a premier digestive spice used in Ayurveda to promote assimilation (Pachana).',
+    traditionalContext:
+      'Classified into Gaura (white) and Krishna (black) Jeeraka in Sanskrit classics for digestive kindle.',
     ayurvedicContext: {
       rasa: 'Katu (Pungent), Tikta (Bitter)',
       virya: 'Ushna (Warm)',
@@ -1208,7 +1422,8 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       patentabilityNotes: 'Well-established traditional spice.',
     },
     jurisdictions: ['India'],
-    image: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?q=80&w=1000&auto=format&fit=crop',
+    image:
+      'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?q=80&w=1000&auto=format&fit=crop',
     imageMetadata: {
       url: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d',
       source: 'Unsplash Media Collection',
@@ -1216,7 +1431,9 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       license: 'Unsplash License',
       attribution: 'Photo via Unsplash',
     },
-    informationSources: [{ name: 'POWO Kew', type: 'botanical', url: 'https://powo.science.kew.org/' }],
+    informationSources: [
+      { name: 'POWO Kew', type: 'botanical', url: 'https://powo.science.kew.org/' },
+    ],
     relatedKnowledgeSlugs: ['ginger', 'black-pepper', 'pippali'],
   },
 
@@ -1227,13 +1444,21 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
     commonName: 'Guggul',
     scientificName: 'Commiphora wightii',
     synonyms: ['Commiphora mukul', 'Balsamodendrum mukul'],
-    regionalNames: { sanskrit: 'गुग्गुळु', hindi: 'गुग्गुल', tamil: 'குக்கிலு', telugu: 'మహిషాక్షి గుग्గులు' },
+    regionalNames: {
+      sanskrit: 'गुग्गुळु',
+      hindi: 'गुग्गुल',
+      tamil: 'குக்கிலு',
+      telugu: 'మహిషాక్షి గుग्గులు',
+    },
     category: 'MEDICINAL PLANTS',
     family: 'Burseraceae',
     partsUsed: ['Oleogum Resin'],
-    botanicalDescription: 'A small thorny shrub with paper-bark and fragrant yellowish-brown oleogum resin exudate.',
-    overview: 'Guggul (Commiphora wightii) is famous in Ayurveda for Lekhana (scraping/metabolic support) and joint flexibility.',
-    traditionalContext: 'Recorded extensively in Sushruta Samhita for Medohara (lipid balance) and joint support.',
+    botanicalDescription:
+      'A small thorny shrub with paper-bark and fragrant yellowish-brown oleogum resin exudate.',
+    overview:
+      'Guggul (Commiphora wightii) is famous in Ayurveda for Lekhana (scraping/metabolic support) and joint flexibility.',
+    traditionalContext:
+      'Recorded extensively in Sushruta Samhita for Medohara (lipid balance) and joint support.',
     ayurvedicContext: {
       rasa: 'Tikta (Bitter), Katu (Pungent), Kashaya, Madhura',
       virya: 'Ushna (Warm)',
@@ -1242,7 +1467,12 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       uses: ['Metabolic balance support', 'Joint comfort', 'Tissue purification'],
     },
     classicalReferences: ['Sushruta Samhita - Sutra Sthana Chapter 15', 'Bhavaprakasha Nighantu'],
-    relatedFormulations: ['Yogaraj Guggulu', 'Kaisora Guggulu', 'Kanchanar Guggulu', 'Triphala Guggulu'],
+    relatedFormulations: [
+      'Yogaraj Guggulu',
+      'Kaisora Guggulu',
+      'Kanchanar Guggulu',
+      'Triphala Guggulu',
+    ],
     researchReferences: [
       {
         title: 'Guggulsterone: A bioactive steroid from Commiphora mukul',
@@ -1257,10 +1487,12 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       patentStatus: 'Process patents for purified E- and Z-guggulsterone lipid formulations.',
       priorArtHighlights: ['TKDL Ref: CW/550 - Yogaraj Guggulu'],
       tkdlStatus: 'Cataloged in TKDL.',
-      patentabilityNotes: 'Purified guggulsterones patentable; crude gum resin protected under Section 3(p).',
+      patentabilityNotes:
+        'Purified guggulsterones patentable; crude gum resin protected under Section 3(p).',
     },
     jurisdictions: ['India', 'USPTO', 'WIPO'],
-    image: 'https://t3.ftcdn.net/jpg/20/37/07/00/240_F_2037070053_88lcOHngLgJk8AGpIC2NTnNRd7HkkuGO.jpg',
+    image:
+      'https://t3.ftcdn.net/jpg/20/37/07/00/240_F_2037070053_88lcOHngLgJk8AGpIC2NTnNRd7HkkuGO.jpg',
     imageMetadata: {
       url: 'https://t3.ftcdn.net/jpg/20/37/07/00/240_F_2037070053_88lcOHngLgJk8AGpIC2NTnNRd7HkkuGO.jpg',
       source: 'Stock Botanical Photo',
@@ -1268,7 +1500,9 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       license: 'Educational License',
       attribution: 'Photo via Botanical Archives',
     },
-    informationSources: [{ name: 'POWO Kew', type: 'botanical', url: 'https://powo.science.kew.org/' }],
+    informationSources: [
+      { name: 'POWO Kew', type: 'botanical', url: 'https://powo.science.kew.org/' },
+    ],
     relatedKnowledgeSlugs: ['turmeric', 'ashwagandha', 'neem'],
   },
 
@@ -1279,13 +1513,21 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
     commonName: 'Shankhpushpi',
     scientificName: 'Convolvulus pluricaulis',
     synonyms: ['Convolvulus prostratus', 'Evolvulus alsinoides (species variant reference)'],
-    regionalNames: { sanskrit: 'शङ्खपुष्पी', hindi: 'शंखपुष्पी', tamil: 'சங்குபுஷ்பி', telugu: 'శంఖపుష్పి' },
+    regionalNames: {
+      sanskrit: 'शङ्खपुष्पी',
+      hindi: 'शंखपुष्पी',
+      tamil: 'சங்குபுஷ்பி',
+      telugu: 'శంఖపుష్పి',
+    },
     category: 'HERBS',
     family: 'Convolvulaceae',
     partsUsed: ['Whole Plant'],
-    botanicalDescription: 'A prostrate perennial herb with hairy branches and small white to light pink conch-shaped flowers.',
-    overview: 'Shankhpushpi is celebrated as a premier Medhya Rasayana for mental clarity, calm, and memory retention.',
-    traditionalContext: 'Charaka designates Shankhpushpi as the top herb specifically for Medhya (intellectual clarity). Note: Regional species variants exist across texts.',
+    botanicalDescription:
+      'A prostrate perennial herb with hairy branches and small white to light pink conch-shaped flowers.',
+    overview:
+      'Shankhpushpi is celebrated as a premier Medhya Rasayana for mental clarity, calm, and memory retention.',
+    traditionalContext:
+      'Charaka designates Shankhpushpi as the top herb specifically for Medhya (intellectual clarity). Note: Regional species variants exist across texts.',
     ayurvedicContext: {
       rasa: 'Tikta (Bitter)',
       virya: 'Sheeta (Cooling)',
@@ -1293,7 +1535,10 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       doshaEffect: 'Tridoshara (Pitta-Vata balancing)',
       uses: ['Mental clarity support', 'Stress relief', 'Memory enhancement'],
     },
-    classicalReferences: ['Charaka Samhita - Chikitsa Sthana Chapter 1/3', 'Bhavaprakasha Nighantu'],
+    classicalReferences: [
+      'Charaka Samhita - Chikitsa Sthana Chapter 1/3',
+      'Bhavaprakasha Nighantu',
+    ],
     relatedFormulations: ['Shankhpushpi Syrup', 'Manasamitra Vatakam', 'Brahmi Vati'],
     researchReferences: [
       {
@@ -1312,7 +1557,8 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       patentabilityNotes: 'Crude plant extracts fall under Section 3(p) prior art.',
     },
     jurisdictions: ['India', 'USPTO'],
-    image: 'https://t3.ftcdn.net/jpg/08/79/00/94/240_F_879009433_FM4dNzxxh2ONLN18uY8q5xdmgctaLc4r.jpg',
+    image:
+      'https://t3.ftcdn.net/jpg/08/79/00/94/240_F_879009433_FM4dNzxxh2ONLN18uY8q5xdmgctaLc4r.jpg',
     imageMetadata: {
       url: 'https://t3.ftcdn.net/jpg/08/79/00/94/240_F_879009433_FM4dNzxxh2ONLN18uY8q5xdmgctaLc4r.jpg',
       source: 'Stock Botanical Photo',
@@ -1320,7 +1566,9 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       license: 'Educational License',
       attribution: 'Photo via Botanical Archives',
     },
-    informationSources: [{ name: 'POWO Kew', type: 'botanical', url: 'https://powo.science.kew.org/' }],
+    informationSources: [
+      { name: 'POWO Kew', type: 'botanical', url: 'https://powo.science.kew.org/' },
+    ],
     relatedKnowledgeSlugs: ['brahmi', 'ashwagandha', 'licorice'],
   },
 
@@ -1335,9 +1583,12 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
     category: 'HERBS',
     family: 'Rubiaceae',
     partsUsed: ['Roots', 'Stems'],
-    botanicalDescription: 'A climbing perennial herb with whorled leaves and long cylindrical red fleshy roots containing purpurin dyes.',
-    overview: 'Manjistha (Rubia cordifolia) is the premier Raktashodhaka (blood purifier) and dermatological herb in Ayurveda.',
-    traditionalContext: 'Described as Raktashodhaka (blood tissue balancer) and Varnya (complexion promoter).',
+    botanicalDescription:
+      'A climbing perennial herb with whorled leaves and long cylindrical red fleshy roots containing purpurin dyes.',
+    overview:
+      'Manjistha (Rubia cordifolia) is the premier Raktashodhaka (blood purifier) and dermatological herb in Ayurveda.',
+    traditionalContext:
+      'Described as Raktashodhaka (blood tissue balancer) and Varnya (complexion promoter).',
     ayurvedicContext: {
       rasa: 'Tikta (Bitter), Kashaya (Astringent), Madhura (Sweet)',
       virya: 'Ushna (Warm)',
@@ -1364,7 +1615,8 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       patentabilityNotes: 'Protected prior art under Section 3(p).',
     },
     jurisdictions: ['India'],
-    image: 'https://t4.ftcdn.net/jpg/20/93/66/07/240_F_2093660765_kd8qHE5RMUhQwC0aXSzJFpTEQLZwkcS8.jpg',
+    image:
+      'https://t4.ftcdn.net/jpg/20/93/66/07/240_F_2093660765_kd8qHE5RMUhQwC0aXSzJFpTEQLZwkcS8.jpg',
     imageMetadata: {
       url: 'https://t4.ftcdn.net/jpg/20/93/66/07/240_F_2093660765_kd8qHE5RMUhQwC0aXSzJFpTEQLZwkcS8.jpg',
       source: 'Stock Botanical Photo',
@@ -1372,7 +1624,9 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       license: 'Educational License',
       attribution: 'Photo via Botanical Archives',
     },
-    informationSources: [{ name: 'POWO Kew', type: 'botanical', url: 'https://powo.science.kew.org/' }],
+    informationSources: [
+      { name: 'POWO Kew', type: 'botanical', url: 'https://powo.science.kew.org/' },
+    ],
     relatedKnowledgeSlugs: ['turmeric', 'neem', 'amla'],
   },
 
@@ -1383,13 +1637,21 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
     commonName: 'Bhringraj',
     scientificName: 'Eclipta prostrata',
     synonyms: ['Eclipta alba', 'Verbesina alba'],
-    regionalNames: { sanskrit: 'भृङ्गराज', hindi: 'भंगरा / भृंगराज', tamil: 'கரிசலாங்கண்ணி', telugu: 'గుంటగలగర' },
+    regionalNames: {
+      sanskrit: 'भृङ्गराज',
+      hindi: 'भंगरा / भृंगराज',
+      tamil: 'கரிசலாங்கண்ணி',
+      telugu: 'గుంటగలగర',
+    },
     category: 'HERBS',
     family: 'Asteraceae',
     partsUsed: ['Whole Plant', 'Leaves'],
-    botanicalDescription: 'An annual branched prostrate herb with opposite lanceolate leaves and small white Daisy-like flower heads.',
-    overview: 'Bhringraj (Eclipta prostrata) is celebrated in Ayurveda as Keshya (hair tonic) and liver support herb.',
-    traditionalContext: 'Described as Keshya (promoting hair strength and lustre) and Yakrit-shodhaka (hepatic care).',
+    botanicalDescription:
+      'An annual branched prostrate herb with opposite lanceolate leaves and small white Daisy-like flower heads.',
+    overview:
+      'Bhringraj (Eclipta prostrata) is celebrated in Ayurveda as Keshya (hair tonic) and liver support herb.',
+    traditionalContext:
+      'Described as Keshya (promoting hair strength and lustre) and Yakrit-shodhaka (hepatic care).',
     ayurvedicContext: {
       rasa: 'Katu (Pungent), Tikta (Bitter)',
       virya: 'Ushna (Warm)',
@@ -1413,10 +1675,12 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       patentStatus: 'Cosmetic hair formulation patents incorporating standardized eclalbasaponins.',
       priorArtHighlights: ['TKDL Ref: EA/301 - Bhringraj Taila'],
       tkdlStatus: 'Cataloged in TKDL.',
-      patentabilityNotes: 'Traditional oil infusing processes are protected prior art under Section 3(p).',
+      patentabilityNotes:
+        'Traditional oil infusing processes are protected prior art under Section 3(p).',
     },
     jurisdictions: ['India', 'USPTO'],
-    image: 'https://t4.ftcdn.net/jpg/21/26/16/69/240_F_2126166983_Cb42Idmex33phQQQQnSo9EDJlEV1HaiN.jpg',
+    image:
+      'https://t4.ftcdn.net/jpg/21/26/16/69/240_F_2126166983_Cb42Idmex33phQQQQnSo9EDJlEV1HaiN.jpg',
     imageMetadata: {
       url: 'https://t4.ftcdn.net/jpg/21/26/16/69/240_F_2126166983_Cb42Idmex33phQQQQnSo9EDJlEV1HaiN.jpg',
       source: 'Stock Botanical Photo',
@@ -1424,7 +1688,9 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       license: 'Educational License',
       attribution: 'Photo via Botanical Archives',
     },
-    informationSources: [{ name: 'POWO Kew', type: 'botanical', url: 'https://powo.science.kew.org/' }],
+    informationSources: [
+      { name: 'POWO Kew', type: 'botanical', url: 'https://powo.science.kew.org/' },
+    ],
     relatedKnowledgeSlugs: ['amla', 'manjistha', 'neem'],
   },
 
@@ -1435,13 +1701,21 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
     commonName: 'Punarnava',
     scientificName: 'Boerhavia diffusa',
     synonyms: ['Boerhaavia repens'],
-    regionalNames: { sanskrit: 'पुनर्नवा', hindi: 'पुनर्नवा / गदहपूरना', tamil: 'மூக்கிரட்டை', telugu: 'అటికమామిడి' },
+    regionalNames: {
+      sanskrit: 'पुनर्नवा',
+      hindi: 'पुनर्नवा / गदहपूरना',
+      tamil: 'மூக்கிரட்டை',
+      telugu: 'అటికమామిడి',
+    },
     category: 'HERBS',
     family: 'Nyctaginaceae',
     partsUsed: ['Roots', 'Whole Plant'],
-    botanicalDescription: 'A spreading prostrate perennial herb with thick fusiform roots and small pinkish-purple flowers.',
-    overview: 'Punarnava (Boerhavia diffusa), meaning "that which renews", is famous in Ayurveda for renal and fluid balance.',
-    traditionalContext: 'Classified as Shothahara (swelling reduction) and Anulomana for urinary fluid balance.',
+    botanicalDescription:
+      'A spreading prostrate perennial herb with thick fusiform roots and small pinkish-purple flowers.',
+    overview:
+      'Punarnava (Boerhavia diffusa), meaning "that which renews", is famous in Ayurveda for renal and fluid balance.',
+    traditionalContext:
+      'Classified as Shothahara (swelling reduction) and Anulomana for urinary fluid balance.',
     ayurvedicContext: {
       rasa: 'Madhura (Sweet), Tikta (Bitter), Kashaya (Astringent)',
       virya: 'Ushna (Warm)',
@@ -1468,7 +1742,8 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       patentabilityNotes: 'Protected prior art under Section 3(p).',
     },
     jurisdictions: ['India'],
-    image: 'https://t4.ftcdn.net/jpg/09/05/31/31/240_F_905313136_IucThvCKw8L8ColRp76yLyECsRnoelxB.jpg',
+    image:
+      'https://t4.ftcdn.net/jpg/09/05/31/31/240_F_905313136_IucThvCKw8L8ColRp76yLyECsRnoelxB.jpg',
     imageMetadata: {
       url: 'https://t4.ftcdn.net/jpg/09/05/31/31/240_F_905313136_IucThvCKw8L8ColRp76yLyECsRnoelxB.jpg',
       source: 'Stock Botanical Photo',
@@ -1476,7 +1751,9 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       license: 'Educational License',
       attribution: 'Photo via Botanical Archives',
     },
-    informationSources: [{ name: 'POWO Kew', type: 'botanical', url: 'https://powo.science.kew.org/' }],
+    informationSources: [
+      { name: 'POWO Kew', type: 'botanical', url: 'https://powo.science.kew.org/' },
+    ],
     relatedKnowledgeSlugs: ['guduchi', 'kutki', 'arjuna'],
   },
 
@@ -1487,12 +1764,19 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
     commonName: 'Kutki',
     scientificName: 'Picrorhiza kurroa',
     synonyms: ['Veronica kurroa'],
-    regionalNames: { sanskrit: 'कटुकी', hindi: 'कुटकी', tamil: 'கடுகுரோகிணி', telugu: 'కటుకరోహిణి' },
+    regionalNames: {
+      sanskrit: 'कटुकी',
+      hindi: 'कुटकी',
+      tamil: 'கடுகுரோகிணி',
+      telugu: 'కటుకరోహిణి',
+    },
     category: 'HERBS',
     family: 'Plantaginaceae',
     partsUsed: ['Rhizome and Roots'],
-    botanicalDescription: 'A small perennial alpine herb with creeping rootstock growing in high Himalayas (3000-5000m). Endangered status.',
-    overview: 'Kutki (Picrorhiza kurroa) is an alpine bitter herb renowned in Ayurveda for hepatic clearance and bile flow support.',
+    botanicalDescription:
+      'A small perennial alpine herb with creeping rootstock growing in high Himalayas (3000-5000m). Endangered status.',
+    overview:
+      'Kutki (Picrorhiza kurroa) is an alpine bitter herb renowned in Ayurveda for hepatic clearance and bile flow support.',
     traditionalContext: 'Recorded as Tikta (bitter) Deepana and Pitta-kapha shodhaka.',
     ayurvedicContext: {
       rasa: 'Tikta (Bitter)',
@@ -1520,7 +1804,8 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       patentabilityNotes: 'Protected prior art under Section 3(p) and NBA biodiversity guidelines.',
     },
     jurisdictions: ['India', 'WIPO'],
-    image: 'https://t3.ftcdn.net/jpg/04/55/19/72/240_F_455197231_YhMrtefw0l5ml2OiS3M0UEMsy5TLT8hU.jpg',
+    image:
+      'https://t3.ftcdn.net/jpg/04/55/19/72/240_F_455197231_YhMrtefw0l5ml2OiS3M0UEMsy5TLT8hU.jpg',
     imageMetadata: {
       url: 'https://t3.ftcdn.net/jpg/04/55/19/72/240_F_455197231_YhMrtefw0l5ml2OiS3M0UEMsy5TLT8hU.jpg',
       source: 'Stock Botanical Photo',
@@ -1528,7 +1813,9 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       license: 'Educational License',
       attribution: 'Photo via Botanical Archives',
     },
-    informationSources: [{ name: 'POWO Kew', type: 'botanical', url: 'https://powo.science.kew.org/' }],
+    informationSources: [
+      { name: 'POWO Kew', type: 'botanical', url: 'https://powo.science.kew.org/' },
+    ],
     relatedKnowledgeSlugs: ['guduchi', 'punarnava', 'bhringraj'],
   },
 
@@ -1539,12 +1826,19 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
     commonName: 'Jatamansi (Spikenard)',
     scientificName: 'Nardostachys jatamansi',
     synonyms: ['Nardostachys grandiflora', 'Valeriana jatamansi (variant)'],
-    regionalNames: { sanskrit: 'जटामांसी', hindi: 'जटामांसी', tamil: 'ஜடாமஞ்சி', telugu: 'జటామాంసి' },
+    regionalNames: {
+      sanskrit: 'जटामांसी',
+      hindi: 'जटामांसी',
+      tamil: 'ஜடாமஞ்சி',
+      telugu: 'జటామాంసి',
+    },
     category: 'HERBS',
     family: 'Caprifoliaceae',
     partsUsed: ['Rhizome and Roots'],
-    botanicalDescription: 'An alpine perennial herb with aromatic woody rhizomes covered in dark fibrous tufted leaf remnants.',
-    overview: 'Jatamansi (Spikenard) is a prized Medhya and Nidra-janana (sleep supporting) herb for nervous tranquility.',
+    botanicalDescription:
+      'An alpine perennial herb with aromatic woody rhizomes covered in dark fibrous tufted leaf remnants.',
+    overview:
+      'Jatamansi (Spikenard) is a prized Medhya and Nidra-janana (sleep supporting) herb for nervous tranquility.',
     traditionalContext: 'Described as Manasadoshahara (mental balance support) and Sangnasthapana.',
     ayurvedicContext: {
       rasa: 'Tikta (Bitter), Kashaya (Astringent), Madhura (Sweet)',
@@ -1566,13 +1860,16 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       },
     ],
     ipInformation: {
-      patentStatus: 'Process patents for essential oil valeranone extraction. CITES protected species.',
+      patentStatus:
+        'Process patents for essential oil valeranone extraction. CITES protected species.',
       priorArtHighlights: ['TKDL Ref: NJ/118 - Jatamansi Yoga'],
       tkdlStatus: 'Cataloged in TKDL.',
-      patentabilityNotes: 'Protected prior art under Section 3(p) and CITES international trade rules.',
+      patentabilityNotes:
+        'Protected prior art under Section 3(p) and CITES international trade rules.',
     },
     jurisdictions: ['India', 'WIPO'],
-    image: 'https://t3.ftcdn.net/jpg/06/44/87/22/240_F_644872287_b6Ejq26lYHB9eFJ3ja5qwaki0LV3Z08R.jpg',
+    image:
+      'https://t3.ftcdn.net/jpg/06/44/87/22/240_F_644872287_b6Ejq26lYHB9eFJ3ja5qwaki0LV3Z08R.jpg',
     imageMetadata: {
       url: 'https://t3.ftcdn.net/jpg/06/44/87/22/240_F_644872287_b6Ejq26lYHB9eFJ3ja5qwaki0LV3Z08R.jpg',
       source: 'Stock Botanical Photo',
@@ -1580,7 +1877,9 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       license: 'Educational License',
       attribution: 'Photo via Botanical Archives',
     },
-    informationSources: [{ name: 'POWO Kew', type: 'botanical', url: 'https://powo.science.kew.org/' }],
+    informationSources: [
+      { name: 'POWO Kew', type: 'botanical', url: 'https://powo.science.kew.org/' },
+    ],
     relatedKnowledgeSlugs: ['shankhpushpi', 'brahmi', 'ashwagandha'],
   },
 
@@ -1591,13 +1890,21 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
     commonName: 'Sarpagandha',
     scientificName: 'Rauvolfia serpentina',
     synonyms: ['Ophioxylon serpentinum'],
-    regionalNames: { sanskrit: 'सर्पगन्धा', hindi: 'सर्पगंधा', tamil: 'சிவனமிர்தி', telugu: 'పాతాళగరిడి' },
+    regionalNames: {
+      sanskrit: 'सर्पगन्धा',
+      hindi: 'सर्पगंधा',
+      tamil: 'சிவனமிர்தி',
+      telugu: 'పాతాళగరిడి',
+    },
     category: 'HERBS',
     family: 'Apocynaceae',
     partsUsed: ['Roots'],
-    botanicalDescription: 'An evergreen erect undershrub with tuberous snake-like roots, whorled leaves, and red calyx pink flowers.',
-    overview: 'Sarpagandha (Rauvolfia serpentina) is a landmark herb in global pharmacology from which reserpine was first isolated.',
-    traditionalContext: 'Recorded as Nidrajanana (promoting sleep) and Vata-pitta shamaka under specialized Vaidya guidance.',
+    botanicalDescription:
+      'An evergreen erect undershrub with tuberous snake-like roots, whorled leaves, and red calyx pink flowers.',
+    overview:
+      'Sarpagandha (Rauvolfia serpentina) is a landmark herb in global pharmacology from which reserpine was first isolated.',
+    traditionalContext:
+      'Recorded as Nidrajanana (promoting sleep) and Vata-pitta shamaka under specialized Vaidya guidance.',
     ayurvedicContext: {
       rasa: 'Tikta (Bitter)',
       virya: 'Ushna (Warm)',
@@ -1621,10 +1928,12 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       patentStatus: 'Historic reserpine synthesis and extraction patents active in 20th century.',
       priorArtHighlights: ['TKDL Ref: RS/602 - Sarpagandha Vati'],
       tkdlStatus: 'Cataloged in TKDL.',
-      patentabilityNotes: 'Crude root powder protected under Section 3(p). Synthetic analogs patented globally.',
+      patentabilityNotes:
+        'Crude root powder protected under Section 3(p). Synthetic analogs patented globally.',
     },
     jurisdictions: ['India', 'USPTO', 'EPO'],
-    image: 'https://t4.ftcdn.net/jpg/10/55/51/01/240_F_1055510132_dN2j1A2Hvd3jaEj6i9yCF5XRiXKFxmB4.jpg',
+    image:
+      'https://t4.ftcdn.net/jpg/10/55/51/01/240_F_1055510132_dN2j1A2Hvd3jaEj6i9yCF5XRiXKFxmB4.jpg',
     imageMetadata: {
       url: 'https://t4.ftcdn.net/jpg/10/55/51/01/240_F_1055510132_dN2j1A2Hvd3jaEj6i9yCF5XRiXKFxmB4.jpg',
       source: 'Stock Botanical Photo',
@@ -1632,7 +1941,9 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       license: 'Educational License',
       attribution: 'Photo via Botanical Archives',
     },
-    informationSources: [{ name: 'POWO Kew', type: 'botanical', url: 'https://powo.science.kew.org/' }],
+    informationSources: [
+      { name: 'POWO Kew', type: 'botanical', url: 'https://powo.science.kew.org/' },
+    ],
     relatedKnowledgeSlugs: ['jatamansi', 'brahmi', 'shankhpushpi'],
   },
 
@@ -1643,13 +1954,21 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
     commonName: 'Kalmegh',
     scientificName: 'Andrographis paniculata',
     synonyms: ['Justicia paniculata'],
-    regionalNames: { sanskrit: 'कालमेघ / भूनिम्ब', hindi: 'कालमेघ', tamil: 'நிலவேம்பு', telugu: 'నేలవేము' },
+    regionalNames: {
+      sanskrit: 'कालमेघ / भूनिम्ब',
+      hindi: 'कालमेघ',
+      tamil: 'நிலவேம்பு',
+      telugu: 'నేలవేము',
+    },
     category: 'HERBS',
     family: 'Acanthaceae',
     partsUsed: ['Leaves', 'Whole Plant'],
-    botanicalDescription: 'An erect annual herbaceous plant with quadrangular dark green stems, lanceolate leaves, and small pink-spotted white flowers.',
-    overview: 'Kalmegh (Andrographis paniculata), known as "King of Bitters", is a major immunomodulatory and hepatic herb.',
-    traditionalContext: 'Described as Bhunimba (ground neem) for bitter taste detoxification and Pitta-kapha clearance.',
+    botanicalDescription:
+      'An erect annual herbaceous plant with quadrangular dark green stems, lanceolate leaves, and small pink-spotted white flowers.',
+    overview:
+      'Kalmegh (Andrographis paniculata), known as "King of Bitters", is a major immunomodulatory and hepatic herb.',
+    traditionalContext:
+      'Described as Bhunimba (ground neem) for bitter taste detoxification and Pitta-kapha clearance.',
     ayurvedicContext: {
       rasa: 'Tikta (Bitter)',
       virya: 'Ushna (Warm)',
@@ -1676,7 +1995,8 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       patentabilityNotes: 'Protected prior art under Section 3(p).',
     },
     jurisdictions: ['India', 'WIPO'],
-    image: 'https://t4.ftcdn.net/jpg/04/43/95/51/240_F_443955133_Q6a2MsG1XIUsM3YVujCMhyMDiT9pAom0.jpg',
+    image:
+      'https://t4.ftcdn.net/jpg/04/43/95/51/240_F_443955133_Q6a2MsG1XIUsM3YVujCMhyMDiT9pAom0.jpg',
     imageMetadata: {
       url: 'https://t4.ftcdn.net/jpg/04/43/95/51/240_F_443955133_Q6a2MsG1XIUsM3YVujCMhyMDiT9pAom0.jpg',
       source: 'Stock Botanical Photo',
@@ -1684,7 +2004,9 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       license: 'Educational License',
       attribution: 'Photo via Botanical Archives',
     },
-    informationSources: [{ name: 'POWO Kew', type: 'botanical', url: 'https://powo.science.kew.org/' }],
+    informationSources: [
+      { name: 'POWO Kew', type: 'botanical', url: 'https://powo.science.kew.org/' },
+    ],
     relatedKnowledgeSlugs: ['guduchi', 'kutki', 'neem'],
   },
 
@@ -1699,9 +2021,12 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
     category: 'MEDICINAL PLANTS',
     family: 'Rutaceae',
     partsUsed: ['Unripe Fruit', 'Leaves', 'Bark'],
-    botanicalDescription: 'A medium-sized thorny tree with trifoliate aromatic leaves and hard-shelled globose orange-yellow fruits.',
-    overview: 'Bilva (Aegle marmelos) is one of the sacred Dashamula trees in Ayurveda, prized for gastrointestinal bowel comfort.',
-    traditionalContext: 'Forms part of Dashamula. Unripe fruit is Sangrahi (bowel binding) while ripe fruit is laxative.',
+    botanicalDescription:
+      'A medium-sized thorny tree with trifoliate aromatic leaves and hard-shelled globose orange-yellow fruits.',
+    overview:
+      'Bilva (Aegle marmelos) is one of the sacred Dashamula trees in Ayurveda, prized for gastrointestinal bowel comfort.',
+    traditionalContext:
+      'Forms part of Dashamula. Unripe fruit is Sangrahi (bowel binding) while ripe fruit is laxative.',
     ayurvedicContext: {
       rasa: 'Kashaya (Astringent), Tikta (Bitter)',
       virya: 'Ushna (Warm)',
@@ -1709,7 +2034,10 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       doshaEffect: 'Pacifies Kapha and Vata',
       uses: ['Gastrointestinal comfort support', 'Bowel harmony', 'Metabolic balance'],
     },
-    classicalReferences: ['Charaka Samhita - Sutra Sthana Chapter 4 (Dashamula)', 'Sushruta Samhita'],
+    classicalReferences: [
+      'Charaka Samhita - Sutra Sthana Chapter 4 (Dashamula)',
+      'Sushruta Samhita',
+    ],
     relatedFormulations: ['Bilwadi Churna', 'Bilvasava', 'Dashamularishta'],
     researchReferences: [
       {
@@ -1728,7 +2056,8 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       patentabilityNotes: 'Protected prior art under Section 3(p).',
     },
     jurisdictions: ['India'],
-    image: 'https://t3.ftcdn.net/jpg/20/48/53/70/240_F_2048537081_0qPojA2XHmb8vfmCus340gYhos0ScDA3.jpg',
+    image:
+      'https://t3.ftcdn.net/jpg/20/48/53/70/240_F_2048537081_0qPojA2XHmb8vfmCus340gYhos0ScDA3.jpg',
     imageMetadata: {
       url: 'https://t3.ftcdn.net/jpg/20/48/53/70/240_F_2048537081_0qPojA2XHmb8vfmCus340gYhos0ScDA3.jpg',
       source: 'Stock Botanical Photo',
@@ -1736,7 +2065,9 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       license: 'Educational License',
       attribution: 'Photo via Botanical Archives',
     },
-    informationSources: [{ name: 'POWO Kew', type: 'botanical', url: 'https://powo.science.kew.org/' }],
+    informationSources: [
+      { name: 'POWO Kew', type: 'botanical', url: 'https://powo.science.kew.org/' },
+    ],
     relatedKnowledgeSlugs: ['arjuna', 'guduchi', 'haritaki'],
   },
 
@@ -1751,9 +2082,12 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
     category: 'MEDICINAL PLANTS',
     family: 'Moringaceae',
     partsUsed: ['Leaves', 'Pods', 'Seeds', 'Bark'],
-    botanicalDescription: 'A fast-growing drought-resistant tree with tripinnate leaves and long pendulous 3-sided seed pods.',
-    overview: 'Shigru (Moringa oleifera) is a nutrient-dense botanical powerhouse prized for metabolic and joint comfort.',
-    traditionalContext: 'Described as Katu-tikta Deepana and Shothahara in classical text traditions.',
+    botanicalDescription:
+      'A fast-growing drought-resistant tree with tripinnate leaves and long pendulous 3-sided seed pods.',
+    overview:
+      'Shigru (Moringa oleifera) is a nutrient-dense botanical powerhouse prized for metabolic and joint comfort.',
+    traditionalContext:
+      'Described as Katu-tikta Deepana and Shothahara in classical text traditions.',
     ayurvedicContext: {
       rasa: 'Katu (Pungent), Tikta (Bitter)',
       virya: 'Ushna (Warm)',
@@ -1780,7 +2114,8 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       patentabilityNotes: 'Crude leaves and pods fall under Section 3(p) prior art.',
     },
     jurisdictions: ['India', 'USPTO'],
-    image: 'https://t4.ftcdn.net/jpg/04/29/94/13/240_F_429941325_e9mS5yk11Bf1av5h0yoXkH3Zp28HznRU.jpg',
+    image:
+      'https://t4.ftcdn.net/jpg/04/29/94/13/240_F_429941325_e9mS5yk11Bf1av5h0yoXkH3Zp28HznRU.jpg',
     imageMetadata: {
       url: 'https://t4.ftcdn.net/jpg/04/29/94/13/240_F_429941325_e9mS5yk11Bf1av5h0yoXkH3Zp28HznRU.jpg',
       source: 'Stock Botanical Photo',
@@ -1788,7 +2123,9 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       license: 'Educational License',
       attribution: 'Photo via Botanical Archives',
     },
-    informationSources: [{ name: 'POWO Kew', type: 'botanical', url: 'https://powo.science.kew.org/' }],
+    informationSources: [
+      { name: 'POWO Kew', type: 'botanical', url: 'https://powo.science.kew.org/' },
+    ],
     relatedKnowledgeSlugs: ['amla', 'guduchi', 'turmeric'],
   },
 
@@ -1803,9 +2140,12 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
     category: 'HERBS',
     family: 'Asphodelaceae',
     partsUsed: ['Leaf Gel', 'Exudate (Elwa)'],
-    botanicalDescription: 'A succulent stemless plant with thick fleshy serrated green leaves containing transparent mucilaginous gel.',
-    overview: 'Kumari (Aloe vera) is a premier cooling, dermatological, and digestive Rasayana herb in Ayurveda.',
-    traditionalContext: 'Recorded as Varnya (skin radiance) and Yakrit-shodhaka in Bhavaprakasha Nighantu.',
+    botanicalDescription:
+      'A succulent stemless plant with thick fleshy serrated green leaves containing transparent mucilaginous gel.',
+    overview:
+      'Kumari (Aloe vera) is a premier cooling, dermatological, and digestive Rasayana herb in Ayurveda.',
+    traditionalContext:
+      'Recorded as Varnya (skin radiance) and Yakrit-shodhaka in Bhavaprakasha Nighantu.',
     ayurvedicContext: {
       rasa: 'Tikta (Bitter), Madhura (Sweet)',
       virya: 'Sheeta (Cooling)',
@@ -1832,7 +2172,8 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       patentabilityNotes: 'Crude gel formulations protected under Section 3(p).',
     },
     jurisdictions: ['India', 'USPTO', 'EPO'],
-    image: 'https://t3.ftcdn.net/jpg/00/29/98/36/240_F_29983618_UDhdGRit0HHQXAGoiB73foX4ThrOO2Bi.jpg',
+    image:
+      'https://t3.ftcdn.net/jpg/00/29/98/36/240_F_29983618_UDhdGRit0HHQXAGoiB73foX4ThrOO2Bi.jpg',
     imageMetadata: {
       url: 'https://t3.ftcdn.net/jpg/00/29/98/36/240_F_29983618_UDhdGRit0HHQXAGoiB73foX4ThrOO2Bi.jpg',
       source: 'Stock Botanical Photo',
@@ -1840,7 +2181,9 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       license: 'Educational License',
       attribution: 'Photo via Botanical Archives',
     },
-    informationSources: [{ name: 'POWO Kew', type: 'botanical', url: 'https://powo.science.kew.org/' }],
+    informationSources: [
+      { name: 'POWO Kew', type: 'botanical', url: 'https://powo.science.kew.org/' },
+    ],
     relatedKnowledgeSlugs: ['turmeric', 'neem', 'amla'],
   },
 
@@ -1855,9 +2198,12 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
     category: 'MEDICINAL PLANTS',
     family: 'Fabaceae',
     partsUsed: ['Stem Bark', 'Flowers'],
-    botanicalDescription: 'A handsome small evergreen tree with dense foliage and fragrant orange-red flowers borne in compact corymbs.',
-    overview: 'Ashoka (Saraca asoca), meaning "sorrowless", is the premier uterine tonic bark herb in classical Ayurveda.',
-    traditionalContext: 'Revered in Charaka Samhita under Vedanasthapana and Stree-roga (female wellness).',
+    botanicalDescription:
+      'A handsome small evergreen tree with dense foliage and fragrant orange-red flowers borne in compact corymbs.',
+    overview:
+      'Ashoka (Saraca asoca), meaning "sorrowless", is the premier uterine tonic bark herb in classical Ayurveda.',
+    traditionalContext:
+      'Revered in Charaka Samhita under Vedanasthapana and Stree-roga (female wellness).',
     ayurvedicContext: {
       rasa: 'Kashaya (Astringent), Tikta (Bitter)',
       virya: 'Sheeta (Cooling)',
@@ -1884,7 +2230,8 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       patentabilityNotes: 'Protected prior art under Section 3(p).',
     },
     jurisdictions: ['India'],
-    image: 'https://t4.ftcdn.net/jpg/05/20/62/35/240_F_520623555_HwqDGAmQcHa4TbadSS3KyXp5ii0UFTJ5.jpg',
+    image:
+      'https://t4.ftcdn.net/jpg/05/20/62/35/240_F_520623555_HwqDGAmQcHa4TbadSS3KyXp5ii0UFTJ5.jpg',
     imageMetadata: {
       url: 'https://t4.ftcdn.net/jpg/05/20/62/35/240_F_520623555_HwqDGAmQcHa4TbadSS3KyXp5ii0UFTJ5.jpg',
       source: 'Stock Botanical Photo',
@@ -1892,7 +2239,9 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       license: 'Educational License',
       attribution: 'Photo via Botanical Archives',
     },
-    informationSources: [{ name: 'POWO Kew', type: 'botanical', url: 'https://powo.science.kew.org/' }],
+    informationSources: [
+      { name: 'POWO Kew', type: 'botanical', url: 'https://powo.science.kew.org/' },
+    ],
     relatedKnowledgeSlugs: ['shatavari', 'lodhra', 'amla'],
   },
 
@@ -1903,13 +2252,21 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
     commonName: 'Daruharidra (Tree Turmeric)',
     scientificName: 'Berberis aristata',
     synonyms: ['Berberis tinctoria'],
-    regionalNames: { sanskrit: 'दारुहरिद्रा', hindi: 'दारुहल्दी', tamil: 'மரமஞ்சள்', telugu: 'మానిపసుపు' },
+    regionalNames: {
+      sanskrit: 'दारुहरिद्रा',
+      hindi: 'दारुहल्दी',
+      tamil: 'மரமஞ்சள்',
+      telugu: 'మానిపసుపు',
+    },
     category: 'MEDICINAL PLANTS',
     family: 'Berberidaceae',
     partsUsed: ['Stem Bark', 'Roots', 'Fruit Extract (Rasanjana)'],
-    botanicalDescription: 'An erect spiny evergreen shrub with yellow bark, small yellow flowers, and blue-black berries.',
-    overview: 'Daruharidra (Berberis aristata) is a rich source of berberine, widely used in Ayurveda for skin and metabolic clearance.',
-    traditionalContext: 'Recorded alongside Haridra as Dwi-haridra for skin pathologies and metabolic detoxification.',
+    botanicalDescription:
+      'An erect spiny evergreen shrub with yellow bark, small yellow flowers, and blue-black berries.',
+    overview:
+      'Daruharidra (Berberis aristata) is a rich source of berberine, widely used in Ayurveda for skin and metabolic clearance.',
+    traditionalContext:
+      'Recorded alongside Haridra as Dwi-haridra for skin pathologies and metabolic detoxification.',
     ayurvedicContext: {
       rasa: 'Tikta (Bitter), Kashaya (Astringent)',
       virya: 'Ushna (Warm)',
@@ -1936,7 +2293,8 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       patentabilityNotes: 'Crude tree turmeric bark protected under Section 3(p).',
     },
     jurisdictions: ['India', 'USPTO'],
-    image: 'https://t3.ftcdn.net/jpg/05/20/74/46/240_F_520744600_ZzRjl4HngcxXgzQd9wmwDTJKxpQlynYm.jpg',
+    image:
+      'https://t3.ftcdn.net/jpg/05/20/74/46/240_F_520744600_ZzRjl4HngcxXgzQd9wmwDTJKxpQlynYm.jpg',
     imageMetadata: {
       url: 'https://t3.ftcdn.net/jpg/05/20/74/46/240_F_520744600_ZzRjl4HngcxXgzQd9wmwDTJKxpQlynYm.jpg',
       source: 'Stock Botanical Photo',
@@ -1944,7 +2302,9 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       license: 'Educational License',
       attribution: 'Photo via Botanical Archives',
     },
-    informationSources: [{ name: 'POWO Kew', type: 'botanical', url: 'https://powo.science.kew.org/' }],
+    informationSources: [
+      { name: 'POWO Kew', type: 'botanical', url: 'https://powo.science.kew.org/' },
+    ],
     relatedKnowledgeSlugs: ['turmeric', 'neem', 'kutki'],
   },
 
@@ -1955,13 +2315,21 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
     commonName: 'Gudmar (Sugar Destroyer)',
     scientificName: 'Gymnema sylvestre',
     synonyms: ['Periploca sylvestris'],
-    regionalNames: { sanskrit: 'गुडमार / मेषशृङ्गी', hindi: 'गुड़मार', tamil: 'சிறுகுறிஞ்சான்', telugu: 'పొడపత్రి' },
+    regionalNames: {
+      sanskrit: 'गुडमार / मेषशृङ्गी',
+      hindi: 'गुड़मार',
+      tamil: 'சிறுகுறிஞ்சான்',
+      telugu: 'పొడపత్రి',
+    },
     category: 'HERBS',
     family: 'Apocynaceae',
     partsUsed: ['Leaves'],
-    botanicalDescription: 'A large woody climber with ovate leaves and small yellow flowers, famous for temporarily suppressing sweet taste sensation.',
-    overview: 'Gudmar (Gymnema sylvestre), meaning "sugar destroyer", is a major metabolic herb for glucose harmony.',
-    traditionalContext: 'Described as Meshashringi for Prameha (metabolic fluid management) in classical text traditions.',
+    botanicalDescription:
+      'A large woody climber with ovate leaves and small yellow flowers, famous for temporarily suppressing sweet taste sensation.',
+    overview:
+      'Gudmar (Gymnema sylvestre), meaning "sugar destroyer", is a major metabolic herb for glucose harmony.',
+    traditionalContext:
+      'Described as Meshashringi for Prameha (metabolic fluid management) in classical text traditions.',
     ayurvedicContext: {
       rasa: 'Kashaya (Astringent), Tikta (Bitter)',
       virya: 'Ushna (Warm)',
@@ -1988,7 +2356,8 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       patentabilityNotes: 'Protected prior art under Section 3(p).',
     },
     jurisdictions: ['India', 'USPTO'],
-    image: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8f/Gymnema_sylvestre_R.Br_-_Flickr_-_lalithamba.jpg/250px-Gymnema_sylvestre_R.Br_-_Flickr_-_lalithamba.jpg?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail',
+    image:
+      'https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8f/Gymnema_sylvestre_R.Br_-_Flickr_-_lalithamba.jpg/250px-Gymnema_sylvestre_R.Br_-_Flickr_-_lalithamba.jpg?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail',
     imageMetadata: {
       url: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8f/Gymnema_sylvestre_R.Br_-_Flickr_-_lalithamba.jpg/250px-Gymnema_sylvestre_R.Br_-_Flickr_-_lalithamba.jpg?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail',
       source: 'Wikimedia Commons',
@@ -1996,7 +2365,9 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       license: 'CC BY 2.0',
       attribution: 'Photo via Wikimedia Commons',
     },
-    informationSources: [{ name: 'POWO Kew', type: 'botanical', url: 'https://powo.science.kew.org/' }],
+    informationSources: [
+      { name: 'POWO Kew', type: 'botanical', url: 'https://powo.science.kew.org/' },
+    ],
     relatedKnowledgeSlugs: ['turmeric', 'fenugreek', 'amla'],
   },
 
@@ -2011,9 +2382,12 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
     category: 'HERBS',
     family: 'Zygophyllaceae',
     partsUsed: ['Fruits', 'Roots'],
-    botanicalDescription: 'A taprooted prostrate annual herb bearing sharp 5-angled spiny woody fruits.',
-    overview: 'Gokshura (Tribulus terrestris) is a premier renal fluid balance and Rasayana herb in Ayurveda.',
-    traditionalContext: 'Classified under Mutravirechaniya (urinary fluid regularizing) and Brmhana (nourishing).',
+    botanicalDescription:
+      'A taprooted prostrate annual herb bearing sharp 5-angled spiny woody fruits.',
+    overview:
+      'Gokshura (Tribulus terrestris) is a premier renal fluid balance and Rasayana herb in Ayurveda.',
+    traditionalContext:
+      'Classified under Mutravirechaniya (urinary fluid regularizing) and Brmhana (nourishing).',
     ayurvedicContext: {
       rasa: 'Madhura (Sweet)',
       virya: 'Sheeta (Cooling)',
@@ -2021,7 +2395,10 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       doshaEffect: 'Pacifies Vata and Pitta',
       uses: ['Renal fluid comfort support', 'Physical stamina', 'Vata-pitta harmony'],
     },
-    classicalReferences: ['Charaka Samhita - Sutra Sthana Chapter 4 (Dashamula)', 'Sushruta Samhita'],
+    classicalReferences: [
+      'Charaka Samhita - Sutra Sthana Chapter 4 (Dashamula)',
+      'Sushruta Samhita',
+    ],
     relatedFormulations: ['Gokshuradi Guggulu', 'Gokshuradi Kwath', 'Dashamularishta'],
     researchReferences: [
       {
@@ -2040,7 +2417,8 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       patentabilityNotes: 'Protected prior art under Section 3(p).',
     },
     jurisdictions: ['India', 'USPTO'],
-    image: 'https://t3.ftcdn.net/jpg/19/88/31/12/240_F_1988311273_zyFQ8a05DKlXMgje7bJgSfwoVdzarsoW.jpg',
+    image:
+      'https://t3.ftcdn.net/jpg/19/88/31/12/240_F_1988311273_zyFQ8a05DKlXMgje7bJgSfwoVdzarsoW.jpg',
     imageMetadata: {
       url: 'https://t3.ftcdn.net/jpg/19/88/31/12/240_F_1988311273_zyFQ8a05DKlXMgje7bJgSfwoVdzarsoW.jpg',
       source: 'Stock Botanical Photo',
@@ -2048,7 +2426,9 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       license: 'Educational License',
       attribution: 'Photo via Botanical Archives',
     },
-    informationSources: [{ name: 'POWO Kew', type: 'botanical', url: 'https://powo.science.kew.org/' }],
+    informationSources: [
+      { name: 'POWO Kew', type: 'botanical', url: 'https://powo.science.kew.org/' },
+    ],
     relatedKnowledgeSlugs: ['punarnava', 'ashwagandha', 'shatavari'],
   },
 
@@ -2064,7 +2444,8 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
     family: 'Poaceae',
     partsUsed: ['Aromatic Roots'],
     botanicalDescription: 'A tall tufted perennial clump-grass with spongy aromatic fibrous roots.',
-    overview: 'Usheera (Vetiver) is celebrated as a deeply cooling, aromatic Pitta-pacifying root in Ayurveda.',
+    overview:
+      'Usheera (Vetiver) is celebrated as a deeply cooling, aromatic Pitta-pacifying root in Ayurveda.',
     traditionalContext: 'Recorded as Dahaprashamana (heat cooling) and Varnya in classical texts.',
     ayurvedicContext: {
       rasa: 'Tikta (Bitter), Madhura (Sweet)',
@@ -2092,7 +2473,8 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       patentabilityNotes: 'Protected prior art under Section 3(p).',
     },
     jurisdictions: ['India'],
-    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjWDc4NkGSW3dD3p-HQZXU4Wa8ZI5bAp3ltqjW1VUun9A-KKxTaEfE0VhBTBuzE6hsnqvlX2HupwGEHYBTCi33wD2ocgy_nMrIvA01fw-6&s=10',
+    image:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjWDc4NkGSW3dD3p-HQZXU4Wa8ZI5bAp3ltqjW1VUun9A-KKxTaEfE0VhBTBuzE6hsnqvlX2HupwGEHYBTCi33wD2ocgy_nMrIvA01fw-6&s=10',
     imageMetadata: {
       url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjWDc4NkGSW3dD3p-HQZXU4Wa8ZI5bAp3ltqjW1VUun9A-KKxTaEfE0VhBTBuzE6hsnqvlX2HupwGEHYBTCi33wD2ocgy_nMrIvA01fw-6&s=10',
       source: 'Botanical Photo Repository',
@@ -2100,7 +2482,9 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       license: 'Educational License',
       attribution: 'Photo via Botanical Archives',
     },
-    informationSources: [{ name: 'POWO Kew', type: 'botanical', url: 'https://powo.science.kew.org/' }],
+    informationSources: [
+      { name: 'POWO Kew', type: 'botanical', url: 'https://powo.science.kew.org/' },
+    ],
     relatedKnowledgeSlugs: ['santalum-album', 'aloe', 'cardamom'],
   },
 
@@ -2115,9 +2499,12 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
     category: 'HERBS',
     family: 'Rosaceae',
     partsUsed: ['Petals', 'Essential Oil'],
-    botanicalDescription: 'A prickly deciduous shrub with fragrant pink multi-petaled flowers harvested at dawn.',
-    overview: 'Shatapatri (Damask Rose) is prized for Gulkand and Ark, acting as a soothing Pitta cooler.',
-    traditionalContext: 'Recorded in Bhavaprakasha Nighantu for Hridaya (emotional comfort) and Pitta cooling.',
+    botanicalDescription:
+      'A prickly deciduous shrub with fragrant pink multi-petaled flowers harvested at dawn.',
+    overview:
+      'Shatapatri (Damask Rose) is prized for Gulkand and Ark, acting as a soothing Pitta cooler.',
+    traditionalContext:
+      'Recorded in Bhavaprakasha Nighantu for Hridaya (emotional comfort) and Pitta cooling.',
     ayurvedicContext: {
       rasa: 'Tikta (Bitter), Madhura (Sweet), Kashaya (Astringent)',
       virya: 'Sheeta (Cooling)',
@@ -2144,7 +2531,8 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       patentabilityNotes: 'Protected prior art under Section 3(p).',
     },
     jurisdictions: ['India'],
-    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiojuoJePUsAu9TmSGuSB3iTPkHt9DxDzLTYfBGiiNqA&s=10',
+    image:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiojuoJePUsAu9TmSGuSB3iTPkHt9DxDzLTYfBGiiNqA&s=10',
     imageMetadata: {
       url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiojuoJePUsAu9TmSGuSB3iTPkHt9DxDzLTYfBGiiNqA&s=10',
       source: 'Botanical Photo Repository',
@@ -2152,7 +2540,9 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       license: 'Educational License',
       attribution: 'Photo via Botanical Archives',
     },
-    informationSources: [{ name: 'POWO Kew', type: 'botanical', url: 'https://powo.science.kew.org/' }],
+    informationSources: [
+      { name: 'POWO Kew', type: 'botanical', url: 'https://powo.science.kew.org/' },
+    ],
     relatedKnowledgeSlugs: ['vetiver', 'cardamom', 'aloe'],
   },
 
@@ -2163,12 +2553,19 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
     commonName: 'Lemongrass (Bhustrina)',
     scientificName: 'Cymbopogon citratus',
     synonyms: ['Andropogon citratus'],
-    regionalNames: { sanskrit: 'भूस्तृण', hindi: 'लेमनग्रास / जराकुश', tamil: 'எலுமிச்சை புல்', telugu: 'நிమ్మగడ్డి' },
+    regionalNames: {
+      sanskrit: 'भूस्तृण',
+      hindi: 'लेमनग्रास / जराकुश',
+      tamil: 'எலுமிச்சை புல்',
+      telugu: 'நிమ్మగడ్డి',
+    },
     category: 'HERBS',
     family: 'Poaceae',
     partsUsed: ['Leaves', 'Essential Oil'],
-    botanicalDescription: 'A dense clump-forming aromatic grass with linear leaves smelling strongly of lemon when crushed.',
-    overview: 'Bhustrina (Lemongrass) is used in Ayurvedic teas and essential oil formulations for respiratory warmth and digestive kindle.',
+    botanicalDescription:
+      'A dense clump-forming aromatic grass with linear leaves smelling strongly of lemon when crushed.',
+    overview:
+      'Bhustrina (Lemongrass) is used in Ayurvedic teas and essential oil formulations for respiratory warmth and digestive kindle.',
     traditionalContext: 'Described as Katu-tikta Deepana and Kapha-Vata shamaka.',
     ayurvedicContext: {
       rasa: 'Katu (Pungent), Tikta (Bitter)',
@@ -2196,7 +2593,8 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       patentabilityNotes: 'Protected prior art under Section 3(p).',
     },
     jurisdictions: ['India'],
-    image: 'https://t3.ftcdn.net/jpg/08/04/33/42/240_F_804334238_sCMMCmMBbE2ZxMJlekhqoIdxzSDzWFbj.jpg',
+    image:
+      'https://t3.ftcdn.net/jpg/08/04/33/42/240_F_804334238_sCMMCmMBbE2ZxMJlekhqoIdxzSDzWFbj.jpg',
     imageMetadata: {
       url: 'https://t3.ftcdn.net/jpg/08/04/33/42/240_F_804334238_sCMMCmMBbE2ZxMJlekhqoIdxzSDzWFbj.jpg',
       source: 'Stock Botanical Photo',
@@ -2204,7 +2602,9 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       license: 'Educational License',
       attribution: 'Photo via Botanical Archives',
     },
-    informationSources: [{ name: 'POWO Kew', type: 'botanical', url: 'https://powo.science.kew.org/' }],
+    informationSources: [
+      { name: 'POWO Kew', type: 'botanical', url: 'https://powo.science.kew.org/' },
+    ],
     relatedKnowledgeSlugs: ['tulsi', 'ginger', 'vetiver'],
   },
 
@@ -2219,9 +2619,12 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
     category: 'MEDICINAL PLANTS',
     family: 'Symplocaceae',
     partsUsed: ['Stem Bark'],
-    botanicalDescription: 'A small evergreen tree with oblong leathery leaves and yellow-white sweet-smelling flowers.',
-    overview: 'Lodhra (Symplocos racemosa) is a major classical herb for female uterine tissue support and astringent tone.',
-    traditionalContext: 'Charaka classifies Lodhra under Stambhana (astringent toning) and Varnya (skin clarity).',
+    botanicalDescription:
+      'A small evergreen tree with oblong leathery leaves and yellow-white sweet-smelling flowers.',
+    overview:
+      'Lodhra (Symplocos racemosa) is a major classical herb for female uterine tissue support and astringent tone.',
+    traditionalContext:
+      'Charaka classifies Lodhra under Stambhana (astringent toning) and Varnya (skin clarity).',
     ayurvedicContext: {
       rasa: 'Kashaya (Astringent)',
       virya: 'Sheeta (Cooling)',
@@ -2248,7 +2651,8 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       patentabilityNotes: 'Protected prior art under Section 3(p).',
     },
     jurisdictions: ['India'],
-    image: 'https://t3.ftcdn.net/jpg/03/88/68/08/240_F_388680802_1cDiG44aYC41rWXtoDYv5S31W6hmdH6U.jpg',
+    image:
+      'https://t3.ftcdn.net/jpg/03/88/68/08/240_F_388680802_1cDiG44aYC41rWXtoDYv5S31W6hmdH6U.jpg',
     imageMetadata: {
       url: 'https://t3.ftcdn.net/jpg/03/88/68/08/240_F_388680802_1cDiG44aYC41rWXtoDYv5S31W6hmdH6U.jpg',
       source: 'Stock Botanical Photo',
@@ -2256,8 +2660,9 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       license: 'Educational License',
       attribution: 'Photo via Botanical Archives',
     },
-    informationSources: [{ name: 'POWO Kew', type: 'botanical', url: 'https://powo.science.kew.org/' }],
+    informationSources: [
+      { name: 'POWO Kew', type: 'botanical', url: 'https://powo.science.kew.org/' },
+    ],
     relatedKnowledgeSlugs: ['ashoka', 'shatavari', 'amla'],
   },
 ];
-

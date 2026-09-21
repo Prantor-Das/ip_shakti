@@ -100,8 +100,9 @@ export const FullScreenLogin = () => {
                   type="text"
                   id="emailOrMobile"
                   placeholder="name@example.com or 9876543210"
-                  className={`w-full rounded-xl border bg-white px-3 py-2.5 pl-9 text-sm text-emerald-950 outline-none focus:ring-2 focus:ring-primary/30 ${emailError ? 'border-red-500' : 'border-emerald-900/15'
-                    }`}
+                  className={`w-full rounded-xl border bg-white px-3 py-2.5 pl-9 text-sm text-emerald-950 outline-none focus:ring-2 focus:ring-primary/30 ${
+                    emailError ? 'border-red-500' : 'border-emerald-900/15'
+                  }`}
                   value={emailOrMobile}
                   onChange={(e) => setEmailOrMobile(e.target.value)}
                 />
@@ -132,8 +133,9 @@ export const FullScreenLogin = () => {
                   type="password"
                   id="password"
                   placeholder="••••••••"
-                  className={`w-full rounded-xl border bg-white px-3 py-2.5 pl-9 text-sm text-emerald-950 outline-none focus:ring-2 focus:ring-primary/30 ${passwordError ? 'border-red-500' : 'border-emerald-900/15'
-                    }`}
+                  className={`w-full rounded-xl border bg-white px-3 py-2.5 pl-9 text-sm text-emerald-950 outline-none focus:ring-2 focus:ring-primary/30 ${
+                    passwordError ? 'border-red-500' : 'border-emerald-900/15'
+                  }`}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />

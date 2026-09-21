@@ -118,7 +118,8 @@ export default function SamhitaPage() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-sm md:text-base text-[#5F6368] max-w-3xl mx-auto mb-10 leading-relaxed"
           >
-            Explore medicinal plants, traditional knowledge, classical references, scientific research and intellectual-property connections through one intelligent knowledge layer.
+            Explore medicinal plants, traditional knowledge, classical references, scientific
+            research and intellectual-property connections through one intelligent knowledge layer.
           </motion.p>
 
           {/* MAJOR SEARCH BAR */}
@@ -150,15 +151,17 @@ export default function SamhitaPage() {
             {/* Quick search suggestions */}
             <div className="text-xs text-[#5F6368] text-left mt-3 ml-3 flex flex-wrap items-center gap-2">
               <span className="font-medium text-[#3C4043]">Suggested searches:</span>
-              {['Ashwagandha', 'Withania', 'Phyllanthus emblica', 'patent', 'TKDL', 'Root'].map((term) => (
-                <button
-                  key={term}
-                  onClick={() => setSearchQuery(term)}
-                  className="px-2.5 py-1 rounded-full bg-[#F8F9FA] hover:bg-[#E8F0E9] text-[#2D5A3F] border border-[#DADCE0] text-[11px] font-medium transition-colors"
-                >
-                  {term}
-                </button>
-              ))}
+              {['Ashwagandha', 'Withania', 'Phyllanthus emblica', 'patent', 'TKDL', 'Root'].map(
+                (term) => (
+                  <button
+                    key={term}
+                    onClick={() => setSearchQuery(term)}
+                    className="px-2.5 py-1 rounded-full bg-[#F8F9FA] hover:bg-[#E8F0E9] text-[#2D5A3F] border border-[#DADCE0] text-[11px] font-medium transition-colors"
+                  >
+                    {term}
+                  </button>
+                )
+              )}
             </div>
           </motion.div>
         </div>
@@ -280,31 +283,35 @@ export default function SamhitaPage() {
               </div>
 
               {/* View More / Show Less button */}
-              {!searchQuery && !selectedCategory && !selectedPart && filteredEntries.length > INITIAL_COUNT && (
-                <div className="mt-10 text-center">
-                  <button
-                    onClick={() => setShowAll((prev) => !prev)}
-                    className="inline-flex items-center gap-2 px-8 py-3 rounded-2xl border-2 border-[#477A5B] text-[#477A5B] font-semibold text-sm hover:bg-[#477A5B] hover:text-white transition-all duration-200 group"
-                  >
-                    {showAll ? (
-                      <>Show Less</>
-                    ) : (
-                      <>
-                        View More
-                        <span className="px-2 py-0.5 rounded-full bg-[#E8F0E9] text-[#2D5A3F] text-xs font-bold group-hover:bg-white/20 group-hover:text-white transition-colors">
-                          +{filteredEntries.length - INITIAL_COUNT} more
-                        </span>
-                      </>
-                    )}
-                    <ArrowRight className={`w-4 h-4 transition-transform duration-200 ${showAll ? 'rotate-90' : ''}`} />
-                  </button>
-                </div>
-              )}
+              {!searchQuery &&
+                !selectedCategory &&
+                !selectedPart &&
+                filteredEntries.length > INITIAL_COUNT && (
+                  <div className="mt-10 text-center">
+                    <button
+                      onClick={() => setShowAll((prev) => !prev)}
+                      className="inline-flex items-center gap-2 px-8 py-3 rounded-2xl border-2 border-[#477A5B] text-[#477A5B] font-semibold text-sm hover:bg-[#477A5B] hover:text-white transition-all duration-200 group"
+                    >
+                      {showAll ? (
+                        <>Show Less</>
+                      ) : (
+                        <>
+                          View More
+                          <span className="px-2 py-0.5 rounded-full bg-[#E8F0E9] text-[#2D5A3F] text-xs font-bold group-hover:bg-white/20 group-hover:text-white transition-colors">
+                            +{filteredEntries.length - INITIAL_COUNT} more
+                          </span>
+                        </>
+                      )}
+                      <ArrowRight
+                        className={`w-4 h-4 transition-transform duration-200 ${showAll ? 'rotate-90' : ''}`}
+                      />
+                    </button>
+                  </div>
+                )}
             </>
           )}
         </div>
       </section>
-
 
       {/* 2. FEATURED AYURVEDA ENTRIES SECTION */}
       <section className="py-16 bg-[#FFFFFF] border-b border-[#DADCE0]">
@@ -319,9 +326,7 @@ export default function SamhitaPage() {
                 Benchmark Herbal Profiles & Prior-Art Records
               </h2>
             </div>
-            <span className="text-xs text-[#5F6368] mt-2 md:mt-0">
-              Showing 6 benchmark entries
-            </span>
+            <span className="text-xs text-[#5F6368] mt-2 md:mt-0">Showing 6 benchmark entries</span>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -365,7 +370,9 @@ export default function SamhitaPage() {
                       </div>
                       <div className="flex items-center justify-between">
                         <span className="font-semibold text-[#202124]">Parts Used:</span>
-                        <span className="truncate max-w-[160px] text-right">{entry.partsUsed.join(', ')}</span>
+                        <span className="truncate max-w-[160px] text-right">
+                          {entry.partsUsed.join(', ')}
+                        </span>
                       </div>
                     </div>
 
@@ -376,9 +383,7 @@ export default function SamhitaPage() {
                       >
                         Explore Entry →
                       </Link>
-                      <span className="text-[11px] text-[#5F6368]">
-                        POWO / e-Charak Verified
-                      </span>
+                      <span className="text-[11px] text-[#5F6368]">POWO / e-Charak Verified</span>
                     </div>
                   </div>
                 </div>
@@ -400,7 +405,9 @@ export default function SamhitaPage() {
               The History & Lineage of Ayurveda
             </h2>
             <p className="text-base md:text-lg text-[#5F6368] leading-relaxed">
-              Ayurveda (<em>“The Science of Life”</em>) is one of the world's oldest holistic healing systems, tracing back over 5,000 years to the Vedic civilization of ancient India.
+              Ayurveda (<em>“The Science of Life”</em>) is one of the world&apos;s oldest holistic
+              healing systems, tracing back over 5,000 years to the Vedic civilization of ancient
+              India.
             </p>
           </div>
 
@@ -463,7 +470,8 @@ export default function SamhitaPage() {
                 </div>
                 <h4 className="font-bold text-[#202124] text-base mb-2">Vata, Pitta & Kapha</h4>
                 <p className="text-xs text-[#5F6368] leading-relaxed">
-                  Health is maintained through dynamic balance between the three metabolic principles: Vata (Movement), Pitta (Transformation), and Kapha (Structure).
+                  Health is maintained through dynamic balance between the three metabolic
+                  principles: Vata (Movement), Pitta (Transformation), and Kapha (Structure).
                 </p>
               </div>
 
@@ -473,7 +481,8 @@ export default function SamhitaPage() {
                 </div>
                 <h4 className="font-bold text-[#202124] text-base mb-2">Rasa, Virya & Vipaka</h4>
                 <p className="text-xs text-[#5F6368] leading-relaxed">
-                  Herbal actions are understood via 6 tastes (Rasa), potency temperature (Virya), post-digestive effect (Vipaka), and therapeutic potency (Prabhava).
+                  Herbal actions are understood via 6 tastes (Rasa), potency temperature (Virya),
+                  post-digestive effect (Vipaka), and therapeutic potency (Prabhava).
                 </p>
               </div>
 
@@ -483,7 +492,8 @@ export default function SamhitaPage() {
                 </div>
                 <h4 className="font-bold text-[#202124] text-base mb-2">Rejuvenation & Immunity</h4>
                 <p className="text-xs text-[#5F6368] leading-relaxed">
-                  Specialized classical therapies focused on cellular longevity, immune enhancement (Ojas), mental clarity (Medhya), and vitality defense.
+                  Specialized classical therapies focused on cellular longevity, immune enhancement
+                  (Ojas), mental clarity (Medhya), and vitality defense.
                 </p>
               </div>
             </div>
@@ -507,7 +517,8 @@ export default function SamhitaPage() {
                 Have questions about Ayurvedic IP or Section 3(p) prior art?
               </h2>
               <p className="text-sm text-[#5F6368] leading-relaxed">
-                Query our AI assistant regarding plant formulations, traditional knowledge references, and international patentability considerations.
+                Query our AI assistant regarding plant formulations, traditional knowledge
+                references, and international patentability considerations.
               </p>
             </div>
 
@@ -526,7 +537,10 @@ export default function SamhitaPage() {
       <footer className="py-8 bg-[#FFFFFF] border-t border-[#DADCE0]">
         <div className="samhita-container text-center text-xs text-[#5F6368]">
           <p className="max-w-3xl mx-auto">
-            <strong>Educational & IP Knowledge Disclaimer:</strong> Information in Samhita is compiled from public botanical and classical reference sources (e-Charak/NMPB, POWO Kew, TKDL). Content is provided for educational and prior-art reference purposes and does not constitute medical diagnosis or formal legal advice.
+            <strong>Educational & IP Knowledge Disclaimer:</strong> Information in Samhita is
+            compiled from public botanical and classical reference sources (e-Charak/NMPB, POWO Kew,
+            TKDL). Content is provided for educational and prior-art reference purposes and does not
+            constitute medical diagnosis or formal legal advice.
           </p>
         </div>
       </footer>

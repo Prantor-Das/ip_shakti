@@ -3,55 +3,41 @@
 import * as React from 'react';
 import { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { motion } from 'framer-motion';
 import {
   ArrowUpIcon,
   BookOpenIcon,
   CheckIcon,
   FileTextIcon,
   LeafIcon,
-  Loader2Icon,
-  MicIcon,
-  PlusIcon,
   ScaleIcon,
   ShieldCheckIcon,
+  SquareIcon,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-
-type MessageRole = 'user' | 'assistant';
-type SendStatus = 'idle' | 'loading' | 'success';
+import { ClassifyPanel } from '@/components/chat/classify-panel';
+import { JurisdictionToggle } from '@/components/chat/jurisdiction-toggle';
+import type {
+  ChatEvent,
+  Citation,
+  Confidence,
+  FormulationType,
+  Jurisdiction,
+  MessageRole,
+} from '@/lib/chat/types';
 
 interface Message {
   id: string;
   role: MessageRole;
   content: string;
-  citations?: string[];
-  confidence?: 'high' | 'medium' | 'low';
-  timestamp: Date;
+  jurisdiction: Jurisdiction;
+  synthetic?: boolean;
+  citations: Citation[];
+  confidence?: Confidence;
+  abstained?: boolean;
 }
+type Threads = Record<Jurisdiction, Message[]>;
 
-const DEMO_MESSAGES: Message[] = [
-  {
-    id: '1',
-    role: 'assistant',
-    content:
-      'Namaste. I’m Sahayak, your guide for Ayurveda intellectual property and regulatory questions.',
-    confidence: 'high',
-    citations: [],
-    timestamp: new Date(),
-  },
-  {
-    id: '2',
-    role: 'assistant',
-    content:
-      'Start with a question about a formulation, a filing route, traditional knowledge, or a target market. I’ll keep the answer practical and show where it comes from.',
-    confidence: 'high',
-    citations: [],
-    timestamp: new Date(),
-  },
-];
-
-const starterQuestions = [
+const starters = [
   {
     icon: FileTextIcon,
     title: 'Patent a formulation',
@@ -70,24 +56,64 @@ const starterQuestions = [
     detail: 'AYUSH and export requirements',
     query: 'What are the export regulations for Ayurvedic products?',
   },
-  {
-    icon: BookOpenIcon,
-    title: 'Document knowledge',
-    detail: 'Traditional knowledge and TKDL',
-    query: 'How should I document traditional knowledge for my product?',
-  },
 ];
 
-function CitationList({ citations }: { citations: string[] }) {
+function syntheticGreeting(jurisdiction: Jurisdiction, context: string | null): Message[] {
+  return [
+    {
+      id: `${jurisdiction}-greeting`,
+      role: 'assistant',
+      jurisdiction,
+      synthetic: true,
+      citations: [],
+      content: context
+        ? `Namaste. I’m Sahayak. I see you are exploring ${context} from the Samhita Knowledge Repository.`
+        : 'Namaste. I’m Sahayak, your guide for Ayurveda intellectual property and regulatory questions.',
+    },
+  ];
+}
+
+function renderText(text: string, citations: Citation[]) {
+  const parts = text.split(/(\[S[1-6]\])/g);
+  return parts.map((part, index) =>
+    part.match(/^\[S[1-6]\]$/) ? (
+      <sup key={`${part}-${index}`}>
+        <a
+          href={`#citation-${part.slice(1, -1)}`}
+          className="ml-0.5 font-bold text-primary underline"
+          title={citations.find((citation) => citation.id === part.slice(1, -1))?.title ?? 'Source'}
+        >
+          {part.slice(1, -1)}
+        </a>
+      </sup>
+    ) : (
+      <React.Fragment key={index}>{part}</React.Fragment>
+    )
+  );
+}
+
+function CitationList({ citations }: { citations: Citation[] }) {
   if (!citations.length) return null;
   return (
     <div className="mt-4 border-t border-emerald-900/10 pt-3">
       <p className="mb-2 text-xs font-semibold text-emerald-950/60">Sources used</p>
-      <div className="space-y-1.5">
+      <div className="space-y-2">
         {citations.map((citation) => (
-          <div key={citation} className="flex items-start gap-2 text-xs text-emerald-950/65">
+          <div
+            id={`citation-${citation.id}`}
+            key={citation.id}
+            className="flex items-start gap-2 text-xs text-emerald-950/65"
+          >
             <BookOpenIcon className="mt-0.5 size-3.5 shrink-0 text-primary" />
-            <span>{citation}</span>
+            <span>
+              <span className="font-semibold">
+                {citation.id} · {citation.title}
+              </span>
+              <span className="ml-1 rounded-full bg-emerald-50 px-1.5 py-0.5 text-[10px] text-primary">
+                {citation.jurisdiction}
+              </span>
+              <span className="block mt-0.5">{citation.ref}</span>
+            </span>
           </div>
         ))}
       </div>
@@ -98,9 +124,7 @@ function CitationList({ citations }: { citations: string[] }) {
 function MessageBubble({ message }: { message: Message }) {
   const assistant = message.role === 'assistant';
   return (
-    <motion.article
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
+    <article
       className={cn('flex gap-3 sm:gap-4', assistant ? 'items-start' : 'items-end justify-end')}
     >
       {assistant && (
@@ -117,20 +141,25 @@ function MessageBubble({ message }: { message: Message }) {
               : 'bg-primary text-white shadow-sm'
           )}
         >
-          {message.content.split('\n').map((line, index) => (
-            <p key={`${message.id}-${index}`} className={index ? 'mt-2' : undefined}>
-              {line || '\u00a0'}
-            </p>
-          ))}
-          {assistant && message.confidence && (
-            <div className="mt-4 flex items-center gap-2 border-t border-emerald-900/10 pt-3 text-xs text-emerald-950/55">
-              <CheckIcon className="size-3.5 text-primary" />
-              {message.confidence === 'high'
-                ? 'High-confidence guidance'
-                : 'Review with a qualified professional'}
+          {assistant && (
+            <div className="mb-2 text-[10px] font-semibold uppercase tracking-wide text-primary">
+              {message.jurisdiction}
             </div>
           )}
-          {assistant && <CitationList citations={message.citations ?? []} />}
+          <div>
+            {message.content.split('\n').map((line, index) => (
+              <p key={`${message.id}-${index}`} className={index ? 'mt-2' : undefined}>
+                {renderText(line || '\u00a0', message.citations)}
+              </p>
+            ))}
+          </div>
+          {assistant && !message.synthetic && message.confidence && (
+            <div className="mt-4 flex items-center gap-2 border-t border-emerald-900/10 pt-3 text-xs text-emerald-950/55">
+              <CheckIcon className="size-3.5 text-primary" />
+              Confidence: {message.confidence}
+            </div>
+          )}
+          {assistant && !message.synthetic && <CitationList citations={message.citations} />}
         </div>
       </div>
       {!assistant && (
@@ -138,267 +167,237 @@ function MessageBubble({ message }: { message: Message }) {
           You
         </div>
       )}
-    </motion.article>
-  );
-}
-
-function Composer({
-  value,
-  onChange,
-  onSubmit,
-  status,
-  inputRef,
-}: {
-  value: string;
-  onChange: (value: string) => void;
-  onSubmit: (value: string) => void;
-  status: SendStatus;
-  inputRef?: React.RefObject<HTMLTextAreaElement | null>;
-}) {
-  const busy = status === 'loading';
-  const canSend = value.trim().length > 0 && !busy;
-  return (
-    <div id="chat-input" className="rounded-2xl border border-emerald-900/15 bg-white p-2 shadow-lg shadow-emerald-950/5 scroll-mt-24">
-      <textarea
-        ref={inputRef}
-        value={value}
-        disabled={busy}
-        rows={2}
-        onChange={(event) => onChange(event.target.value)}
-        onKeyDown={(event) => {
-          if (event.key === 'Enter' && !event.shiftKey && canSend) {
-            event.preventDefault();
-            onSubmit(value);
-          }
-        }}
-        placeholder="Ask about patents, trademarks, GI protection, or compliance..."
-        aria-label="Ask Sahayak a question"
-        className="w-full resize-none bg-transparent px-3 py-2 text-sm leading-6 text-emerald-950 outline-none placeholder:text-emerald-950/35"
-      />
-      <div className="flex items-center justify-between border-t border-emerald-900/10 px-2 pt-2">
-        <div className="flex items-center gap-1">
-          <button
-            type="button"
-            aria-label="Add attachment"
-            className="flex size-8 items-center justify-center rounded-lg text-emerald-950/45 transition hover:bg-emerald-50 hover:text-primary"
-          >
-            <PlusIcon className="size-4" />
-          </button>
-          <button
-            type="button"
-            aria-label="Use microphone"
-            className="flex size-8 items-center justify-center rounded-lg text-emerald-950/45 transition hover:bg-emerald-50 hover:text-primary"
-          >
-            <MicIcon className="size-4" />
-          </button>
-          <span className="hidden pl-2 text-xs text-emerald-950/40 sm:inline">
-            Enter to send · Shift + Enter for a new line
-          </span>
-        </div>
-        <button
-          type="button"
-          aria-label="Send message"
-          disabled={!canSend}
-          onClick={() => onSubmit(value)}
-          className="flex size-9 items-center justify-center rounded-xl bg-primary text-white transition hover:bg-primary/90 disabled:cursor-not-allowed disabled:bg-emerald-100 disabled:text-emerald-400"
-        >
-          {busy ? (
-            <Loader2Icon className="size-4 animate-spin" />
-          ) : status === 'success' ? (
-            <CheckIcon className="size-4" />
-          ) : (
-            <ArrowUpIcon className="size-4" />
-          )}
-        </button>
-      </div>
-    </div>
+    </article>
   );
 }
 
 function ChatContent() {
   const searchParams = useSearchParams();
-  const contextParam = searchParams ? searchParams.get('context') : null;
+  const context = searchParams.get('context');
+  const [jurisdiction, setJurisdiction] = React.useState<Jurisdiction>('india');
+  const [formulationType, setFormulationType] = React.useState<FormulationType | undefined>();
+  const [threads, setThreads] = React.useState<Threads>(() => ({
+    india: syntheticGreeting('india', context),
+    international: syntheticGreeting('international', context),
+  }));
+  const [input, setInput] = React.useState('');
+  const [loading, setLoading] = React.useState(false);
+  const [bannerVisible, setBannerVisible] = React.useState(true);
+  const abortRef = React.useRef<AbortController | null>(null);
+  const endRef = React.useRef<HTMLDivElement | null>(null);
+  const activeMessages = threads[jurisdiction];
 
-  const initialMessages: Message[] = React.useMemo(() => {
-    if (contextParam) {
-      return [
-        {
-          id: '1',
-          role: 'assistant',
-          content: `Namaste. I am Sahayak. I see you are exploring ${contextParam} from the Samhita Knowledge Repository.`,
-          confidence: 'high',
-          citations: ['Samhita Knowledge Repository', 'TKDL Digital Database'],
-          timestamp: new Date(),
-        },
-        {
-          id: '2',
-          role: 'assistant',
-          content: `How can I help evaluate prior art, Section 3(p) compliance, or bioactive extract patentability for ${contextParam}?`,
-          confidence: 'high',
-          citations: [],
-          timestamp: new Date(),
-        },
-      ];
-    }
-    return DEMO_MESSAGES;
-  }, [contextParam]);
-
-  const [messages, setMessages] = React.useState<Message[]>(initialMessages);
-  const [inputValue, setInputValue] = React.useState('');
-  const [status, setStatus] = React.useState<SendStatus>('idle');
-  const [isLoading, setIsLoading] = React.useState(false);
-  const messagesEndRef = React.useRef<HTMLDivElement | null>(null);
-  const previousMessageCount = React.useRef(initialMessages.length);
-  const inputRef = React.useRef<HTMLTextAreaElement | null>(null);
-
+  React.useEffect(() => () => abortRef.current?.abort(), []);
   React.useEffect(() => {
-    // Focus keyboard input area on load
-    inputRef.current?.focus();
-    if (window.location.hash === '#chat-input') {
-      inputRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-  }, []);
+    endRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [activeMessages.length]);
 
-  React.useEffect(() => {
-    if (messages.length > previousMessageCount.current) {
-      messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-    }
-    previousMessageCount.current = messages.length;
-  }, [messages.length]);
-
-  const handleSubmit = React.useCallback(
-    async (value: string) => {
-      if (!value.trim() || isLoading) return;
-      const userMessage: Message = {
-        id: `user-${Date.now()}`,
-        role: 'user',
-        content: value,
-        timestamp: new Date(),
-      };
-      const assistantId = `assistant-${Date.now()}`;
-      const currentHistory = [...messages];
-      setMessages((previous) => [
-        ...previous,
-        userMessage,
-        { id: assistantId, role: 'assistant', content: '', citations: [], timestamp: new Date() },
-      ]);
-      setInputValue('');
-      setStatus('loading');
-      setIsLoading(true);
-      try {
-        const response = await fetch('/api/chat', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            message: value,
-            history: currentHistory.map(({ role, content }) => ({ role, content })),
-          }),
-        });
-        if (!response.ok || !response.body)
-          throw new Error('Unable to reach Sahayak right now. Please try again.');
-        const citationsHeader = response.headers.get('X-Citations');
-        const confidence =
-          (response.headers.get('X-Confidence') as Message['confidence']) || 'medium';
-        const citations = citationsHeader ? (JSON.parse(citationsHeader) as string[]) : [];
-        const reader = response.body.getReader();
-        const decoder = new TextDecoder();
-        let content = '';
-        while (true) {
-          const { done, value: chunk } = await reader.read();
-          if (done) break;
-          content += decoder.decode(chunk, { stream: true });
-          setMessages((previous) =>
-            previous.map((message) =>
-              message.id === assistantId ? { ...message, content, citations, confidence } : message
-            )
-          );
-        }
-        setStatus('success');
-        window.setTimeout(() => setStatus('idle'), 700);
-      } catch (error) {
-        const content =
-          error instanceof Error
-            ? error.message
-            : 'Unable to reach Sahayak right now. Please try again.';
-        setMessages((previous) =>
-          previous.map((message) =>
-            message.id === assistantId ? { ...message, content, confidence: 'low' } : message
-          )
-        );
-        setStatus('idle');
-      } finally {
-        setIsLoading(false);
-      }
-    },
-    [isLoading, messages]
+  const updateAssistant = React.useCallback(
+    (id: string, update: Partial<Message>) =>
+      setThreads((current) => ({
+        ...current,
+        [jurisdiction]: current[jurisdiction].map((message) =>
+          message.id === id ? { ...message, ...update } : message
+        ),
+      })),
+    [jurisdiction]
   );
 
+  async function submit(value: string) {
+    const trimmed = value.trim();
+    if (!trimmed || loading) return;
+    const history = activeMessages
+      .filter((message) => !message.synthetic && message.content)
+      .map(({ role, content }) => ({ role, content }));
+    const user: Message = {
+      id: `user-${Date.now()}`,
+      role: 'user',
+      content: trimmed,
+      jurisdiction,
+      citations: [],
+    };
+    const assistantId = `assistant-${Date.now()}`;
+    setThreads((current) => ({
+      ...current,
+      [jurisdiction]: [
+        ...current[jurisdiction],
+        user,
+        { id: assistantId, role: 'assistant', content: '', jurisdiction, citations: [] },
+      ],
+    }));
+    setInput('');
+    setLoading(true);
+    const controller = new AbortController();
+    abortRef.current = controller;
+    try {
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        signal: controller.signal,
+        body: JSON.stringify({ message: trimmed, jurisdiction, formulationType, history }),
+      });
+      if (!response.ok || !response.body) throw new Error('Unable to reach Sahayak right now.');
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
+      let buffer = '';
+      for (;;) {
+        const { done, value } = await reader.read();
+        buffer += decoder.decode(value ?? new Uint8Array(), { stream: !done });
+        const lines = buffer.split('\n');
+        buffer = lines.pop() ?? '';
+        for (const line of lines) {
+          if (!line.trim()) continue;
+          const event = JSON.parse(line) as ChatEvent;
+          if (event.type === 'delta')
+            setThreads((current) => ({
+              ...current,
+              [jurisdiction]: current[jurisdiction].map((message) =>
+                message.id === assistantId
+                  ? { ...message, content: message.content + event.text }
+                  : message
+              ),
+            }));
+          if (event.type === 'done')
+            updateAssistant(assistantId, {
+              confidence: event.confidence,
+              citations: event.citations,
+              abstained: event.abstained,
+            });
+          if (event.type === 'error')
+            updateAssistant(assistantId, {
+              content: 'Unable to answer right now. Please try again.',
+              confidence: 'low',
+              abstained: true,
+            });
+        }
+        if (done) break;
+      }
+    } catch (error: unknown) {
+      if (!(error instanceof DOMException && error.name === 'AbortError'))
+        updateAssistant(assistantId, {
+          content: 'Unable to answer right now. Please try again.',
+          confidence: 'low',
+          abstained: true,
+        });
+    } finally {
+      abortRef.current = null;
+      setLoading(false);
+    }
+  }
+
   return (
-    <main className="min-h-dvh bg-[#f7faf7] px-4 pb-8 pt-24 text-emerald-950 sm:px-6 lg:px-8">
+    <main
+      className={cn(
+        'min-h-dvh px-4 pb-8 pt-24 text-emerald-950 transition-colors sm:px-6 lg:px-8',
+        jurisdiction === 'india' ? 'bg-[#f7faf7]' : 'bg-[#f7f9fc]'
+      )}
+    >
       <div className="mx-auto max-w-3xl">
-        <section className="min-w-0">
-          <header className="mb-8 border-b border-emerald-900/10 pb-6">
-            <div className="mb-3 flex items-center gap-2 text-xs font-semibold text-primary">
-              <span className="size-2 rounded-full bg-primary" />
-              IP-SAKTI assistant
-            </div>
-            <h1 className="max-w-2xl text-3xl font-semibold tracking-tight text-emerald-950 text-balance sm:text-4xl">
-              A clear next step for your Ayurveda IP question.
-            </h1>
-            <p className="mt-3 max-w-xl text-sm leading-6 text-emerald-950/60 text-pretty">
-              Research-backed guidance for protecting formulations, documenting heritage, and
-              entering new markets.
-            </p>
-          </header>
-          <div className="space-y-5">
-            {messages.map((message) => (
-              <MessageBubble key={message.id} message={message} />
-            ))}
-            {isLoading && (
-              <div className="flex items-center gap-3 text-sm text-emerald-950/55">
-                <span className="flex size-9 items-center justify-center rounded-xl bg-primary text-white">
-                  <LeafIcon className="size-4" />
-                </span>
-                Sahayak is reading your question...
-              </div>
-            )}
-            <div ref={messagesEndRef} />
+        {bannerVisible && (
+          <div className="mb-4 flex items-center justify-between rounded-xl border border-amber-900/10 bg-amber-50 px-4 py-3 text-xs text-amber-950">
+            <span>This tool provides information, not legal advice.</span>
+            <button
+              type="button"
+              onClick={() => setBannerVisible(false)}
+              aria-label="Dismiss banner"
+            >
+              ×
+            </button>
           </div>
-          {!messages.some((message) => message.role === 'user') && (
-            <div className="mt-8 grid gap-3 sm:grid-cols-2">
-              {starterQuestions.map(({ icon: Icon, title, detail, query }) => (
-                <button
-                  key={title}
-                  type="button"
-                  disabled={isLoading}
-                  onClick={() => handleSubmit(query)}
-                  className="group flex items-start gap-3 rounded-xl border border-emerald-900/10 bg-white p-3.5 text-left transition hover:border-primary/40 disabled:opacity-50"
-                >
-                  <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-emerald-50 text-primary">
-                    <Icon className="size-4" />
-                  </span>
-                  <span>
-                    <span className="block text-sm font-semibold text-emerald-950">{title}</span>
-                    <span className="mt-1 block text-xs text-emerald-950/55">{detail}</span>
-                  </span>
-                </button>
-              ))}
+        )}
+        <header className="mb-6 border-b border-emerald-900/10 pb-6">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <div className="mb-3 flex items-center gap-2 text-xs font-semibold text-primary">
+                <span className="size-2 rounded-full bg-primary" />
+                IP-SAKTI assistant
+              </div>
+              <h1 className="text-3xl font-semibold tracking-tight text-emerald-950 sm:text-4xl">
+                A clear next step for your Ayurveda IP question.
+              </h1>
+            </div>
+            <JurisdictionToggle value={jurisdiction} onChange={setJurisdiction} />
+          </div>
+          <p className="mt-3 max-w-xl text-sm leading-6 text-emerald-950/60">
+            Research-backed guidance for protecting formulations, documenting heritage, and entering
+            new markets.
+          </p>
+          <div className="mt-4">
+            <ClassifyPanel value={formulationType} onChange={setFormulationType} />
+          </div>
+        </header>
+        <div className="space-y-5">
+          {activeMessages.map((message) => (
+            <MessageBubble key={message.id} message={message} />
+          ))}
+          {loading && (
+            <div className="flex items-center gap-3 text-sm text-emerald-950/55">
+              <span className="flex size-9 items-center justify-center rounded-xl bg-primary text-white">
+                <LeafIcon className="size-4" />
+              </span>
+              Sahayak is reading your question...
             </div>
           )}
-          <div className="mt-8">
-            <Composer
-              value={inputValue}
-              onChange={setInputValue}
-              onSubmit={handleSubmit}
-              status={status}
-              inputRef={inputRef}
-            />
-            <p className="mt-3 flex items-center justify-center gap-1.5 text-center text-[11px] text-emerald-950/45">
-              <ShieldCheckIcon className="size-3.5" />
-              Educational guidance only. Consult a qualified IP or regulatory professional.
-            </p>
+          <div ref={endRef} />
+        </div>
+        {!activeMessages.some((message) => message.role === 'user') && (
+          <div className="mt-8 grid gap-3 sm:grid-cols-3">
+            {starters.map(({ icon: Icon, title, detail, query }) => (
+              <button
+                key={title}
+                type="button"
+                disabled={loading}
+                onClick={() => void submit(query)}
+                className="group flex items-start gap-3 rounded-xl border border-emerald-900/10 bg-white p-3.5 text-left transition hover:border-primary/40 disabled:opacity-50"
+              >
+                <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-emerald-50 text-primary">
+                  <Icon className="size-4" />
+                </span>
+                <span>
+                  <span className="block text-sm font-semibold text-emerald-950">{title}</span>
+                  <span className="mt-1 block text-xs text-emerald-950/55">{detail}</span>
+                </span>
+              </button>
+            ))}
           </div>
-        </section>
+        )}
+        <div
+          id="chat-input"
+          className="mt-8 rounded-2xl border border-emerald-900/15 bg-white p-2 shadow-lg shadow-emerald-950/5"
+        >
+          <textarea
+            value={input}
+            disabled={loading}
+            rows={2}
+            onChange={(event) => setInput(event.target.value)}
+            onKeyDown={(event) => {
+              if (event.key === 'Enter' && !event.shiftKey) {
+                event.preventDefault();
+                void submit(input);
+              }
+            }}
+            placeholder="Ask about patents, trademarks, GI protection, or compliance..."
+            aria-label="Ask Sahayak a question"
+            className="w-full resize-none bg-transparent px-3 py-2 text-sm leading-6 text-emerald-950 outline-none placeholder:text-emerald-950/35"
+          />
+          <div className="flex items-center justify-between border-t border-emerald-900/10 px-2 pt-2">
+            <span className="text-xs text-emerald-950/40">
+              Enter to send · Shift + Enter for a new line
+            </span>
+            <button
+              type="button"
+              aria-label={loading ? 'Stop response' : 'Send message'}
+              onClick={() => (loading ? abortRef.current?.abort() : void submit(input))}
+              disabled={!loading && !input.trim()}
+              className="flex size-9 items-center justify-center rounded-xl bg-primary text-white transition hover:bg-primary/90 disabled:cursor-not-allowed disabled:bg-emerald-100 disabled:text-emerald-400"
+            >
+              {loading ? <SquareIcon className="size-3.5" /> : <ArrowUpIcon className="size-4" />}
+            </button>
+          </div>
+        </div>
+        <p className="mt-3 text-center text-[11px] text-emerald-950/45">
+          Don&apos;t enter unpublished or confidential invention details.
+        </p>
       </div>
     </main>
   );
@@ -406,9 +405,10 @@ function ChatContent() {
 
 export default function ChatPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-[#f7faf7] pt-24 text-center">Loading Chat...</div>}>
+    <Suspense
+      fallback={<div className="min-h-screen bg-[#f7faf7] pt-24 text-center">Loading Chat...</div>}
+    >
       <ChatContent />
     </Suspense>
   );
 }
-

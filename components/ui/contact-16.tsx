@@ -80,7 +80,6 @@ export default function Contact16() {
       <div className="mx-auto max-w-6xl">
         {/* Card matching user mockup image */}
         <div className="relative overflow-hidden rounded-[2.5rem] bg-white p-6 sm:p-10 md:p-12 text-center shadow-[0_20px_50px_rgba(0,0,0,0.06)] border border-[#173b2b]/10 text-[#173b2b]">
-          
           {/* Subtle envelope watermark positioned with clean gap from the right edge */}
           <div className="absolute top-6 right-8 sm:right-12 md:right-16 pointer-events-none opacity-15 text-[#173b2b]/40">
             <Mail className="w-36 h-36 sm:w-44 sm:h-44 md:w-52 md:h-52 stroke-[1.4]" />
@@ -98,7 +97,8 @@ export default function Contact16() {
 
           {/* Body Text */}
           <p className="text-sm sm:text-base text-[#173b2b]/70 max-w-xl mx-auto mb-6 leading-relaxed">
-            Whether you have a specific project in mind or just want to chat about technology, my inbox is always open.
+            Whether you have a specific project in mind or just want to chat about technology, my
+            inbox is always open.
           </p>
 
           {sent ? (
@@ -109,7 +109,8 @@ export default function Contact16() {
               </span>
               <h3 className="font-bold text-xl text-[#173b2b]">Email Sent Successfully!</h3>
               <p className="text-sm text-[#173b2b]/70 max-w-md">
-                Thank you for reaching out. Your message has been sent directly to <strong className="text-[#2f855a]">yashcrj06@gmail.com</strong>.
+                Thank you for reaching out. Your message has been sent directly to{' '}
+                <strong className="text-[#2f855a]">yashcrj06@gmail.com</strong>.
               </p>
               <button
                 type="button"
@@ -121,9 +122,15 @@ export default function Contact16() {
             </div>
           ) : (
             /* Form input fields */
-            <form onSubmit={handleSubmit} className="max-w-xl sm:max-w-2xl mx-auto flex flex-col gap-4 text-left">
+            <form
+              onSubmit={handleSubmit}
+              className="max-w-xl sm:max-w-2xl mx-auto flex flex-col gap-4 text-left"
+            >
               <div className="flex flex-col gap-1">
-                <label htmlFor="full-name" className="text-xs font-semibold uppercase tracking-wider text-[#173b2b]/70">
+                <label
+                  htmlFor="full-name"
+                  className="text-xs font-semibold uppercase tracking-wider text-[#173b2b]/70"
+                >
                   Full Name
                 </label>
                 <input
@@ -138,7 +145,10 @@ export default function Contact16() {
               </div>
 
               <div className="flex flex-col gap-1">
-                <label htmlFor="user-email" className="text-xs font-semibold uppercase tracking-wider text-[#173b2b]/70">
+                <label
+                  htmlFor="user-email"
+                  className="text-xs font-semibold uppercase tracking-wider text-[#173b2b]/70"
+                >
                   Email Address
                 </label>
                 <input
@@ -153,7 +163,10 @@ export default function Contact16() {
               </div>
 
               <div className="flex flex-col gap-1">
-                <label htmlFor="user-message" className="text-xs font-semibold uppercase tracking-wider text-[#173b2b]/70">
+                <label
+                  htmlFor="user-message"
+                  className="text-xs font-semibold uppercase tracking-wider text-[#173b2b]/70"
+                >
                   Message
                 </label>
                 <textarea
@@ -177,20 +190,29 @@ export default function Contact16() {
                 >
                   {loading ? (
                     <>
-                      <span className="!text-white font-semibold" style={{ color: '#ffffff' }}>Sending...</span>
-                      <Loader2 className="w-4 h-4 !text-white animate-spin" style={{ color: '#ffffff' }} />
+                      <span className="!text-white font-semibold" style={{ color: '#ffffff' }}>
+                        Sending...
+                      </span>
+                      <Loader2
+                        className="w-4 h-4 !text-white animate-spin"
+                        style={{ color: '#ffffff' }}
+                      />
                     </>
                   ) : (
                     <>
-                      <span className="!text-white font-semibold" style={{ color: '#ffffff' }}>Contact Me</span>
-                      <Send className="w-4 h-4 !text-white" style={{ color: '#ffffff', stroke: '#ffffff' }} />
+                      <span className="!text-white font-semibold" style={{ color: '#ffffff' }}>
+                        Contact Me
+                      </span>
+                      <Send
+                        className="w-4 h-4 !text-white"
+                        style={{ color: '#ffffff', stroke: '#ffffff' }}
+                      />
                     </>
                   )}
                 </button>
               </div>
             </form>
           )}
-
         </div>
       </div>
     </section>

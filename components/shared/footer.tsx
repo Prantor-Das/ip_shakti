@@ -16,7 +16,9 @@ export const Footer = () => {
         >
           IP - SAKTI
         </div>
-        <p><i>Where Ancient Wisdom Meets Intelligent Technology.</i></p>
+        <p>
+          <i>Where Ancient Wisdom Meets Intelligent Technology.</i>
+        </p>
         <div className="footer-links">
           <a
             href="https://www.facebook.com/AEC1998"
@@ -78,11 +80,7 @@ export const Footer = () => {
 
         <div className="sih-logo-wrap">
           <div className="built-for">built by</div>
-          <Link
-            href="/about"
-            className="sih-logo"
-            style={{ fontSize: '2.5rem' }}
-          >
+          <Link href="/about" className="sih-logo" style={{ fontSize: '2.5rem' }}>
             SENTINALS
           </Link>
         </div>
@@ -101,10 +99,7 @@ export const Footer = () => {
           {/* About */}
           <div>
             <div className="mb-4">
-              <span
-                style={{ color: '#000000' }}
-                className="font-bold tracking-tight text-lg"
-              >
+              <span style={{ color: '#000000' }} className="font-bold tracking-tight text-lg">
                 IP-SAKTI
               </span>
             </div>
@@ -188,7 +183,10 @@ export const Footer = () => {
               </a>
               <div className="flex items-center space-x-2">
                 <Mail size={16} />
-                <a href="mailto:team@ip-sakti.com" className="hover:text-emerald-700 transition-colors">
+                <a
+                  href="mailto:team@ip-sakti.com"
+                  className="hover:text-emerald-700 transition-colors"
+                >
                   team@ip-sakti.com
                 </a>
               </div>
@@ -197,10 +195,7 @@ export const Footer = () => {
         </div>
 
         {/* Black Separation Line above Copyright */}
-        <div
-          className="my-8"
-          style={{ borderTop: '1px solid rgba(0, 0, 0, 0.25)' }}
-        />
+        <div className="my-8" style={{ borderTop: '1px solid rgba(0, 0, 0, 0.25)' }} />
 
         {/* Bottom Bar */}
         <div className="flex flex-col md:flex-row justify-between items-center text-sm text-gray-700">

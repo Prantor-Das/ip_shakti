@@ -1,0 +1,41 @@
+export type Jurisdiction = 'india' | 'international';
+export type FormulationType =
+  | 'classical'
+  | 'proprietary'
+  | 'new-drug'
+  | 'phytopharmaceutical'
+  | 'nutraceutical'
+  | 'cosmetic'
+  | 'unsure';
+export type MessageRole = 'user' | 'assistant';
+export type Confidence = 'high' | 'medium' | 'low';
+
+export interface ChatHistoryItem {
+  role: MessageRole;
+  content: string;
+}
+
+export interface ChatRequest {
+  message: string;
+  jurisdiction: Jurisdiction;
+  formulationType?: FormulationType;
+  history: ChatHistoryItem[];
+}
+
+export interface Citation {
+  id: string;
+  title: string;
+  jurisdiction: Jurisdiction;
+  ref: string;
+}
+
+export type ChatEvent =
+  | { type: 'meta'; requestId: string; jurisdiction: Jurisdiction }
+  | { type: 'delta'; text: string }
+  | {
+      type: 'done';
+      confidence: Confidence;
+      citations: Citation[];
+      abstained: boolean;
+    }
+  | { type: 'error'; code: string };
