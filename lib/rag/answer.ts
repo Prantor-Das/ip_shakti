@@ -19,14 +19,43 @@ export interface AnswerInput {
   formulationType?: FormulationType;
   history: ChatHistoryItem[];
   signal?: AbortSignal;
+  onDelta?: (delta: string) => void;
 }
 
 export interface AnswerResult {
   text: string;
   citations: Citation[];
+  nextSteps: string[];
+  retrievedDocIds: string[];
+  retrievalSimilarities: number[];
   confidence: Confidence;
   abstained: boolean;
   topSimilarity: number;
+}
+
+function nextStepsFor(citations: Citation[], chunks: RetrievedChunk[]): string[] {
+  const citedIds = new Set(citations.map((citation) => citation.id));
+  const steps: string[] = [];
+  for (const [index, chunk] of chunks.entries()) {
+    const sourceId = `S${index + 1}`;
+    if (!citedIds.has(sourceId)) continue;
+    const sentences = chunk.content.split(/(?<=[.!?])\s+/);
+    for (const sentence of sentences) {
+      const clean = sentence.trim();
+      if (
+        clean.length >= 30 &&
+        clean.length <= 320 &&
+        /\b(must|shall|required|requirement|apply|obtain|submit|notify|maintain|record|seek|disclose|consult)\b/i.test(
+          clean
+        )
+      ) {
+        const step = `${clean} [${sourceId}]`;
+        if (!steps.includes(step)) steps.push(step);
+      }
+      if (steps.length >= 5) return steps;
+    }
+  }
+  return steps;
 }
 
 const formulationLabels: Record<FormulationType, string> = {
@@ -80,6 +109,7 @@ function citationsFor(
     if (!citations.some((citation) => citation.id === id))
       citations.push({
         id,
+        documentId: chunk.documentId,
         title: chunk.title,
         jurisdiction: chunk.jurisdiction,
         sectionRef: chunk.sectionRef ?? undefined,
@@ -98,6 +128,9 @@ export async function answerQuestion(input: AnswerInput): Promise<AnswerResult> 
     return {
       text: `${ABSTENTION_TEXT}\n\nThis is information, not legal advice.`,
       citations: [],
+      nextSteps: [],
+      retrievedDocIds: retrieval.chunks.map((chunk) => chunk.documentId),
+      retrievalSimilarities: retrieval.chunks.map((chunk) => chunk.similarity),
       confidence: 'low',
       abstained: true,
       topSimilarity: retrieval.topSimilarity,
@@ -118,8 +151,10 @@ ${sourceBlock(retrieval.chunks)}
     history: input.history,
     message: input.message,
     signal: input.signal,
-  }))
+  })) {
     generated += delta;
+    input.onDelta?.(delta);
+  }
   const parsed = citationsFor(generated, retrieval.chunks);
   const abstained =
     parsed.citations.length === 0 ||
@@ -129,6 +164,9 @@ ${sourceBlock(retrieval.chunks)}
     return {
       text: `${ABSTENTION_TEXT}\n\nThis is information, not legal advice.`,
       citations: [],
+      nextSteps: [],
+      retrievedDocIds: retrieval.chunks.map((chunk) => chunk.documentId),
+      retrievalSimilarities: retrieval.chunks.map((chunk) => chunk.similarity),
       confidence: 'low',
       abstained: true,
       topSimilarity: retrieval.topSimilarity,
@@ -136,6 +174,9 @@ ${sourceBlock(retrieval.chunks)}
   return {
     text: `${parsed.text.trim()}\n\nThis is information, not legal advice.`,
     citations: parsed.citations,
+    nextSteps: nextStepsFor(parsed.citations, retrieval.chunks),
+    retrievedDocIds: retrieval.chunks.map((chunk) => chunk.documentId),
+    retrievalSimilarities: retrieval.chunks.map((chunk) => chunk.similarity),
     confidence: confidence(
       retrieval.topSimilarity,
       retrieval.minSimilarity,

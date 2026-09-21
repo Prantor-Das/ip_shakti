@@ -9,6 +9,7 @@
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
+    "eval": "tsx scripts/eval.ts",
     "ingest": "tsx scripts/ingest.ts",
     "db:check": "tsx scripts/check-db.ts",
     "supabase": "supabase",

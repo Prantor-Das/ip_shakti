@@ -1,3 +1,5 @@
+import type { Language } from '@/lib/i18n/languages';
+
 export type Jurisdiction = 'india' | 'international';
 export type FormulationType =
   | 'classical'
@@ -17,6 +19,7 @@ export interface ChatHistoryItem {
 
 export interface ChatRequest {
   message: string;
+  lang: Language;
   jurisdiction: Jurisdiction;
   formulationType?: FormulationType;
   history: ChatHistoryItem[];
@@ -24,6 +27,7 @@ export interface ChatRequest {
 
 export interface Citation {
   id: string;
+  documentId?: string;
   title: string;
   jurisdiction: Jurisdiction;
   sectionRef?: string;
@@ -34,12 +38,17 @@ export interface Citation {
 }
 
 export type ChatEvent =
-  | { type: 'meta'; requestId: string; jurisdiction: Jurisdiction }
+  | { type: 'meta'; requestId: string; jurisdiction: Jurisdiction; lang: Language }
   | { type: 'delta'; text: string }
+  | { type: 'status'; stage: 'translating' }
   | {
       type: 'done';
       confidence: Confidence;
       citations: Citation[];
       abstained: boolean;
+      lang: Language;
+      translated: boolean;
+      translationFailed: boolean;
+      englishText: string;
     }
   | { type: 'error'; code: string };

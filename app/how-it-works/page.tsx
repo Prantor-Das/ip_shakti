@@ -253,7 +253,7 @@ export default function HowItWorks() {
       <section className="border-y border-[#173b2b]/10 bg-[#edf6ef] px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto grid max-w-7xl gap-8 sm:grid-cols-3 sm:gap-0">
           {[
-            ['50+', 'authoritative IP sources'],
+            ['Corpus', 'jurisdiction-filtered source registry'],
             ['6', 'languages supported'],
             ['1', 'clearer path forward'],
           ].map(([value, label], i) => (

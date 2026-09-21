@@ -66,7 +66,7 @@ export default function FeaturesPage() {
                 title: '1. Retrieval',
                 icon: Search,
                 description:
-                  'Queries over 50+ authoritative databases including Indian IP Office, TKDL, WIPO, USPTO, and classical text indexes.',
+                  'Queries the active, jurisdiction-filtered corpus configured for this deployment.',
                 items: [
                   'Patent & GI Registries',
                   'TKDL Prior-Art Records',
@@ -150,7 +150,7 @@ export default function FeaturesPage() {
         {/* Key Metrics */}
         <motion.div {...fadeInUp} className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20">
           {[
-            { label: '50+', value: 'Data Sources' },
+            { label: 'Corpus', value: 'Active sources' },
             { label: '99.8%', value: 'Accuracy Rate' },
             { label: '15+', value: 'Regulatory Regimes' },
             { label: '24/7', value: 'Real-time Updates' },
@@ -299,7 +299,7 @@ export default function FeaturesPage() {
                   {
                     icon: '✓',
                     title: 'TKDL Integrated',
-                    desc: 'Check against 50+ authoritative sources',
+                    desc: 'Check against the active corpus sources',
                   },
                   {
                     icon: '✓',

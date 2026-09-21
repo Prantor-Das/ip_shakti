@@ -3,6 +3,7 @@ import 'server-only';
 import {
   embedTextsWithApiKey,
   generateTextStream,
+  generateText,
   isProviderRetryable,
 } from '@/lib/ai/provider-core';
 
@@ -11,6 +12,18 @@ interface StreamTextInput {
   history: Array<{ role: 'user' | 'assistant'; content: string }>;
   message: string;
   signal?: AbortSignal;
+}
+
+export async function translateWithGemini(text: string, from: string, to: string): Promise<string> {
+  const apiKey = process.env.GEMINI_API_KEY;
+  if (!apiKey) throw new Error('AI provider is not configured');
+  const model = process.env.GEMINI_TRANSLATION_MODEL || MODEL;
+  const result = await generateText(apiKey, model, {
+    system: `Translate the supplied text from ${from} to ${to}. Return only the translation. Preserve every placeholder token exactly, including capitalization and underscores. Do not add explanations.`,
+    message: text,
+  });
+  if (!result.trim()) throw new Error('Gemini returned no translation');
+  return result.trim();
 }
 
 const MODEL = process.env.GEMINI_MODEL || 'gemini-3.8-flash';

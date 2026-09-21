@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+import Link from 'next/link';
 import { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import {
@@ -24,6 +25,7 @@ import type {
   Jurisdiction,
   MessageRole,
 } from '@/lib/chat/types';
+import { useI18n } from '@/components/i18n-provider';
 
 interface Message {
   id: string;
@@ -35,26 +37,29 @@ interface Message {
   confidence?: Confidence;
   abstained?: boolean;
   question?: string;
+  englishText?: string;
+  translated?: boolean;
+  translationFailed?: boolean;
 }
 type Threads = Record<Jurisdiction, Message[]>;
 
 const starters = [
   {
     icon: FileTextIcon,
-    title: 'Patent a formulation',
-    detail: 'Check novelty and filing options',
+    title: 'chat.patent',
+    detail: 'chat.patentDetail',
     query: 'How do I assess patentability for my Ayurvedic formulation?',
   },
   {
     icon: ShieldCheckIcon,
-    title: 'Protect a brand',
-    detail: 'Trademark basics for Ayurveda products',
+    title: 'chat.brand',
+    detail: 'chat.brandDetail',
     query: 'What do I need for trademark registration?',
   },
   {
     icon: ScaleIcon,
-    title: 'Check compliance',
-    detail: 'AYUSH and export requirements',
+    title: 'chat.compliance',
+    detail: 'chat.complianceDetail',
     query: 'What are the export regulations for Ayurvedic products?',
   },
 ];
@@ -94,10 +99,11 @@ function renderText(text: string, citations: Citation[], messageId: string) {
 }
 
 function CitationList({ citations, messageId }: { citations: Citation[]; messageId: string }) {
+  const { t } = useI18n();
   if (!citations.length) return null;
   return (
     <div className="mt-4 border-t border-emerald-900/10 pt-3">
-      <p className="mb-2 text-xs font-semibold text-emerald-950/60">Sources used</p>
+      <p className="mb-2 text-xs font-semibold text-emerald-950/60">{t('chat.sources')}</p>
       <div className="space-y-2">
         {citations.map((citation) => (
           <div
@@ -114,8 +120,8 @@ function CitationList({ citations, messageId }: { citations: Citation[]; message
                 {citation.jurisdiction}
               </span>
               <span className="mt-0.5 block">
-                {citation.sectionRef ?? 'Section not specified'} · {citation.version} · as of{' '}
-                {citation.asOfDate}
+                {citation.sectionRef ?? t('chat.sectionNotSpecified')} · {citation.version} ·{' '}
+                {t('chat.asOf')} {citation.asOfDate}
               </span>
               {citation.sourceUrl && (
                 <a
@@ -124,7 +130,7 @@ function CitationList({ citations, messageId }: { citations: Citation[]; message
                   rel="noreferrer"
                   className="mt-0.5 block text-primary underline"
                 >
-                  Official source
+                  {t('chat.officialSource')}
                 </a>
               )}
             </span>
@@ -142,6 +148,7 @@ function Escalation({
   message: Message;
   formulationType?: FormulationType;
 }) {
+  const { t } = useI18n();
   if (!message.abstained && message.confidence !== 'low') return null;
   const email = process.env.NEXT_PUBLIC_FACILITATOR_EMAIL;
   if (!email) return null;
@@ -151,20 +158,20 @@ function Escalation({
   );
   return (
     <div className="mt-4 rounded-xl border border-amber-900/15 bg-amber-50 p-3 text-xs text-amber-950">
-      <p className="font-semibold">This answer needs human review.</p>
+      <p className="font-semibold">{t('chat.humanReview')}</p>
       <div className="mt-2 flex flex-wrap gap-2">
         <a
           href={`mailto:${email}?subject=${subject}&body=${body}`}
           className="rounded-lg bg-amber-800 px-3 py-2 font-semibold text-white"
         >
-          Talk to an IP facilitator
+          {t('chat.talkToFacilitator')}
         </a>
         <button
           type="button"
           onClick={() => void navigator.clipboard.writeText(message.content)}
           className="rounded-lg border border-amber-900/20 px-3 py-2 font-semibold"
         >
-          Copy summary
+          {t('chat.copySummary')}
         </button>
       </div>
     </div>
@@ -178,7 +185,12 @@ function MessageBubble({
   message: Message;
   formulationType?: FormulationType;
 }) {
+  const { t } = useI18n();
+  const [showEnglish, setShowEnglish] = React.useState(false);
   const assistant = message.role === 'assistant';
+  const content = (
+    showEnglish && message.englishText ? message.englishText : message.content
+  ).replace(/\n\nThis is information, not legal advice\.$/, '');
   return (
     <article
       className={cn('flex gap-3 sm:gap-4', assistant ? 'items-start' : 'items-end justify-end')}
@@ -203,7 +215,7 @@ function MessageBubble({
             </div>
           )}
           <div>
-            {message.content.split('\n').map((line, index) => (
+            {content.split('\n').map((line, index) => (
               <p key={`${message.id}-${index}`} className={index ? 'mt-2' : undefined}>
                 {renderText(line || '\u00a0', message.citations, message.id)}
               </p>
@@ -212,8 +224,27 @@ function MessageBubble({
           {assistant && !message.synthetic && message.confidence && (
             <div className="mt-4 flex items-center gap-2 border-t border-emerald-900/10 pt-3 text-xs text-emerald-950/55">
               <CheckIcon className="size-3.5 text-primary" />
-              Confidence: {message.confidence}
+              {t('chat.confidence')}: {message.confidence}
             </div>
+          )}
+          {assistant && !message.synthetic && message.translated && message.englishText && (
+            <button
+              type="button"
+              onClick={() => setShowEnglish((current) => !current)}
+              className="mt-3 text-xs font-semibold text-primary underline"
+            >
+              {showEnglish
+                ? t('chat.machineTranslated')
+                : `${t('chat.machineTranslated')} — ${t('chat.showEnglish')}`}
+            </button>
+          )}
+          {assistant && !message.synthetic && message.translationFailed && (
+            <p className="mt-3 text-xs font-semibold text-amber-800">{t('chat.shownInEnglish')}</p>
+          )}
+          {assistant && !message.synthetic && (
+            <p className="mt-3 border-t border-emerald-900/10 pt-3 text-xs text-emerald-950/55">
+              {t('chat.disclaimer')}
+            </p>
           )}
           {assistant && !message.synthetic && (
             <CitationList citations={message.citations} messageId={message.id} />
@@ -233,6 +264,7 @@ function MessageBubble({
 }
 
 function ChatContent() {
+  const { language, t } = useI18n();
   const searchParams = useSearchParams();
   const context = searchParams.get('context');
   const [jurisdiction, setJurisdiction] = React.useState<Jurisdiction>('india');
@@ -243,6 +275,7 @@ function ChatContent() {
   }));
   const [input, setInput] = React.useState('');
   const [loading, setLoading] = React.useState(false);
+  const [translationStatus, setTranslationStatus] = React.useState(false);
   const [bannerVisible, setBannerVisible] = React.useState(true);
   const abortRef = React.useRef<AbortController | null>(null);
   const endRef = React.useRef<HTMLDivElement | null>(null);
@@ -302,7 +335,13 @@ function ChatContent() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         signal: controller.signal,
-        body: JSON.stringify({ message: trimmed, jurisdiction, formulationType, history }),
+        body: JSON.stringify({
+          message: trimmed,
+          lang: language,
+          jurisdiction,
+          formulationType,
+          history,
+        }),
       });
       if (!response.ok || !response.body) throw new Error('Unable to reach Sahayak right now.');
       const reader = response.body.getReader();
@@ -325,11 +364,15 @@ function ChatContent() {
                   : message
               ),
             }));
+          if (event.type === 'status') setTranslationStatus(true);
           if (event.type === 'done')
             updateAssistant(assistantId, {
               confidence: event.confidence,
               citations: event.citations,
               abstained: event.abstained,
+              englishText: event.englishText,
+              translated: event.translated,
+              translationFailed: event.translationFailed,
             });
           if (event.type === 'error')
             updateAssistant(assistantId, {
@@ -350,6 +393,7 @@ function ChatContent() {
     } finally {
       abortRef.current = null;
       setLoading(false);
+      setTranslationStatus(false);
     }
   }
 
@@ -375,7 +419,7 @@ function ChatContent() {
       <div className="mx-auto max-w-3xl">
         {bannerVisible && (
           <div className="mb-4 flex items-center justify-between rounded-xl border border-amber-900/10 bg-amber-50 px-4 py-3 text-xs text-amber-950">
-            <span>This tool provides information, not legal advice.</span>
+            <span>{t('chat.disclaimer')}</span>
             <button
               type="button"
               onClick={() => setBannerVisible(false)}
@@ -390,18 +434,25 @@ function ChatContent() {
             <div>
               <div className="mb-3 flex items-center gap-2 text-xs font-semibold text-primary">
                 <span className="size-2 rounded-full bg-primary" />
-                IP-SAKTI assistant
+                {t('nav.assistant')}
               </div>
               <h1 className="text-3xl font-semibold tracking-tight text-emerald-950 sm:text-4xl">
-                A clear next step for your Ayurveda IP question.
+                {t('chat.title')}
               </h1>
             </div>
             <JurisdictionToggle value={jurisdiction} onChange={setJurisdiction} />
           </div>
           <p className="mt-3 max-w-xl text-sm leading-6 text-emerald-950/60">
-            Research-backed guidance for protecting formulations, documenting heritage, and entering
-            new markets.
+            {t('chat.description')}
           </p>
+          <div className="mt-3 flex flex-wrap gap-3 text-xs font-semibold">
+            <Link href="/abs-tkdl" className="text-primary underline">
+              ABS &amp; TKDL helper
+            </Link>
+            <Link href="/sources" className="text-primary underline">
+              Corpus sources
+            </Link>
+          </div>
           <div className="mt-4">
             <ClassifyPanel value={formulationType} onChange={setFormulationType} />
             {formulationType && (
@@ -415,7 +466,7 @@ function ChatContent() {
                 }
                 className="mt-3 rounded-lg border border-primary/30 bg-emerald-50 px-3 py-2 text-xs font-semibold text-primary disabled:opacity-50"
               >
-                Explain what this means for IP, ABS and regulation
+                {t('chat.explain')}
               </button>
             )}
           </div>
@@ -429,7 +480,7 @@ function ChatContent() {
               <span className="flex size-9 items-center justify-center rounded-xl bg-primary text-white">
                 <LeafIcon className="size-4" />
               </span>
-              Sahayak is reading your question...
+              {translationStatus ? t('chat.translating') : t('chat.reading')}
             </div>
           )}
           <div ref={endRef} />
@@ -448,8 +499,8 @@ function ChatContent() {
                   <Icon className="size-4" />
                 </span>
                 <span>
-                  <span className="block text-sm font-semibold text-emerald-950">{title}</span>
-                  <span className="mt-1 block text-xs text-emerald-950/55">{detail}</span>
+                  <span className="block text-sm font-semibold text-emerald-950">{t(title)}</span>
+                  <span className="mt-1 block text-xs text-emerald-950/55">{t(detail)}</span>
                 </span>
               </button>
             ))}
@@ -470,17 +521,15 @@ function ChatContent() {
                 void submit(input);
               }
             }}
-            placeholder="Ask about patents, trademarks, GI protection, or compliance..."
-            aria-label="Ask Sahayak a question"
+            placeholder={t('chat.placeholder')}
+            aria-label={t('chat.placeholder')}
             className="w-full resize-none bg-transparent px-3 py-2 text-sm leading-6 text-emerald-950 outline-none placeholder:text-emerald-950/35"
           />
           <div className="flex items-center justify-between border-t border-emerald-900/10 px-2 pt-2">
-            <span className="text-xs text-emerald-950/40">
-              Enter to send · Shift + Enter for a new line
-            </span>
+            <span className="text-xs text-emerald-950/40">{t('chat.inputHint')}</span>
             <button
               type="button"
-              aria-label={loading ? 'Stop response' : 'Send message'}
+              aria-label={loading ? t('chat.stop') : t('chat.send')}
               onClick={() => (loading ? stopResponse() : void submit(input))}
               disabled={!loading && !input.trim()}
               className="flex size-9 items-center justify-center rounded-xl bg-primary text-white transition hover:bg-primary/90 disabled:cursor-not-allowed disabled:bg-emerald-100 disabled:text-emerald-400"
@@ -489,9 +538,7 @@ function ChatContent() {
             </button>
           </div>
         </div>
-        <p className="mt-3 text-center text-[11px] text-emerald-950/45">
-          Don&apos;t enter unpublished or confidential invention details.
-        </p>
+        <p className="mt-3 text-center text-[11px] text-emerald-950/45">{t('chat.privacy')}</p>
       </div>
     </main>
   );

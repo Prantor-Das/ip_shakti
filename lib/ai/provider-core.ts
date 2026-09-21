@@ -7,6 +7,11 @@ interface StreamTextInput {
   signal?: AbortSignal;
 }
 
+interface GenerateTextInput {
+  system: string;
+  message: string;
+}
+
 const EMBEDDING_DIM = 768;
 
 function client(apiKey: string, signal?: AbortSignal): GoogleGenAI {
@@ -48,6 +53,19 @@ export async function* generateTextStream(
     },
   });
   for await (const chunk of response) if (chunk.text) yield chunk.text;
+}
+
+export async function generateText(
+  apiKey: string,
+  model: string,
+  input: GenerateTextInput
+): Promise<string> {
+  const response = await client(apiKey).models.generateContent({
+    model,
+    contents: [{ role: 'user', parts: [{ text: input.message }] }],
+    config: { systemInstruction: input.system, temperature: 0.1, maxOutputTokens: 4096 },
+  });
+  return response.text ?? '';
 }
 
 export function isProviderRetryable(error: unknown): boolean {

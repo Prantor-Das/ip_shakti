@@ -129,7 +129,7 @@ const AiPromptInput = React.forwardRef<HTMLTextAreaElement, AiPromptInputProps>(
         <div
           ref={mirrorRef}
           aria-hidden
-          className="invisible absolute top-0 left-0 -z-10 px-4 py-3 text-base leading-6 break-words whitespace-pre-wrap font-sans"
+          className="invisible absolute top-0 left-0 -z-10 px-4 py-3 text-base leading-6 wrap-break-word whitespace-pre-wrap font-sans"
         />
 
         <div className="relative min-h-12">
@@ -297,7 +297,7 @@ const MessageDisplay = ({ message }: MessageDisplayProps) => {
       className={cn('flex gap-3', isAssistant ? 'justify-start' : 'justify-end')}
     >
       {isAssistant && (
-        <div className="size-8 rounded-full bg-linear-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
+        <div className="size-8 rounded-full bg-linear-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white text-sm font-bold shrink-0">
           IP
         </div>
       )}
@@ -326,7 +326,7 @@ const MessageDisplay = ({ message }: MessageDisplayProps) => {
       </div>
 
       {!isAssistant && (
-        <div className="size-8 rounded-full bg-slate-700 flex items-center justify-center text-slate-300 text-sm font-bold flex-shrink-0">
+        <div className="size-8 rounded-full bg-slate-700 flex items-center justify-center text-slate-300 text-sm font-bold shrink-0">
           U
         </div>
       )}
@@ -503,7 +503,7 @@ export default function IpSaktiAssistant() {
               animate={{ opacity: 1, y: 0 }}
               className="flex gap-3 justify-start"
             >
-              <div className="size-8 rounded-full bg-linear-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
+              <div className="size-8 rounded-full bg-linear-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white text-sm font-bold shrink-0">
                 IP
               </div>
               <div className="bg-slate-800/60 rounded-2xl px-4 py-3 border border-slate-700/50">

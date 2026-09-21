@@ -3,6 +3,7 @@ import { Inter, Instrument_Serif, Poppins, Bebas_Neue } from 'next/font/google';
 import './globals.css';
 import { Footer } from '@/components/shared/footer';
 import { FloatingNavbar } from '@/components/shared/floating-navbar';
+import { I18nProvider } from '@/components/i18n-provider';
 
 const inter = Inter({ subsets: ['latin'] });
 const instrumentSerif = Instrument_Serif({
@@ -63,9 +64,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body
         className={`${inter.className} ${instrumentSerif.variable} ${poppins.variable} ${bebasNeue.variable} site-light antialiased`}
       >
-        <FloatingNavbar />
-        <main>{children}</main>
-        <Footer />
+        <I18nProvider>
+          <FloatingNavbar />
+          <main>{children}</main>
+          <Footer />
+        </I18nProvider>
       </body>
     </html>
   );
