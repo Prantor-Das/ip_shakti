@@ -1,0 +1,35 @@
+[
+  {
+    "id": "patents-act-1970-2024",
+    "title": "The Patents Act, 1970",
+    "jurisdiction": "india",
+    "instrumentType": "act",
+    "citationLabel": "Patents Act, 1970",
+    "version": "Amendments through 2024-08-01",
+    "asOfDate": "2024-08-01",
+    "sourceUrl": "https://ipindia.gov.in/storage/uploads/docs-operator/73b5bf10-b04e-4f45-abef-87ff117315dc.pdf",
+    "file": "sources/patents-act-1970-2024.pdf"
+  },
+  {
+    "id": "nagoya-protocol-2010",
+    "title": "Nagoya Protocol on Access and Benefit-sharing",
+    "jurisdiction": "international",
+    "instrumentType": "treaty",
+    "citationLabel": "Nagoya Protocol",
+    "version": "Adopted 2010-10-29",
+    "asOfDate": "2010-10-29",
+    "sourceUrl": "https://www.cbd.int/abs/doc/protocol/nagoya-protocol-en.pdf",
+    "file": "sources/nagoya-protocol-2010.pdf"
+  },
+  {
+    "id": "wipo-gratk-treaty-2024",
+    "title": "WIPO Treaty on Intellectual Property, Genetic Resources and Associated Traditional Knowledge",
+    "jurisdiction": "international",
+    "instrumentType": "treaty",
+    "citationLabel": "WIPO GRATK Treaty",
+    "version": "Adopted 2024-05-24",
+    "asOfDate": "2024-05-24",
+    "sourceUrl": "https://www.wipo.int/treaties/en/docs/pdf/gratk.pdf",
+    "file": "sources/wipo-gratk-treaty-2024.pdf"
+  }
+]

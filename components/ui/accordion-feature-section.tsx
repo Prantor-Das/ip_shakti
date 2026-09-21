@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import {
   Accordion,
   AccordionContent,
@@ -156,8 +157,14 @@ export const Feature197 = ({ features = defaultIPFeatures }: Feature197Props) =>
                         {tab.description}
                       </p>
                       {/* Mobile Image Preview */}
-                      <div className="mt-4 lg:hidden rounded-2xl overflow-hidden border border-[#DADCE0] bg-[#F8F9FA]">
-                        <img src={tab.image} alt={tab.title} className="h-56 w-full object-cover" />
+                      <div className="relative mt-4 h-56 w-full lg:hidden rounded-2xl overflow-hidden border border-[#DADCE0] bg-[#F8F9FA]">
+                        <Image
+                          src={tab.image}
+                          alt={tab.title}
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 1024px) 100vw, 500px"
+                        />
                       </div>
                     </AccordionContent>
                   </AccordionItem>
@@ -170,10 +177,12 @@ export const Feature197 = ({ features = defaultIPFeatures }: Feature197Props) =>
           <div className="hidden lg:block w-1/2 sticky top-28">
             <div className="relative overflow-hidden rounded-3xl bg-[#F8F9FA] border border-[#DADCE0] p-4 shadow-sm">
               <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-white border border-[#DADCE0]">
-                <img
+                <Image
                   src={displayImage}
                   alt={activeFeature?.title || 'Feature preview'}
-                  className="h-full w-full object-cover transition-all duration-500 hover:scale-105"
+                  fill
+                  className="object-cover transition-all duration-500 hover:scale-105"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
                 />
               </div>
             </div>

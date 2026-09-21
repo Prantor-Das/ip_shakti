@@ -100,6 +100,7 @@ export function ClassifyPanel({
               setAnswers({});
               setStep(0);
               setSelected(undefined);
+              onChange('unsure');
             }}
             className="mt-2 text-primary underline"
           >

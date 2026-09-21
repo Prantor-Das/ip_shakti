@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowRight, BookOpen, Scroll, Stethoscope, Feather, Sparkles, Binary } from 'lucide-react';
 
 export interface HeritageFigure {
@@ -126,7 +127,7 @@ const ArchiveIllustration = ({
   const [imgError, setImgError] = useState(false);
 
   return (
-    <div className="relative w-full h-72 sm:h-80 md:h-96 rounded-2xl overflow-hidden bg-gradient-to-br from-[#F8F9FA] via-[#F3F7F3] to-[#E8F0E9] border border-[#DADCE0] shadow-sm group-hover:border-[#477A5B]/40 transition-all duration-300">
+    <div className="relative w-full h-72 sm:h-80 md:h-96 rounded-2xl overflow-hidden bg-linear-to-br from-[#F8F9FA] via-[#F3F7F3] to-[#E8F0E9] border border-[#DADCE0] shadow-sm group-hover:border-[#477A5B]/40 transition-all duration-300">
       {/* Decorative corner archive lines */}
       <div className="absolute top-4 left-4 z-20 w-4 h-4 border-t-2 border-l-2 border-[#477A5B]/60" />
       <div className="absolute top-4 right-4 z-20 w-4 h-4 border-t-2 border-r-2 border-[#477A5B]/60" />
@@ -134,17 +135,18 @@ const ArchiveIllustration = ({
       <div className="absolute bottom-4 right-4 z-20 w-4 h-4 border-b-2 border-r-2 border-[#477A5B]/60" />
 
       {!imgError ? (
-        <img
+        <Image
           src={imageUrl}
           alt={`Historical portrait representation of ${name}`}
           onError={() => setImgError(true)}
-          className="w-full h-full object-cover object-center group-hover:scale-[1.03] transition-transform duration-500"
-          loading="lazy"
+          fill
+          className="object-cover object-center group-hover:scale-[1.03] transition-transform duration-500"
+          sizes="(max-width: 768px) 100vw, 50vw"
         />
       ) : (
         /* Fallback icon representation */
         <div className="relative z-10 w-full h-full flex flex-col items-center justify-center text-[#2D5A3F] p-8">
-          <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-[#FFFFFF] border border-[#DADCE0] flex items-center justify-center mb-3 shadow-sm">
+          <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-primary-foreground border border-[#DADCE0] flex items-center justify-center mb-3 shadow-sm">
             {motif === 'medicine' && <Scroll className="w-10 h-10 text-[#477A5B]" />}
             {motif === 'surgery' && <Feather className="w-10 h-10 text-[#477A5B]" />}
             {motif === 'integration' && <BookOpen className="w-10 h-10 text-[#477A5B]" />}
@@ -161,7 +163,7 @@ const ArchiveIllustration = ({
 
 export function HistoricalHeritageSection() {
   return (
-    <section className="w-full bg-[#FFFFFF] py-20 px-4 sm:px-6 lg:px-8 text-[#202124]">
+    <section className="w-full bg-primary-foreground py-20 px-4 sm:px-6 lg:px-8 text-[#202124]">
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-20">

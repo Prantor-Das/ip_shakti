@@ -26,7 +26,11 @@ export interface Citation {
   id: string;
   title: string;
   jurisdiction: Jurisdiction;
-  ref: string;
+  sectionRef?: string;
+  ref?: string;
+  version?: string;
+  asOfDate?: string;
+  sourceUrl?: string;
 }
 
 export type ChatEvent =

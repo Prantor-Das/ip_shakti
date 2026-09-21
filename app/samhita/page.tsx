@@ -2,31 +2,22 @@
 
 import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import {
   Search,
-  Leaf,
-  TreePine,
   Scroll,
   BookOpen,
-  ShieldAlert,
-  Landmark,
-  FlaskConical,
-  FileCheck,
   ArrowRight,
   Sparkles,
-  ExternalLink,
   Layers,
   Filter,
-  CheckCircle2,
   AlertCircle,
-  HelpCircle,
-  Info,
   Clock,
   Compass,
   GraduationCap,
 } from 'lucide-react';
-import { SAMHITA_CATEGORIES, SAMHITA_ENTRIES } from '@/lib/samhita-data';
+import { SAMHITA_ENTRIES } from '@/lib/samhita-data';
 import { LegalIpKnowledgeSection } from '@/components/ui/legal-ip-knowledge';
 
 // 6 Featured Herbs
@@ -79,9 +70,9 @@ export default function SamhitaPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#FFFFFF] text-[#202124] pt-24 pb-16 font-sans">
+    <div className="min-h-screen bg-primary-foreground text-[#202124] pt-24 pb-16 font-sans">
       {/* HERO SECTION */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-[#F3F7F3] via-[#F8F9FA] to-[#FFFFFF] py-16 md:py-24 border-b border-[#DADCE0]">
+      <section className="relative overflow-hidden bg-linear-to-b from-[#F3F7F3] via-[#F8F9FA] to-[#FFFFFF] py-16 md:py-24 border-b border-[#DADCE0]">
         <div className="samhita-container relative z-10 text-center max-w-4xl mx-auto">
           {/* Badge */}
           <motion.div
@@ -129,7 +120,7 @@ export default function SamhitaPage() {
             transition={{ duration: 0.4, delay: 0.25 }}
             className="relative max-w-2xl mx-auto mb-6"
           >
-            <div className="relative flex items-center bg-[#FFFFFF] rounded-2xl shadow-lg border border-[#DADCE0] p-2 hover:border-[#477A5B] transition-colors focus-within:ring-2 focus-within:ring-[#477A5B]/30 focus-within:border-[#477A5B]">
+            <div className="relative flex items-center bg-primary-foreground rounded-2xl shadow-lg border border-[#DADCE0] p-2 hover:border-[#477A5B] transition-colors focus-within:ring-2 focus-within:ring-[#477A5B]/30 focus-within:border-[#477A5B]">
               <Search className="w-5 h-5 text-[#5F6368] ml-3 mr-2 shrink-0" />
               <input
                 type="text"
@@ -194,7 +185,7 @@ export default function SamhitaPage() {
                 className={`px-3 py-1 rounded-full text-xs font-medium border transition-colors ${
                   !selectedCategory && !selectedPart && !searchQuery
                     ? 'bg-[#477A5B] text-white border-[#477A5B]'
-                    : 'bg-[#FFFFFF] text-[#3C4043] border-[#DADCE0] hover:border-[#477A5B]'
+                    : 'bg-primary-foreground text-[#3C4043] border-[#DADCE0] hover:border-[#477A5B]'
                 }`}
               >
                 All Records
@@ -206,7 +197,7 @@ export default function SamhitaPage() {
                   className={`px-3 py-1 rounded-full text-xs font-medium border transition-colors ${
                     selectedPart === part
                       ? 'bg-[#477A5B] text-white border-[#477A5B]'
-                      : 'bg-[#FFFFFF] text-[#3C4043] border-[#DADCE0] hover:border-[#477A5B]'
+                      : 'bg-primary-foreground text-[#3C4043] border-[#DADCE0] hover:border-[#477A5B]'
                   }`}
                 >
                   {part}
@@ -216,7 +207,7 @@ export default function SamhitaPage() {
           </div>
 
           {filteredEntries.length === 0 ? (
-            <div className="text-center py-16 bg-[#FFFFFF] rounded-2xl border border-[#DADCE0]">
+            <div className="text-center py-16 bg-primary-foreground rounded-2xl border border-[#DADCE0]">
               <AlertCircle className="w-10 h-10 text-[#5F6368] mx-auto mb-3" />
               <h3 className="text-lg font-semibold text-[#202124]">No entries match your search</h3>
               <p className="text-sm text-[#5F6368] mt-1 max-w-md mx-auto">
@@ -243,18 +234,19 @@ export default function SamhitaPage() {
                   <Link
                     key={entry.slug}
                     href={`/samhita/${entry.slug}`}
-                    className="group bg-[#FFFFFF] rounded-2xl border border-[#DADCE0] overflow-hidden samhita-card-shadow samhita-card-hover flex flex-col justify-between p-5"
+                    className="group bg-primary-foreground rounded-2xl border border-[#DADCE0] overflow-hidden samhita-card-shadow samhita-card-hover flex flex-col justify-between p-5"
                   >
                     <div>
                       {/* Thumbnail Image */}
                       <div className="relative h-36 w-full rounded-xl overflow-hidden bg-[#F8F9FA] mb-4 border border-[#DADCE0]">
-                        <img
+                        <Image
                           src={entry.image}
                           alt={`Botanical illustration of ${entry.scientificName}`}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                          loading="lazy"
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-300"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         />
-                        <div className="absolute top-2 left-2 bg-[#FFFFFF]/90 px-2 py-0.5 rounded-full text-[10px] font-bold text-[#2D5A3F] border border-[#DADCE0]">
+                        <div className="absolute top-2 left-2 bg-primary-foreground/90 px-2 py-0.5 rounded-full text-[10px] font-bold text-[#2D5A3F] border border-[#DADCE0]">
                           {entry.category}
                         </div>
                       </div>
@@ -314,7 +306,7 @@ export default function SamhitaPage() {
       </section>
 
       {/* 2. FEATURED AYURVEDA ENTRIES SECTION */}
-      <section className="py-16 bg-[#FFFFFF] border-b border-[#DADCE0]">
+      <section className="py-16 bg-primary-foreground border-b border-[#DADCE0]">
         <div className="samhita-container">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-10">
             <div>
@@ -333,17 +325,18 @@ export default function SamhitaPage() {
             {featuredEntries.map((entry) => (
               <div
                 key={entry.slug}
-                className="group bg-[#FFFFFF] rounded-2xl border border-[#DADCE0] overflow-hidden samhita-card-shadow samhita-card-hover flex flex-col h-full"
+                className="group bg-primary-foreground rounded-2xl border border-[#DADCE0] overflow-hidden samhita-card-shadow samhita-card-hover flex flex-col h-full"
               >
                 {/* Image */}
                 <div className="relative h-48 w-full overflow-hidden bg-[#F8F9FA] border-b border-[#DADCE0]">
-                  <img
+                  <Image
                     src={entry.image}
                     alt={`Botanical photograph of ${entry.scientificName} (${entry.commonName})`}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    loading="lazy"
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
-                  <div className="absolute top-3 right-3 bg-[#FFFFFF]/90 backdrop-blur-md px-2.5 py-1 rounded-full text-xs font-semibold text-[#2D5A3F] border border-[#DADCE0] shadow-sm">
+                  <div className="absolute top-3 right-3 bg-primary-foreground/90 backdrop-blur-md px-2.5 py-1 rounded-full text-xs font-semibold text-[#2D5A3F] border border-[#DADCE0] shadow-sm">
                     {entry.regionalNames.sanskrit || entry.category}
                   </div>
                 </div>
@@ -394,7 +387,7 @@ export default function SamhitaPage() {
       </section>
 
       {/* 3. BEAUTIFUL AYURVEDA HISTORY SECTION */}
-      <section className="py-20 bg-gradient-to-b from-[#F3F7F3] via-[#F8F9FA] to-[#FFFFFF] border-b border-[#DADCE0]">
+      <section className="py-20 bg-linear-to-b from-[#F3F7F3] via-[#F8F9FA] to-[#FFFFFF] border-b border-[#DADCE0]">
         <div className="samhita-container max-w-6xl mx-auto">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E8F0E9] text-[#2D5A3F] text-xs font-semibold tracking-wider uppercase mb-4 border border-[#477A5B]/20">
@@ -437,7 +430,7 @@ export default function SamhitaPage() {
               return (
                 <div
                   key={index}
-                  className="bg-[#FFFFFF] p-8 rounded-2xl border border-[#DADCE0] shadow-sm hover:shadow-md transition-shadow relative overflow-hidden flex flex-col justify-between"
+                  className="bg-primary-foreground p-8 rounded-2xl border border-[#DADCE0] shadow-sm hover:shadow-md transition-shadow relative overflow-hidden flex flex-col justify-between"
                 >
                   <div className="absolute top-0 left-0 w-full h-1.5 bg-[#477A5B]" />
                   <div>
@@ -458,7 +451,7 @@ export default function SamhitaPage() {
           </div>
 
           {/* Key Philosophical Pillars Grid */}
-          <div className="bg-[#FFFFFF] p-8 md:p-12 rounded-3xl border border-[#DADCE0] shadow-sm">
+          <div className="bg-primary-foreground p-8 md:p-12 rounded-3xl border border-[#DADCE0] shadow-sm">
             <h3 className="text-2xl font-bold text-[#202124] mb-8 text-center flex items-center justify-center gap-2">
               <Compass className="w-6 h-6 text-[#477A5B]" /> Core Concepts of Classical Ayurveda
             </h3>
@@ -505,11 +498,11 @@ export default function SamhitaPage() {
       <LegalIpKnowledgeSection />
 
       {/* ASK IP-SAKTI INTEGRATION CTA */}
-      <section className="py-16 bg-[#FFFFFF]">
+      <section className="py-16 bg-primary-foreground">
         <div className="samhita-container">
           <div className="bg-gradient-to-r from-[#F3F7F3] via-[#E8F0E9] to-[#F3F7F3] p-8 md:p-12 rounded-3xl border border-[#DADCE0] flex flex-col md:flex-row items-center justify-between gap-8 shadow-sm">
             <div className="max-w-2xl">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FFFFFF] text-[#2D5A3F] text-xs font-semibold mb-4 border border-[#DADCE0]">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-foreground text-[#2D5A3F] text-xs font-semibold mb-4 border border-[#DADCE0]">
                 <Sparkles className="w-3.5 h-3.5 text-[#477A5B]" />
                 Interactive AI Knowledge Assistant
               </div>
@@ -534,7 +527,7 @@ export default function SamhitaPage() {
       </section>
 
       {/* FOOTER DISCLAIMER */}
-      <footer className="py-8 bg-[#FFFFFF] border-t border-[#DADCE0]">
+      <footer className="py-8 bg-primary-foreground border-t border-[#DADCE0]">
         <div className="samhita-container text-center text-xs text-[#5F6368]">
           <p className="max-w-3xl mx-auto">
             <strong>Educational & IP Knowledge Disclaimer:</strong> Information in Samhita is

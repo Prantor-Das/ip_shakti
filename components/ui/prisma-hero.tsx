@@ -93,14 +93,6 @@ export const WordsPullUpMultiStyle = ({
 };
 
 /* ---------------- Hero Component for IP-SAKTI Sahayak ---------------- */
-const navItems = [
-  { label: 'Home', href: '/' },
-  { label: 'About', href: '/about' },
-  { label: 'Features', href: '/features' },
-  { label: 'How It Works', href: '/how-it-works' },
-  { label: 'Team', href: '/team' },
-];
-
 const IPSaktiHero = () => {
   return (
     <section className="h-screen w-full">
@@ -119,7 +111,7 @@ const IPSaktiHero = () => {
         <div className="noise-overlay pointer-events-none absolute inset-0 opacity-[0.7] mix-blend-overlay" />
 
         {/* Gradient overlay */}
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60" />
+        <div className="pointer-events-none absolute inset-0 bg-linear-to-b from-black/30 via-transparent to-black/60" />
 
         {/* Hero content */}
         <div className="absolute bottom-0 left-0 right-0 px-4 pb-2 sm:px-6 md:px-10">

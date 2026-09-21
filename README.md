@@ -32,6 +32,19 @@ This application requires a Google Gemini API key to process AI chat queries.
      GEMINI_API_KEY=your_actual_gemini_api_key_here
      ```
 
+For corpus-backed retrieval, also set `SUPABASE_URL` and the server-only
+`SUPABASE_SERVICE_ROLE_KEY`. Optional settings are `GEMINI_EMBEDDING_MODEL`,
+`RETRIEVAL_MIN_SIMILARITY`, `RETRIEVAL_HIGH_SIMILARITY`, and
+`NEXT_PUBLIC_FACILITATOR_EMAIL`.
+
+Apply `supabase/migrations/202609210001_corpus.sql` to the project, then ingest
+the manifest-driven official PDFs with:
+
+```bash
+pnpm ingest
+pnpm ingest --only patents-act-1970-2024
+```
+
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.

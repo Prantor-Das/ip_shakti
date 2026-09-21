@@ -34,6 +34,7 @@ interface Message {
   citations: Citation[];
   confidence?: Confidence;
   abstained?: boolean;
+  question?: string;
 }
 type Threads = Record<Jurisdiction, Message[]>;
 
@@ -73,13 +74,13 @@ function syntheticGreeting(jurisdiction: Jurisdiction, context: string | null): 
   ];
 }
 
-function renderText(text: string, citations: Citation[]) {
+function renderText(text: string, citations: Citation[], messageId: string) {
   const parts = text.split(/(\[S[1-6]\])/g);
   return parts.map((part, index) =>
     part.match(/^\[S[1-6]\]$/) ? (
       <sup key={`${part}-${index}`}>
         <a
-          href={`#citation-${part.slice(1, -1)}`}
+          href={`#citation-${messageId}-${part.slice(1, -1)}`}
           className="ml-0.5 font-bold text-primary underline"
           title={citations.find((citation) => citation.id === part.slice(1, -1))?.title ?? 'Source'}
         >
@@ -92,7 +93,7 @@ function renderText(text: string, citations: Citation[]) {
   );
 }
 
-function CitationList({ citations }: { citations: Citation[] }) {
+function CitationList({ citations, messageId }: { citations: Citation[]; messageId: string }) {
   if (!citations.length) return null;
   return (
     <div className="mt-4 border-t border-emerald-900/10 pt-3">
@@ -100,7 +101,7 @@ function CitationList({ citations }: { citations: Citation[] }) {
       <div className="space-y-2">
         {citations.map((citation) => (
           <div
-            id={`citation-${citation.id}`}
+            id={`citation-${messageId}-${citation.id}`}
             key={citation.id}
             className="flex items-start gap-2 text-xs text-emerald-950/65"
           >
@@ -112,7 +113,20 @@ function CitationList({ citations }: { citations: Citation[] }) {
               <span className="ml-1 rounded-full bg-emerald-50 px-1.5 py-0.5 text-[10px] text-primary">
                 {citation.jurisdiction}
               </span>
-              <span className="block mt-0.5">{citation.ref}</span>
+              <span className="mt-0.5 block">
+                {citation.sectionRef ?? 'Section not specified'} · {citation.version} · as of{' '}
+                {citation.asOfDate}
+              </span>
+              {citation.sourceUrl && (
+                <a
+                  href={citation.sourceUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-0.5 block text-primary underline"
+                >
+                  Official source
+                </a>
+              )}
             </span>
           </div>
         ))}
@@ -121,7 +135,49 @@ function CitationList({ citations }: { citations: Citation[] }) {
   );
 }
 
-function MessageBubble({ message }: { message: Message }) {
+function Escalation({
+  message,
+  formulationType,
+}: {
+  message: Message;
+  formulationType?: FormulationType;
+}) {
+  if (!message.abstained && message.confidence !== 'low') return null;
+  const email = process.env.NEXT_PUBLIC_FACILITATOR_EMAIL;
+  if (!email) return null;
+  const subject = encodeURIComponent(`IP-SAKTI facilitator request — ${message.jurisdiction}`);
+  const body = encodeURIComponent(
+    `Question: ${message.question ?? 'See chat summary'}\nJurisdiction: ${message.jurisdiction}\nFormulation type: ${formulationType ?? 'unsure'}\n\nSummary:\n${message.content}`
+  );
+  return (
+    <div className="mt-4 rounded-xl border border-amber-900/15 bg-amber-50 p-3 text-xs text-amber-950">
+      <p className="font-semibold">This answer needs human review.</p>
+      <div className="mt-2 flex flex-wrap gap-2">
+        <a
+          href={`mailto:${email}?subject=${subject}&body=${body}`}
+          className="rounded-lg bg-amber-800 px-3 py-2 font-semibold text-white"
+        >
+          Talk to an IP facilitator
+        </a>
+        <button
+          type="button"
+          onClick={() => void navigator.clipboard.writeText(message.content)}
+          className="rounded-lg border border-amber-900/20 px-3 py-2 font-semibold"
+        >
+          Copy summary
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function MessageBubble({
+  message,
+  formulationType,
+}: {
+  message: Message;
+  formulationType?: FormulationType;
+}) {
   const assistant = message.role === 'assistant';
   return (
     <article
@@ -149,7 +205,7 @@ function MessageBubble({ message }: { message: Message }) {
           <div>
             {message.content.split('\n').map((line, index) => (
               <p key={`${message.id}-${index}`} className={index ? 'mt-2' : undefined}>
-                {renderText(line || '\u00a0', message.citations)}
+                {renderText(line || '\u00a0', message.citations, message.id)}
               </p>
             ))}
           </div>
@@ -159,7 +215,12 @@ function MessageBubble({ message }: { message: Message }) {
               Confidence: {message.confidence}
             </div>
           )}
-          {assistant && !message.synthetic && <CitationList citations={message.citations} />}
+          {assistant && !message.synthetic && (
+            <CitationList citations={message.citations} messageId={message.id} />
+          )}
+          {assistant && !message.synthetic && (
+            <Escalation message={message} formulationType={formulationType} />
+          )}
         </div>
       </div>
       {!assistant && (
@@ -222,7 +283,14 @@ function ChatContent() {
       [jurisdiction]: [
         ...current[jurisdiction],
         user,
-        { id: assistantId, role: 'assistant', content: '', jurisdiction, citations: [] },
+        {
+          id: assistantId,
+          role: 'assistant',
+          content: '',
+          jurisdiction,
+          citations: [],
+          question: trimmed,
+        },
       ],
     }));
     setInput('');
@@ -285,6 +353,18 @@ function ChatContent() {
     }
   }
 
+  function stopResponse() {
+    abortRef.current?.abort();
+    setThreads((current) => ({
+      ...current,
+      [jurisdiction]: current[jurisdiction].map((message) =>
+        message.role === 'assistant' && !message.content && !message.synthetic
+          ? { ...message, content: 'Response stopped.', confidence: 'low', abstained: true }
+          : message
+      ),
+    }));
+  }
+
   return (
     <main
       className={cn(
@@ -324,11 +404,25 @@ function ChatContent() {
           </p>
           <div className="mt-4">
             <ClassifyPanel value={formulationType} onChange={setFormulationType} />
+            {formulationType && (
+              <button
+                type="button"
+                disabled={loading}
+                onClick={() =>
+                  void submit(
+                    `Explain what a ${formulationType} formulation means for IP, access and benefit-sharing, and regulation using the current sources.`
+                  )
+                }
+                className="mt-3 rounded-lg border border-primary/30 bg-emerald-50 px-3 py-2 text-xs font-semibold text-primary disabled:opacity-50"
+              >
+                Explain what this means for IP, ABS and regulation
+              </button>
+            )}
           </div>
         </header>
         <div className="space-y-5">
           {activeMessages.map((message) => (
-            <MessageBubble key={message.id} message={message} />
+            <MessageBubble key={message.id} message={message} formulationType={formulationType} />
           ))}
           {loading && (
             <div className="flex items-center gap-3 text-sm text-emerald-950/55">
@@ -387,7 +481,7 @@ function ChatContent() {
             <button
               type="button"
               aria-label={loading ? 'Stop response' : 'Send message'}
-              onClick={() => (loading ? abortRef.current?.abort() : void submit(input))}
+              onClick={() => (loading ? stopResponse() : void submit(input))}
               disabled={!loading && !input.trim()}
               className="flex size-9 items-center justify-center rounded-xl bg-primary text-white transition hover:bg-primary/90 disabled:cursor-not-allowed disabled:bg-emerald-100 disabled:text-emerald-400"
             >

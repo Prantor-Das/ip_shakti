@@ -12,12 +12,8 @@ import {
   Building2,
   Share2,
   Lock,
-  ChevronDown,
   Info,
-  CheckCircle2,
-  ExternalLink,
   Award,
-  Sparkles,
 } from 'lucide-react';
 
 export function LegalIpKnowledgeSection() {
@@ -47,7 +43,7 @@ export function LegalIpKnowledgeSection() {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-b from-[#FFFFFF] via-[#F8F9FA] to-[#F3F7F3] border-b border-[#DADCE0]">
+    <section className="py-20 bg-linear-to-b from-[#FFFFFF] via-[#F8F9FA] to-[#F3F7F3] border-b border-[#DADCE0]">
       <div className="samhita-container max-w-6xl mx-auto px-4">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
@@ -76,7 +72,7 @@ export function LegalIpKnowledgeSection() {
                 className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
                   isActive
                     ? 'bg-[#477A5B] text-white shadow-md'
-                    : 'bg-[#FFFFFF] text-[#3C4043] border border-[#DADCE0] hover:border-[#477A5B] hover:text-[#477A5B]'
+                    : 'bg-primary-foreground text-[#3C4043] border border-[#DADCE0] hover:border-[#477A5B] hover:text-[#477A5B]'
                 }`}
               >
                 <Icon className="w-4 h-4 shrink-0" />
@@ -87,7 +83,7 @@ export function LegalIpKnowledgeSection() {
         </div>
 
         {/* Active Content Display Card */}
-        <div className="bg-[#FFFFFF] rounded-3xl border border-[#DADCE0] p-6 sm:p-10 md:p-12 shadow-sm">
+        <div className="bg-primary-foreground rounded-3xl border border-[#DADCE0] p-6 sm:p-10 md:p-12 shadow-sm">
           <AnimatePresence mode="wait">
             {activeTopic === 1 && (
               <motion.div

@@ -2,19 +2,7 @@
 
 import * as React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import {
-  SendIcon,
-  Loader2Icon,
-  CheckIcon,
-  ArrowUpIcon,
-  PlusIcon,
-  UploadIcon,
-  GlobeIcon,
-  TelescopeIcon,
-  MicIcon,
-  SquareIcon,
-  AudioLinesIcon,
-} from 'lucide-react';
+import { Loader2Icon, CheckIcon, ArrowUpIcon, PlusIcon, GlobeIcon, MicIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 // Types
@@ -30,15 +18,6 @@ interface Message {
 }
 
 // Constants
-const EASE = [0.2, 0, 0, 1] as const;
-const SPRING_SOFT = { type: 'spring' as const, stiffness: 420, damping: 32 };
-const SPRING_PRESS = { type: 'spring' as const, stiffness: 500, damping: 28 };
-
-const MENU_PANEL_CLASS = cn(
-  'bg-slate-950/95 backdrop-blur-xl text-white origin-bottom-left overflow-hidden rounded-2xl border border-slate-800 p-1.5',
-  'shadow-2xl'
-);
-
 const TOOLBAR_BTN_CLASS = cn(
   'relative flex size-9 cursor-pointer items-center justify-center rounded-xl',
   'transition-all duration-200 ease-[cubic-bezier(0.2,0,0,1)]',
@@ -116,7 +95,7 @@ const AiPromptInput = React.forwardRef<HTMLTextAreaElement, AiPromptInputProps>(
       const next = Math.min(Math.max(el.scrollHeight, minH), maxH);
       setHeight(next);
       el.style.overflowY = el.scrollHeight > maxH ? 'auto' : 'hidden';
-    }, [value]);
+    }, []);
 
     React.useLayoutEffect(() => {
       resize();
@@ -232,7 +211,7 @@ const AiPromptInput = React.forwardRef<HTMLTextAreaElement, AiPromptInputProps>(
                     'focus-visible:ring-2 focus-visible:ring-emerald-500/50 focus-visible:outline-none',
                     'disabled:pointer-events-none',
                     showSend
-                      ? 'bg-gradient-to-br from-emerald-500 to-teal-600 text-white shadow-lg hover:shadow-emerald-500/20'
+                      ? 'bg-linear-to-br from-emerald-500 to-teal-600 text-white shadow-lg hover:shadow-emerald-500/20'
                       : 'bg-slate-800 text-slate-500 cursor-default'
                   )}
                 >
@@ -318,7 +297,7 @@ const MessageDisplay = ({ message }: MessageDisplayProps) => {
       className={cn('flex gap-3', isAssistant ? 'justify-start' : 'justify-end')}
     >
       {isAssistant && (
-        <div className="size-8 rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
+        <div className="size-8 rounded-full bg-linear-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
           IP
         </div>
       )}
@@ -368,8 +347,9 @@ export default function IpSaktiAssistant() {
   const timersRef = React.useRef<number[]>([]);
 
   React.useEffect(() => {
+    const timers = timersRef.current;
     return () => {
-      timersRef.current.forEach((id) => window.clearTimeout(id));
+      timers.forEach((id) => window.clearTimeout(id));
     };
   }, []);
 
@@ -478,7 +458,7 @@ export default function IpSaktiAssistant() {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="w-full min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white"
+      className="w-full min-h-screen bg-linear-to-br from-slate-950 via-slate-900 to-slate-950 text-white"
     >
       {/* Background effects */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
@@ -495,7 +475,7 @@ export default function IpSaktiAssistant() {
           className="border-b border-slate-800/50 px-6 py-6 sm:py-8"
         >
           <div className="flex items-center gap-3 mb-2">
-            <div className="size-12 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center">
+            <div className="size-12 rounded-xl bg-linear-to-br from-emerald-500 to-teal-600 flex items-center justify-center">
               <span className="text-lg font-bold">🌿</span>
             </div>
             <div>
@@ -523,7 +503,7 @@ export default function IpSaktiAssistant() {
               animate={{ opacity: 1, y: 0 }}
               className="flex gap-3 justify-start"
             >
-              <div className="size-8 rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
+              <div className="size-8 rounded-full bg-linear-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
                 IP
               </div>
               <div className="bg-slate-800/60 rounded-2xl px-4 py-3 border border-slate-700/50">

@@ -116,7 +116,7 @@ export default function FeaturesPage() {
                   )}
 
                   <div
-                    className={`bg-gradient-to-br ${stage.color} border border-white/10 rounded-2xl p-8 backdrop-blur-sm hover:border-primary/40 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 h-full`}
+                    className={`bg-linear-to-br ${stage.color} border border-white/10 rounded-2xl p-8 backdrop-blur-sm hover:border-primary/40 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 h-full`}
                   >
                     <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/30 flex items-center justify-center mb-4 text-primary">
                       <IconComp className="w-6 h-6" />
@@ -236,7 +236,7 @@ export default function FeaturesPage() {
                 {...fadeInUp}
                 transition={{ delay: i * 0.1 }}
                 whileHover={{ y: -8 }}
-                className={`group bg-gradient-to-br ${useCase.gradient} border ${useCase.color} rounded-2xl p-8 hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 overflow-hidden relative`}
+                className={`group bg-linear-to-br ${useCase.gradient} border ${useCase.color} rounded-2xl p-8 hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 overflow-hidden relative`}
               >
                 {/* Animated background accent */}
                 <div className="absolute -top-20 -right-20 w-40 h-40 bg-primary/5 rounded-full blur-3xl group-hover:bg-primary/10 transition-all duration-300" />
@@ -336,7 +336,7 @@ export default function FeaturesPage() {
               {/* AI Assistant Card */}
               <motion.div
                 whileHover={{ y: -10, scale: 1.02 }}
-                className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary/30 via-primary/20 to-primary/10 border-2 border-primary/50 p-8 sm:p-10 shadow-xl shadow-primary/10 hover:shadow-2xl hover:shadow-primary/30 transition-all duration-300"
+                className="group relative overflow-hidden rounded-2xl bg-linear-to-br from-primary/30 via-primary/20 to-primary/10 border-2 border-primary/50 p-8 sm:p-10 shadow-xl shadow-primary/10 hover:shadow-2xl hover:shadow-primary/30 transition-all duration-300"
               >
                 <div className="absolute -top-20 -right-20 w-40 h-40 bg-primary/30 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-300" />
                 <div className="relative z-10">
@@ -359,7 +359,7 @@ export default function FeaturesPage() {
               {/* Samhita Repository Card */}
               <motion.div
                 whileHover={{ y: -10, scale: 1.02 }}
-                className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary/30 via-primary/20 to-primary/10 border-2 border-primary/50 p-8 sm:p-10 shadow-xl shadow-primary/10 hover:shadow-2xl hover:shadow-primary/30 transition-all duration-300"
+                className="group relative overflow-hidden rounded-2xl bg-linear-to-br from-primary/30 via-primary/20 to-primary/10 border-2 border-primary/50 p-8 sm:p-10 shadow-xl shadow-primary/10 hover:shadow-2xl hover:shadow-primary/30 transition-all duration-300"
               >
                 <div className="absolute -top-20 -right-20 w-40 h-40 bg-primary/30 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-300" />
                 <div className="relative z-10">
