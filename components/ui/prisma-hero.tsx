@@ -2,7 +2,7 @@
 
 import { motion, useInView } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 
 /* ---------------- WordsPullUp ---------------- */
@@ -94,17 +94,43 @@ export const WordsPullUpMultiStyle = ({
 
 /* ---------------- Hero Component for IP-SAKTI Sahayak ---------------- */
 const IPSaktiHero = () => {
+  const [loadVideo, setLoadVideo] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const connection = (navigator as Navigator & { connection?: { saveData?: boolean } })
+      .connection;
+    if (reducedMotion || connection?.saveData) return;
+
+    const timer = window.setTimeout(() => setLoadVideo(true), 400);
+    return () => window.clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    if (!loadVideo) return;
+    void videoRef.current?.play().catch(() => undefined);
+  }, [loadVideo]);
+
   return (
     <section className="h-screen w-full">
-      <div className="relative h-full w-full overflow-hidden rounded-b-2xl md:rounded-b-[2rem]">
-        {/* Background video - You can replace this CDN URL with your own */}
+      <div className="relative h-full w-full overflow-hidden rounded-b-2xl bg-linear-to-br from-[#173b2b] via-[#2f855a] to-[#0b1f16] md:rounded-b-[2rem]">
+        {/* Load the remote video after the first paint; the local poster is immediate. */}
         <video
-          autoPlay
+          ref={videoRef}
+          autoPlay={loadVideo}
           loop
           muted
           playsInline
-          className="absolute inset-0 h-full w-full object-cover"
-          src="https://cdn.pixabay.com/video/2021/11/08/95080-644716533_large.mp4"
+          preload="none"
+          poster="/ai-assistant.jpg"
+          aria-hidden="true"
+          className="hero-video absolute inset-0 h-full w-full object-cover"
+          src={
+            loadVideo
+              ? 'https://cdn.pixabay.com/video/2021/11/08/95080-644716533_large.mp4'
+              : undefined
+          }
         />
 
         {/* Noise overlay */}

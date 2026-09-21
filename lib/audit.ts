@@ -25,7 +25,7 @@ export interface AuditRecord {
 }
 
 export function hashClientId(value: string): string {
-  const salt = env.RATE_LIMIT_SALT ?? 'audit-process-salt';
+  const salt = env.AUDIT_SALT ?? env.RATE_LIMIT_SALT ?? 'audit-process-salt';
   return createHash('sha256').update(`${salt}:${value}`).digest('hex');
 }
 

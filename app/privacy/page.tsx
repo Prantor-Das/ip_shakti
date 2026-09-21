@@ -49,7 +49,10 @@ export default function PrivacyPage() {
           <h2 className="text-xl font-semibold">Contact</h2>
           <p className="mt-2">
             For privacy questions, contact{' '}
-            {env.NEXT_PUBLIC_CONTACT_EMAIL ?? 'the IP-SAKTI team through the contact form'}.
+            {env.NEXT_PUBLIC_CONTACT_EMAIL ??
+              env.NEXT_PUBLIC_FACILITATOR_EMAIL ??
+              'the IP-SAKTI team through the contact form'}
+            .
           </p>
         </section>
       </div>

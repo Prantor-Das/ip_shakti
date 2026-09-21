@@ -212,9 +212,10 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
         'Crude powder and direct classical uses are protected prior art under Section 3(p) of the Indian Patents Act. Synergistic extracts or modified fractions require demonstrated inventive step.',
     },
     jurisdictions: ['India', 'USPTO', 'EPO', 'WIPO'],
-    image: '/ai-assistant.jpg',
+    image:
+      'https://t3.ftcdn.net/jpg/02/22/99/40/240_F_222994036_g3oHelAYmJPFR6s8oiSWH0xyadb89MIg.jpg',
     imageMetadata: {
-      url: '/ai-assistant.jpg',
+      url: 'https://t3.ftcdn.net/jpg/02/22/99/40/240_F_222994036_g3oHelAYmJPFR6s8oiSWH0xyadb89MIg.jpg',
       source: 'Stock Photo / Educational License',
       creator: 'Botanical Stock Collection',
       license: 'Standard Open Media License',
@@ -288,9 +289,10 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       patentabilityNotes: 'Crude leaves and classic teas fall under Section 3(p) exemptions.',
     },
     jurisdictions: ['India', 'EPO', 'USPTO'],
-    image: '/ai-assistant.jpg',
+    image:
+      'https://t4.ftcdn.net/jpg/03/31/01/69/240_F_331016915_eB9WLPO41xxHDIIPH6pyW2vWeFMpx1RR.jpg',
     imageMetadata: {
-      url: '/ai-assistant.jpg',
+      url: 'https://t4.ftcdn.net/jpg/03/31/01/69/240_F_331016915_eB9WLPO41xxHDIIPH6pyW2vWeFMpx1RR.jpg',
       source: 'Educational Media Repository',
       creator: 'Ayush Botanical Archives',
       license: 'Public Domain / Educational',
@@ -354,9 +356,10 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
         'General antifungal and biopesticidal crude uses are protected prior art under Section 3(p).',
     },
     jurisdictions: ['India', 'EPO', 'WIPO'],
-    image: '/ai-assistant.jpg',
+    image:
+      'https://images.unsplash.com/photo-1687945906634-25c66199d941?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bmVlbSUyMGxlYXZlc3xlbnwwfHwwfHx8MA%3D%3D',
     imageMetadata: {
-      url: '/ai-assistant.jpg',
+      url: 'https://images.unsplash.com/photo-1687945906634-25c66199d941',
       source: 'Unsplash Botanical Collection',
       creator: 'Unsplash Photographer',
       license: 'Unsplash Open License',
@@ -426,9 +429,10 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
         'General wound healing and anti-inflammatory claims on crude powder are barred under Section 3(p).',
     },
     jurisdictions: ['India', 'USPTO', 'WIPO'],
-    image: '/ai-assistant.jpg',
+    image:
+      'https://images.unsplash.com/photo-1606951444141-e5533feb55be?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dHVybWVyaWN8ZW58MHx8MHx8fDA%3D',
     imageMetadata: {
-      url: '/ai-assistant.jpg',
+      url: 'https://images.unsplash.com/photo-1606951444141-e5533feb55be',
       source: 'Unsplash Open Imagery',
       creator: 'Unsplash Contributor',
       license: 'Unsplash License',
@@ -493,9 +497,10 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
         'Crude fruit tonics protected under Section 3(p). Synergistic fractionations patentable.',
     },
     jurisdictions: ['India', 'USPTO'],
-    image: '/ai-assistant.jpg',
+    image:
+      'https://images.unsplash.com/photo-1676043966983-f5bd22435e64?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YW1sYXxlbnwwfHwwfHx8MA%3D%3D',
     imageMetadata: {
-      url: '/ai-assistant.jpg',
+      url: 'https://images.unsplash.com/photo-1676043966983-f5bd22435e64',
       source: 'Unsplash Botanical Archives',
       creator: 'Unsplash Creator',
       license: 'Unsplash Open License',
@@ -559,9 +564,10 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       patentabilityNotes: 'Classical Brahmi ghrita is protected prior art under Section 3(p).',
     },
     jurisdictions: ['India', 'USPTO', 'EPO'],
-    image: '/ai-assistant.jpg',
+    image:
+      'https://t3.ftcdn.net/jpg/04/20/94/44/240_F_420944448_yfPScimrV7KtBPTlKUDbQwPcfC8DuM4i.jpg',
     imageMetadata: {
-      url: '/ai-assistant.jpg',
+      url: 'https://t3.ftcdn.net/jpg/04/20/94/44/240_F_420944448_yfPScimrV7KtBPTlKUDbQwPcfC8DuM4i.jpg',
       source: 'Stock Media Collection',
       creator: 'Botanical Photo Archives',
       license: 'Educational Stock License',
@@ -625,9 +631,10 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       patentabilityNotes: 'Crude root powder is protected prior art under Section 3(p).',
     },
     jurisdictions: ['India', 'USPTO'],
-    image: '/ai-assistant.jpg',
+    image:
+      'https://images.unsplash.com/photo-1540420773420-3366772f4999?q=80&w=1000&auto=format&fit=crop',
     imageMetadata: {
-      url: '/ai-assistant.jpg',
+      url: 'https://images.unsplash.com/photo-1540420773420-3366772f4999',
       source: 'Unsplash Botanical Collection',
       creator: 'Unsplash Contributor',
       license: 'Unsplash Open License',
@@ -686,9 +693,10 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       patentabilityNotes: 'Guduchi Satva extraction method is documented classical prior art.',
     },
     jurisdictions: ['India', 'WIPO'],
-    image: '/ai-assistant.jpg',
+    image:
+      'https://t3.ftcdn.net/jpg/20/00/54/00/240_F_2000540050_eGDbnCcijyHxcgO0ztUpg4nlDNL3PlDM.jpg',
     imageMetadata: {
-      url: '/ai-assistant.jpg',
+      url: 'https://t3.ftcdn.net/jpg/20/00/54/00/240_F_2000540050_eGDbnCcijyHxcgO0ztUpg4nlDNL3PlDM.jpg',
       source: 'Stock Botanical Photo',
       creator: 'Stock Photographer',
       license: 'Educational License',
@@ -748,9 +756,10 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       patentabilityNotes: 'Crude bark decoctions fall under Section 3(p) prior art.',
     },
     jurisdictions: ['India', 'USPTO'],
-    image: '/ai-assistant.jpg',
+    image:
+      'https://t3.ftcdn.net/jpg/00/66/67/40/240_F_66674006_aEK346cOorVw9hv9hC4eGO8Tu2BYN66n.jpg',
     imageMetadata: {
-      url: '/ai-assistant.jpg',
+      url: 'https://t3.ftcdn.net/jpg/00/66/67/40/240_F_66674006_aEK346cOorVw9hv9hC4eGO8Tu2BYN66n.jpg',
       source: 'Stock Botanical Photo',
       creator: 'Stock Photographer',
       license: 'Educational License',
@@ -809,9 +818,10 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       patentabilityNotes: 'Triphala component crude formulations are protected prior art.',
     },
     jurisdictions: ['India', 'WIPO'],
-    image: '/ai-assistant.jpg',
+    image:
+      'https://t4.ftcdn.net/jpg/02/59/75/71/240_F_259757197_PkDQrpuTJvHKiyhKEABKWfHnBK0WLcXa.jpg',
     imageMetadata: {
-      url: '/ai-assistant.jpg',
+      url: 'https://t4.ftcdn.net/jpg/02/59/75/71/240_F_259757197_PkDQrpuTJvHKiyhKEABKWfHnBK0WLcXa.jpg',
       source: 'Stock Botanical Photo',
       creator: 'Stock Photographer',
       license: 'Educational License',
@@ -870,9 +880,10 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       patentabilityNotes: 'Protected prior art under Section 3(p).',
     },
     jurisdictions: ['India'],
-    image: '/ai-assistant.jpg',
+    image:
+      'https://t3.ftcdn.net/jpg/02/50/80/08/240_F_250800850_dgkYeEpUWYmRNmIHNGrM24yebwuou6VO.jpg',
     imageMetadata: {
-      url: '/ai-assistant.jpg',
+      url: 'https://t3.ftcdn.net/jpg/02/50/80/08/240_F_250800850_dgkYeEpUWYmRNmIHNGrM24yebwuou6VO.jpg',
       source: 'Stock Botanical Photo',
       creator: 'Stock Photographer',
       license: 'Educational License',
@@ -932,9 +943,10 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       patentabilityNotes: 'Crude sweet root powder is protected prior art under Section 3(p).',
     },
     jurisdictions: ['India', 'USPTO', 'EPO'],
-    image: '/ai-assistant.jpg',
+    image:
+      'https://t3.ftcdn.net/jpg/16/24/14/52/240_F_1624145291_JomYKv5NGjhAJINAlUXNNFWYUCwKYZ2k.jpg',
     imageMetadata: {
-      url: '/ai-assistant.jpg',
+      url: 'https://t3.ftcdn.net/jpg/16/24/14/52/240_F_1624145291_JomYKv5NGjhAJINAlUXNNFWYUCwKYZ2k.jpg',
       source: 'Stock Botanical Photo',
       creator: 'Stock Photographer',
       license: 'Educational License',
@@ -995,9 +1007,10 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       patentabilityNotes: 'General culinary and digestive crude usage barred under Section 3(p).',
     },
     jurisdictions: ['India', 'WIPO'],
-    image: '/ai-assistant.jpg',
+    image:
+      'https://t4.ftcdn.net/jpg/04/40/15/11/240_F_440151143_Ldww2WZZZv68OItB21WDxN3MO3au5poH.jpg',
     imageMetadata: {
-      url: '/ai-assistant.jpg',
+      url: 'https://t4.ftcdn.net/jpg/04/40/15/11/240_F_440151143_Ldww2WZZZv68OItB21WDxN3MO3au5poH.jpg',
       source: 'Stock Botanical Photo',
       creator: 'Stock Photographer',
       license: 'Educational License',
@@ -1054,9 +1067,10 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
         'Crude peppercorns protected under Section 3(p). Synergistic extraction protocols patentable.',
     },
     jurisdictions: ['India', 'USPTO'],
-    image: '/ai-assistant.jpg',
+    image:
+      'https://t4.ftcdn.net/jpg/04/01/95/93/240_F_401959393_fohsQ2D4vYxcWjgvhmzkYSa68ShUQwDw.jpg',
     imageMetadata: {
-      url: '/ai-assistant.jpg',
+      url: 'https://t4.ftcdn.net/jpg/04/01/95/93/240_F_401959393_fohsQ2D4vYxcWjgvhmzkYSa68ShUQwDw.jpg',
       source: 'Stock Botanical Photo',
       creator: 'Stock Photographer',
       license: 'Educational License',
@@ -1115,9 +1129,10 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
         'Classical Rasayana preparation rules are protected prior art under Section 3(p).',
     },
     jurisdictions: ['India', 'USPTO'],
-    image: '/ai-assistant.jpg',
+    image:
+      'https://t3.ftcdn.net/jpg/20/42/26/56/240_F_2042265607_3823EI3P5yU8nN6pbMqCkTtApogdGOSe.jpg',
     imageMetadata: {
-      url: '/ai-assistant.jpg',
+      url: 'https://t3.ftcdn.net/jpg/20/42/26/56/240_F_2042265607_3823EI3P5yU8nN6pbMqCkTtApogdGOSe.jpg',
       source: 'Stock Botanical Photo',
       creator: 'Stock Photographer',
       license: 'Educational License',
@@ -1177,9 +1192,10 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       patentabilityNotes: 'Crude culinary spices fall under Section 3(p) prior art.',
     },
     jurisdictions: ['India', 'EPO'],
-    image: '/ai-assistant.jpg',
+    image:
+      'https://t3.ftcdn.net/jpg/03/80/70/10/240_F_380701084_342yCahYDvbiNGDbnPurqqoknB5MTt6N.jpg',
     imageMetadata: {
-      url: '/ai-assistant.jpg',
+      url: 'https://t3.ftcdn.net/jpg/03/80/70/10/240_F_380701084_342yCahYDvbiNGDbnPurqqoknB5MTt6N.jpg',
       source: 'Stock Botanical Photo',
       creator: 'Stock Photographer',
       license: 'Educational License',
@@ -1234,9 +1250,10 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       patentabilityNotes: 'Protected prior art under Section 3(p).',
     },
     jurisdictions: ['India'],
-    image: '/ai-assistant.jpg',
+    image:
+      'https://t4.ftcdn.net/jpg/04/26/81/47/240_F_426814728_UQIKGWfmzy0o9oeCY16GzSc4TgwqzT9J.jpg',
     imageMetadata: {
-      url: '/ai-assistant.jpg',
+      url: 'https://t4.ftcdn.net/jpg/04/26/81/47/240_F_426814728_UQIKGWfmzy0o9oeCY16GzSc4TgwqzT9J.jpg',
       source: 'Stock Botanical Photo',
       creator: 'Stock Photographer',
       license: 'Educational License',
@@ -1291,9 +1308,10 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       patentabilityNotes: 'Classical flower bud usage protected under Section 3(p).',
     },
     jurisdictions: ['India', 'USPTO'],
-    image: '/ai-assistant.jpg',
+    image:
+      'https://t3.ftcdn.net/jpg/03/87/63/22/240_F_387632273_hem7kFTpVCoR5HqulMBYHd05IRdivYLT.jpg',
     imageMetadata: {
-      url: '/ai-assistant.jpg',
+      url: 'https://t3.ftcdn.net/jpg/03/87/63/22/240_F_387632273_hem7kFTpVCoR5HqulMBYHd05IRdivYLT.jpg',
       source: 'Stock Botanical Photo',
       creator: 'Stock Photographer',
       license: 'Educational License',
@@ -1347,9 +1365,10 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       patentabilityNotes: 'Crude seed powder protected under Section 3(p).',
     },
     jurisdictions: ['India'],
-    image: '/ai-assistant.jpg',
+    image:
+      'https://t3.ftcdn.net/jpg/21/21/63/38/240_F_2121633871_AQk9fb4GrXARFksK23YtIRvfRi6U6eyP.jpg',
     imageMetadata: {
-      url: '/ai-assistant.jpg',
+      url: 'https://t3.ftcdn.net/jpg/21/21/63/38/240_F_2121633871_AQk9fb4GrXARFksK23YtIRvfRi6U6eyP.jpg',
       source: 'Stock Botanical Photo',
       creator: 'Stock Photographer',
       license: 'Educational License',
@@ -1403,9 +1422,10 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       patentabilityNotes: 'Well-established traditional spice.',
     },
     jurisdictions: ['India'],
-    image: '/ai-assistant.jpg',
+    image:
+      'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?q=80&w=1000&auto=format&fit=crop',
     imageMetadata: {
-      url: '/ai-assistant.jpg',
+      url: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d',
       source: 'Unsplash Media Collection',
       creator: 'Unsplash Photographer',
       license: 'Unsplash License',
@@ -1471,9 +1491,10 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
         'Purified guggulsterones patentable; crude gum resin protected under Section 3(p).',
     },
     jurisdictions: ['India', 'USPTO', 'WIPO'],
-    image: '/ai-assistant.jpg',
+    image:
+      'https://t3.ftcdn.net/jpg/20/37/07/00/240_F_2037070053_88lcOHngLgJk8AGpIC2NTnNRd7HkkuGO.jpg',
     imageMetadata: {
-      url: '/ai-assistant.jpg',
+      url: 'https://t3.ftcdn.net/jpg/20/37/07/00/240_F_2037070053_88lcOHngLgJk8AGpIC2NTnNRd7HkkuGO.jpg',
       source: 'Stock Botanical Photo',
       creator: 'Stock Photographer',
       license: 'Educational License',
@@ -1536,9 +1557,10 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       patentabilityNotes: 'Crude plant extracts fall under Section 3(p) prior art.',
     },
     jurisdictions: ['India', 'USPTO'],
-    image: '/ai-assistant.jpg',
+    image:
+      'https://t3.ftcdn.net/jpg/08/79/00/94/240_F_879009433_FM4dNzxxh2ONLN18uY8q5xdmgctaLc4r.jpg',
     imageMetadata: {
-      url: '/ai-assistant.jpg',
+      url: 'https://t3.ftcdn.net/jpg/08/79/00/94/240_F_879009433_FM4dNzxxh2ONLN18uY8q5xdmgctaLc4r.jpg',
       source: 'Stock Botanical Photo',
       creator: 'Stock Photographer',
       license: 'Educational License',
@@ -1593,9 +1615,10 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       patentabilityNotes: 'Protected prior art under Section 3(p).',
     },
     jurisdictions: ['India'],
-    image: '/ai-assistant.jpg',
+    image:
+      'https://t4.ftcdn.net/jpg/20/93/66/07/240_F_2093660765_kd8qHE5RMUhQwC0aXSzJFpTEQLZwkcS8.jpg',
     imageMetadata: {
-      url: '/ai-assistant.jpg',
+      url: 'https://t4.ftcdn.net/jpg/20/93/66/07/240_F_2093660765_kd8qHE5RMUhQwC0aXSzJFpTEQLZwkcS8.jpg',
       source: 'Stock Botanical Photo',
       creator: 'Stock Photographer',
       license: 'Educational License',
@@ -1656,9 +1679,10 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
         'Traditional oil infusing processes are protected prior art under Section 3(p).',
     },
     jurisdictions: ['India', 'USPTO'],
-    image: '/ai-assistant.jpg',
+    image:
+      'https://t4.ftcdn.net/jpg/21/26/16/69/240_F_2126166983_Cb42Idmex33phQQQQnSo9EDJlEV1HaiN.jpg',
     imageMetadata: {
-      url: '/ai-assistant.jpg',
+      url: 'https://t4.ftcdn.net/jpg/21/26/16/69/240_F_2126166983_Cb42Idmex33phQQQQnSo9EDJlEV1HaiN.jpg',
       source: 'Stock Botanical Photo',
       creator: 'Stock Photographer',
       license: 'Educational License',
@@ -1718,9 +1742,10 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       patentabilityNotes: 'Protected prior art under Section 3(p).',
     },
     jurisdictions: ['India'],
-    image: '/ai-assistant.jpg',
+    image:
+      'https://t4.ftcdn.net/jpg/09/05/31/31/240_F_905313136_IucThvCKw8L8ColRp76yLyECsRnoelxB.jpg',
     imageMetadata: {
-      url: '/ai-assistant.jpg',
+      url: 'https://t4.ftcdn.net/jpg/09/05/31/31/240_F_905313136_IucThvCKw8L8ColRp76yLyECsRnoelxB.jpg',
       source: 'Stock Botanical Photo',
       creator: 'Stock Photographer',
       license: 'Educational License',
@@ -1779,9 +1804,10 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       patentabilityNotes: 'Protected prior art under Section 3(p) and NBA biodiversity guidelines.',
     },
     jurisdictions: ['India', 'WIPO'],
-    image: '/ai-assistant.jpg',
+    image:
+      'https://t3.ftcdn.net/jpg/04/55/19/72/240_F_455197231_YhMrtefw0l5ml2OiS3M0UEMsy5TLT8hU.jpg',
     imageMetadata: {
-      url: '/ai-assistant.jpg',
+      url: 'https://t3.ftcdn.net/jpg/04/55/19/72/240_F_455197231_YhMrtefw0l5ml2OiS3M0UEMsy5TLT8hU.jpg',
       source: 'Stock Botanical Photo',
       creator: 'Stock Photographer',
       license: 'Educational License',
@@ -1842,9 +1868,10 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
         'Protected prior art under Section 3(p) and CITES international trade rules.',
     },
     jurisdictions: ['India', 'WIPO'],
-    image: '/ai-assistant.jpg',
+    image:
+      'https://t3.ftcdn.net/jpg/06/44/87/22/240_F_644872287_b6Ejq26lYHB9eFJ3ja5qwaki0LV3Z08R.jpg',
     imageMetadata: {
-      url: '/ai-assistant.jpg',
+      url: 'https://t3.ftcdn.net/jpg/06/44/87/22/240_F_644872287_b6Ejq26lYHB9eFJ3ja5qwaki0LV3Z08R.jpg',
       source: 'Stock Botanical Photo',
       creator: 'Stock Photographer',
       license: 'Educational License',
@@ -1905,9 +1932,10 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
         'Crude root powder protected under Section 3(p). Synthetic analogs patented globally.',
     },
     jurisdictions: ['India', 'USPTO', 'EPO'],
-    image: '/ai-assistant.jpg',
+    image:
+      'https://t4.ftcdn.net/jpg/10/55/51/01/240_F_1055510132_dN2j1A2Hvd3jaEj6i9yCF5XRiXKFxmB4.jpg',
     imageMetadata: {
-      url: '/ai-assistant.jpg',
+      url: 'https://t4.ftcdn.net/jpg/10/55/51/01/240_F_1055510132_dN2j1A2Hvd3jaEj6i9yCF5XRiXKFxmB4.jpg',
       source: 'Stock Botanical Photo',
       creator: 'Stock Photographer',
       license: 'Educational License',
@@ -1967,9 +1995,10 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       patentabilityNotes: 'Protected prior art under Section 3(p).',
     },
     jurisdictions: ['India', 'WIPO'],
-    image: '/ai-assistant.jpg',
+    image:
+      'https://t4.ftcdn.net/jpg/04/43/95/51/240_F_443955133_Q6a2MsG1XIUsM3YVujCMhyMDiT9pAom0.jpg',
     imageMetadata: {
-      url: '/ai-assistant.jpg',
+      url: 'https://t4.ftcdn.net/jpg/04/43/95/51/240_F_443955133_Q6a2MsG1XIUsM3YVujCMhyMDiT9pAom0.jpg',
       source: 'Stock Botanical Photo',
       creator: 'Stock Photographer',
       license: 'Educational License',
@@ -2027,9 +2056,10 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       patentabilityNotes: 'Protected prior art under Section 3(p).',
     },
     jurisdictions: ['India'],
-    image: '/ai-assistant.jpg',
+    image:
+      'https://t3.ftcdn.net/jpg/20/48/53/70/240_F_2048537081_0qPojA2XHmb8vfmCus340gYhos0ScDA3.jpg',
     imageMetadata: {
-      url: '/ai-assistant.jpg',
+      url: 'https://t3.ftcdn.net/jpg/20/48/53/70/240_F_2048537081_0qPojA2XHmb8vfmCus340gYhos0ScDA3.jpg',
       source: 'Stock Botanical Photo',
       creator: 'Stock Photographer',
       license: 'Educational License',
@@ -2084,9 +2114,10 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       patentabilityNotes: 'Crude leaves and pods fall under Section 3(p) prior art.',
     },
     jurisdictions: ['India', 'USPTO'],
-    image: '/ai-assistant.jpg',
+    image:
+      'https://t4.ftcdn.net/jpg/04/29/94/13/240_F_429941325_e9mS5yk11Bf1av5h0yoXkH3Zp28HznRU.jpg',
     imageMetadata: {
-      url: '/ai-assistant.jpg',
+      url: 'https://t4.ftcdn.net/jpg/04/29/94/13/240_F_429941325_e9mS5yk11Bf1av5h0yoXkH3Zp28HznRU.jpg',
       source: 'Stock Botanical Photo',
       creator: 'Stock Photographer',
       license: 'Educational License',
@@ -2141,9 +2172,10 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       patentabilityNotes: 'Crude gel formulations protected under Section 3(p).',
     },
     jurisdictions: ['India', 'USPTO', 'EPO'],
-    image: '/ai-assistant.jpg',
+    image:
+      'https://t3.ftcdn.net/jpg/00/29/98/36/240_F_29983618_UDhdGRit0HHQXAGoiB73foX4ThrOO2Bi.jpg',
     imageMetadata: {
-      url: '/ai-assistant.jpg',
+      url: 'https://t3.ftcdn.net/jpg/00/29/98/36/240_F_29983618_UDhdGRit0HHQXAGoiB73foX4ThrOO2Bi.jpg',
       source: 'Stock Botanical Photo',
       creator: 'Stock Photographer',
       license: 'Educational License',
@@ -2198,9 +2230,10 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       patentabilityNotes: 'Protected prior art under Section 3(p).',
     },
     jurisdictions: ['India'],
-    image: '/ai-assistant.jpg',
+    image:
+      'https://t4.ftcdn.net/jpg/05/20/62/35/240_F_520623555_HwqDGAmQcHa4TbadSS3KyXp5ii0UFTJ5.jpg',
     imageMetadata: {
-      url: '/ai-assistant.jpg',
+      url: 'https://t4.ftcdn.net/jpg/05/20/62/35/240_F_520623555_HwqDGAmQcHa4TbadSS3KyXp5ii0UFTJ5.jpg',
       source: 'Stock Botanical Photo',
       creator: 'Stock Photographer',
       license: 'Educational License',
@@ -2260,9 +2293,10 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       patentabilityNotes: 'Crude tree turmeric bark protected under Section 3(p).',
     },
     jurisdictions: ['India', 'USPTO'],
-    image: '/ai-assistant.jpg',
+    image:
+      'https://t3.ftcdn.net/jpg/05/20/74/46/240_F_520744600_ZzRjl4HngcxXgzQd9wmwDTJKxpQlynYm.jpg',
     imageMetadata: {
-      url: '/ai-assistant.jpg',
+      url: 'https://t3.ftcdn.net/jpg/05/20/74/46/240_F_520744600_ZzRjl4HngcxXgzQd9wmwDTJKxpQlynYm.jpg',
       source: 'Stock Botanical Photo',
       creator: 'Stock Photographer',
       license: 'Educational License',
@@ -2322,9 +2356,10 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       patentabilityNotes: 'Protected prior art under Section 3(p).',
     },
     jurisdictions: ['India', 'USPTO'],
-    image: '/ai-assistant.jpg',
+    image:
+      'https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8f/Gymnema_sylvestre_R.Br_-_Flickr_-_lalithamba.jpg/250px-Gymnema_sylvestre_R.Br_-_Flickr_-_lalithamba.jpg?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail',
     imageMetadata: {
-      url: '/ai-assistant.jpg',
+      url: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8f/Gymnema_sylvestre_R.Br_-_Flickr_-_lalithamba.jpg/250px-Gymnema_sylvestre_R.Br_-_Flickr_-_lalithamba.jpg?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail',
       source: 'Wikimedia Commons',
       creator: 'Lalithamba',
       license: 'CC BY 2.0',
@@ -2382,9 +2417,10 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       patentabilityNotes: 'Protected prior art under Section 3(p).',
     },
     jurisdictions: ['India', 'USPTO'],
-    image: '/ai-assistant.jpg',
+    image:
+      'https://t3.ftcdn.net/jpg/19/88/31/12/240_F_1988311273_zyFQ8a05DKlXMgje7bJgSfwoVdzarsoW.jpg',
     imageMetadata: {
-      url: '/ai-assistant.jpg',
+      url: 'https://t3.ftcdn.net/jpg/19/88/31/12/240_F_1988311273_zyFQ8a05DKlXMgje7bJgSfwoVdzarsoW.jpg',
       source: 'Stock Botanical Photo',
       creator: 'Stock Photographer',
       license: 'Educational License',
@@ -2437,9 +2473,10 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       patentabilityNotes: 'Protected prior art under Section 3(p).',
     },
     jurisdictions: ['India'],
-    image: '/ai-assistant.jpg',
+    image:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjWDc4NkGSW3dD3p-HQZXU4Wa8ZI5bAp3ltqjW1VUun9A-KKxTaEfE0VhBTBuzE6hsnqvlX2HupwGEHYBTCi33wD2ocgy_nMrIvA01fw-6&s=10',
     imageMetadata: {
-      url: '/ai-assistant.jpg',
+      url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjWDc4NkGSW3dD3p-HQZXU4Wa8ZI5bAp3ltqjW1VUun9A-KKxTaEfE0VhBTBuzE6hsnqvlX2HupwGEHYBTCi33wD2ocgy_nMrIvA01fw-6&s=10',
       source: 'Botanical Photo Repository',
       creator: 'Stock Photographer',
       license: 'Educational License',
@@ -2494,9 +2531,10 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       patentabilityNotes: 'Protected prior art under Section 3(p).',
     },
     jurisdictions: ['India'],
-    image: '/ai-assistant.jpg',
+    image:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiojuoJePUsAu9TmSGuSB3iTPkHt9DxDzLTYfBGiiNqA&s=10',
     imageMetadata: {
-      url: '/ai-assistant.jpg',
+      url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiojuoJePUsAu9TmSGuSB3iTPkHt9DxDzLTYfBGiiNqA&s=10',
       source: 'Botanical Photo Repository',
       creator: 'Stock Photographer',
       license: 'Educational License',
@@ -2555,9 +2593,10 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       patentabilityNotes: 'Protected prior art under Section 3(p).',
     },
     jurisdictions: ['India'],
-    image: '/ai-assistant.jpg',
+    image:
+      'https://t3.ftcdn.net/jpg/08/04/33/42/240_F_804334238_sCMMCmMBbE2ZxMJlekhqoIdxzSDzWFbj.jpg',
     imageMetadata: {
-      url: '/ai-assistant.jpg',
+      url: 'https://t3.ftcdn.net/jpg/08/04/33/42/240_F_804334238_sCMMCmMBbE2ZxMJlekhqoIdxzSDzWFbj.jpg',
       source: 'Stock Botanical Photo',
       creator: 'Stock Photographer',
       license: 'Educational License',
@@ -2612,9 +2651,10 @@ export const SAMHITA_ENTRIES: SamhitaEntry[] = [
       patentabilityNotes: 'Protected prior art under Section 3(p).',
     },
     jurisdictions: ['India'],
-    image: '/ai-assistant.jpg',
+    image:
+      'https://t3.ftcdn.net/jpg/03/88/68/08/240_F_388680802_1cDiG44aYC41rWXtoDYv5S31W6hmdH6U.jpg',
     imageMetadata: {
-      url: '/ai-assistant.jpg',
+      url: 'https://t3.ftcdn.net/jpg/03/88/68/08/240_F_388680802_1cDiG44aYC41rWXtoDYv5S31W6hmdH6U.jpg',
       source: 'Stock Botanical Photo',
       creator: 'Stock Photographer',
       license: 'Educational License',

@@ -128,8 +128,8 @@ export async function checkRateLimit(
   const globalRequests = await increment(`ip-sakti:global:requests:${day}`, 86400);
   const globalTokens = await increment(`ip-sakti:global:tokens:${day}`, 86400, tokenEstimate);
   if (
-    globalRequests.count > env.GLOBAL_DAILY_REQUEST_BUDGET ||
-    globalTokens.count > env.GLOBAL_DAILY_TOKEN_BUDGET
+    globalRequests.count > env.DAILY_BUDGET_REQUESTS ||
+    globalTokens.count > env.DAILY_BUDGET_TOKENS
   )
     return {
       ok: false,

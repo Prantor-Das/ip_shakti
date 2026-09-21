@@ -19,6 +19,7 @@ const schema = z
     GEMINI_FALLBACK_MODEL: z.string().trim().min(1).default('gemini-3.5-flash-lite'),
     GEMINI_TRANSLATION_MODEL: z.string().trim().min(1).default('gemini-3.8-flash'),
     GEMINI_EMBEDDING_MODEL: z.string().trim().min(1).default('gemini-embedding-001'),
+    EMBEDDING_DIM: z.coerce.number().int().positive().default(768),
     SUPABASE_URL: z.string().url(),
     SUPABASE_SERVICE_ROLE_KEY: z.string().trim().min(1),
     BHASHINI_USER_ID: optionalSecret,
@@ -33,10 +34,11 @@ const schema = z
     CHAT_RATE_LIMIT_PER_DAY: z.coerce.number().int().positive().default(100),
     CONTACT_RATE_LIMIT_PER_HOUR: z.coerce.number().int().positive().default(3),
     MAX_INFLIGHT_PER_CLIENT: z.coerce.number().int().min(1).max(2).default(1),
-    GLOBAL_DAILY_REQUEST_BUDGET: z.coerce.number().int().positive().default(1000),
-    GLOBAL_DAILY_TOKEN_BUDGET: z.coerce.number().int().positive().default(1000000),
+    DAILY_BUDGET_REQUESTS: z.coerce.number().int().positive().default(1000),
+    DAILY_BUDGET_TOKENS: z.coerce.number().int().positive().default(1000000),
     UPSTASH_REDIS_REST_URL: z.string().url().optional(),
     UPSTASH_REDIS_REST_TOKEN: optionalSecret,
+    AUDIT_SALT: optionalSecret,
     LOG_CONTENT: booleanEnv,
     AUDIT_RETENTION_DAYS: z.coerce.number().int().positive().default(90),
     CONTACT_PROVIDER: z.enum(['resend', 'smtp']).optional(),
@@ -49,6 +51,8 @@ const schema = z
     SMTP_PASSWORD: optionalSecret,
     NEXT_PUBLIC_SITE_URL: z.string().url().default('http://localhost:3000'),
     NEXT_PUBLIC_CONTACT_EMAIL: z.string().email().optional(),
+    NEXT_PUBLIC_FACILITATOR_EMAIL: z.string().email().optional(),
+    NEXT_PUBLIC_ENABLE_VOICE: booleanEnv,
   })
   .superRefine((values, context) => {
     const bhashini = [

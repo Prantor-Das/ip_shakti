@@ -25,7 +25,7 @@ const nextConfig: NextConfig = {
           {
             key: 'Content-Security-Policy',
             value:
-              "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src 'self' data: https://cdnjs.cloudflare.com; img-src 'self' data: https://t3.ftcdn.net https://t4.ftcdn.net https://images.unsplash.com https://encrypted-tbn0.gstatic.com https://cdn.pixabay.com https://images-cdn.reedsy.com https://img.magnific.com https://www.webopedia.com https://cdn.exoticindia.com https://i.ytimg.com https://thumb.wikimedia.org; media-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'",
+              "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src 'self' data: https://cdnjs.cloudflare.com; img-src 'self' data: https://t3.ftcdn.net https://t4.ftcdn.net https://images.unsplash.com https://encrypted-tbn0.gstatic.com https://cdn.pixabay.com https://images-cdn.reedsy.com https://img.magnific.com https://www.webopedia.com https://cdn.exoticindia.com https://i.ytimg.com https://thumb.wikimedia.org; media-src 'self' data: https://cdn.pixabay.com; connect-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'",
           },
           {
             key: 'Strict-Transport-Security',

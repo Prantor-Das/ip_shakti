@@ -46,11 +46,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           referrerPolicy="no-referrer"
         />
       </head>
-      <body className="site-light antialiased">
-        <I18nProvider contactEmail={env.NEXT_PUBLIC_CONTACT_EMAIL}>
+      <body suppressHydrationWarning className="site-light antialiased">
+        <I18nProvider
+          contactEmail={env.NEXT_PUBLIC_CONTACT_EMAIL ?? env.NEXT_PUBLIC_FACILITATOR_EMAIL}
+        >
           <FloatingNavbar />
           <main>{children}</main>
-          <Footer contactEmail={env.NEXT_PUBLIC_CONTACT_EMAIL} />
+          <Footer
+            contactEmail={env.NEXT_PUBLIC_CONTACT_EMAIL ?? env.NEXT_PUBLIC_FACILITATOR_EMAIL}
+          />
           <PrivacyNotice />
         </I18nProvider>
       </body>

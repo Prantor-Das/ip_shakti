@@ -14,8 +14,6 @@ interface GenerateTextInput {
   signal?: AbortSignal;
 }
 
-const EMBEDDING_DIM = 768;
-
 function client(apiKey: string, signal?: AbortSignal): GoogleGenAI {
   const fetchWithSignal: typeof fetch = (input, init) =>
     fetch(input, { ...init, signal: signal ?? init?.signal });
@@ -98,7 +96,7 @@ export async function embedTextsWithApiKey(
     const response = await client(apiKey, signal).models.embedContent({
       model,
       contents: [{ parts: [{ text }] }],
-      config: { taskType, outputDimensionality: EMBEDDING_DIM },
+      config: { taskType, outputDimensionality: env.EMBEDDING_DIM },
     });
     const embeddingValues = response.embeddings?.[0]?.values ?? [];
     results.push(l2Normalize(embeddingValues));

@@ -27,8 +27,6 @@ export interface RetrievalResult {
   topSimilarity: number;
 }
 
-const EMBEDDING_DIM = 768;
-
 function asRecord(value: unknown): Record<string, unknown> | null {
   return typeof value === 'object' && value !== null ? (value as Record<string, unknown>) : null;
 }
@@ -78,7 +76,7 @@ export async function retrieve(
 ): Promise<RetrievalResult> {
   const minSimilarity = env.RETRIEVAL_MIN_SIMILARITY;
   const [embedding] = await embedTexts([query], 'RETRIEVAL_QUERY', signal);
-  if (!embedding || embedding.length !== EMBEDDING_DIM)
+  if (!embedding || embedding.length !== env.EMBEDDING_DIM)
     throw new Error('Embedding dimension mismatch');
 
   const supabase = getSupabaseServiceClient();
